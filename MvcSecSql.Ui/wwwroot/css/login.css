@@ -1,11 +1,11 @@
-﻿#login-panel-heading { margin-top: 40px; }
+﻿#login-panel-heading, #register-panel-heading { margin-top: 40px; }
 
-.login-panel {
+.login-panel, .register-panel {
     width: 280px;
     border: none;
 }
 
-.login-panel-body {
+.login-panel-body, .register-panel-body {
     border: 1px solid #cecece !important;
     padding: 20px;
 }
@@ -34,10 +34,7 @@
 
 .icon-addon:hover .glyphicon { color: #2580db; }
 
-.login-form button {
-    width: 100%;
-}
+.login-form button, .register-form button { width: 100%; }
 
-.login-form .validation-summary-errors ul {
-    padding-left: 20px;
-}
+.login-form .validation-summary-errors ul,
+.register-form .validation-summary-errors ul { padding-left: 20px; }
