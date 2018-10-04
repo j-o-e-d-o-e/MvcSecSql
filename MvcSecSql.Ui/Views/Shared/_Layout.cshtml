@@ -1,14 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using MvcSecSql.Data.Data.Entities
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MvcSecSql.Ui</title>
-
+    <title>@ViewData["Title"] - VideoOnDemand.UI</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i" rel="stylesheet">
+    <link href="//vjs.zencdn.net/7.0/video-js.min.css" rel="stylesheet">
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/login.css" />
+        <link href="~/css/login.css" rel="stylesheet" />
+        <link href="~/css/menu.css" rel="stylesheet" />
+        <link href="~/css/membership.css" rel="stylesheet" />
+        <link href="~/css/course-panel.css" rel="stylesheet" />
+        <link href="~/css/course.css" rel="stylesheet" />
+        <link href="~/css/module.css" rel="stylesheet" />
+        <link href="~/css/instructor-bio.css" rel="stylesheet" />
+        <link href="~/css/video.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -18,7 +29,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,14 +38,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">MvcSecSql.Ui</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/Logos/membership-logo.png" /></a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <ul class="nav navbar-nav">
+                        <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                        <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    </ul>
+                }
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
@@ -43,13 +57,15 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - MvcSecSql.Ui</p>
+            <p>&copy; 2017 - VideoOnDemand.UI</p>
         </footer>
     </div>
-
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="//vjs.zencdn.net/7.0/video.min.js"></script>
+        <script src="~/js/Youtube.min.js"></script>
+        <script src="~/js/videoJS.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
@@ -65,9 +81,11 @@
                 crossorigin="anonymous"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
         </script>
+        <script src="//vjs.zencdn.net/7.0/video.min.js"></script>
+        <script src="~/js/Youtube.min.js"></script>
+        <script src="~/js/videoJS.js"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>
