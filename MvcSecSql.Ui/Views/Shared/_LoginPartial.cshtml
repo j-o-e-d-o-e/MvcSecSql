@@ -7,7 +7,7 @@
     <form asp-area="" asp-controller="Account" asp-action="Logout"
           method="post" id="logoutForm">
         <ul class="nav navbar-nav navbar-right">
-            <li>@User.Identity.Name</li>
+            <li id="user-name-email">@User.Identity.Name</li>
             <li class="dropdown pull-right">
                 <a href="#" id="user-dropdown" class="dropdown-toggle user-dropdown" data-toggle="dropdown" role="button" aria-expanded="false">
                     <img src="~/images/avatar.png" class="img-circle avatar" alt="" height="40">

@@ -3,13 +3,9 @@
     background-color: #fff;
 }
 
-.dropdown.pull-right {
-    padding-top: 0px;
-}
+.dropdown.pull-right { padding-top: 0px; }
 
-#user-dropdown {
-    padding: 7px;
-}
+#user-dropdown { padding: 7px; }
 
 .navbar-right > li {
     padding-top: 18px;
@@ -26,4 +22,8 @@
 .dropdown-menu li > a {
     color: #666c74;
     padding: 15px 40px 15px 20px;
+}
+
+#user-name-email {
+    padding-top: 18px;
 }
