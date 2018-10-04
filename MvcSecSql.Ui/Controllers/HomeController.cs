@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Ui.Models;
+using MvcSecSql.UI.Repositories;
 
 namespace MvcSecSql.Ui.Controllers
 {
