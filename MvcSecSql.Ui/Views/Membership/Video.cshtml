@@ -1,0 +1,48 @@
+﻿@model VideoViewModel
+
+@{
+    ViewData["Title"] = "Video";
+}
+
+<div class="membership top-margin video-content">
+    <div class="row navigation-bar">
+        <div class="col-sm-12">
+            <a class="btn btn-primary" href="~/Membership/Course/
+                @Model.Course.CourseId">
+                <span class="glyphicon glyphicon-menu-left"></span>
+                Back to @Model.Course.CourseTitle
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            @if (Model != null && Model.Video != null &&
+                 Model.LessonInfo != null && Model.Course != null)
+            {
+                @await Html.PartialAsync("_VideoPlayerPartial", Model)
+            }
+        </div>
+
+        <div class="col-sm-3">
+            @if (Model != null && Model.LessonInfo != null)
+            {
+                @await Html.PartialAsync("_VideoComingUpPartial", Model.LessonInfo)
+            }
+
+            @if (Model != null && Model.Instructor != null)
+            {
+                @await Html.PartialAsync("_InstructorBioPartial",
+                    Model.Instructor)
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(function () {
+            videoJS($("#hiddenUrl").text());
+        });
+    </script>
+}

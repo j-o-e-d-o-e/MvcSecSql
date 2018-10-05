@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Ui.Models;
-using MvcSecSql.UI.Repositories;
 
 namespace MvcSecSql.Ui.Controllers
 {
     public class HomeController : Controller
     {
-        private SignInManager<User> _signInManager;
+        private readonly SignInManager<User> _signInManager;
 
         public HomeController(SignInManager<User> signInManager)
         {
@@ -20,7 +19,7 @@ namespace MvcSecSql.Ui.Controllers
         {
             if (!_signInManager.IsSignedIn(User))
                 return RedirectToAction("Login", "Account");
-            return View();
+            return RedirectToAction("Dashboard", "Membership");
         }
 
         public IActionResult About()
