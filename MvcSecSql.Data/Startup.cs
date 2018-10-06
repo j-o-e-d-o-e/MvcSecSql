@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MvcSecSql.Data.Data;
 using MvcSecSql.Data.Data.Entities;
+using MvcSecSql.Data.Migrations;
 
 namespace MvcSecSql.Data
 {
@@ -32,10 +33,11 @@ namespace MvcSecSql.Data
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, VodContext db)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
-
+//            DbInitializer.RecreateDatabase(db);
+            DbInitializer.Initialize(db);
             app.Run(async context => { await context.Response.WriteAsync("Hello World!"); });
         }
     }

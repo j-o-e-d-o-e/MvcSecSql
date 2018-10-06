@@ -108,31 +108,31 @@ namespace MvcSecSql.UI.Repositories
             {
                 Id = 1, ModuleId = 1, CourseId = 1, Position = 1,
                 Title = "Video 1 Title", Description = "Video 1 Description: A very very long description.",
-                Duration = 50, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=BJFyzpBcaCY"
+                Duration = 50, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=GyFQAHc8oao"
             },
             new Video
             {
                 Id = 2, ModuleId = 1, CourseId = 1, Position = 2,
                 Title = "Video 2 Title", Description = "Video 2 Description: A very very long description.",
-                Duration = 45, Thumbnail = "/images/video2.jpg", Url = "https://www.youtube.com/watch?v=BJFyzpBcaCY"
+                Duration = 45, Thumbnail = "/images/video2.jpg", Url = "https://www.youtube.com/watch?v=0_e4YX73Ww4"
             },
             new Video
             {
                 Id = 3, ModuleId = 3, CourseId = 2, Position = 1,
                 Title = "Video 3 Title", Description = "Video 3 Description: A very very long description.",
-                Duration = 41, Thumbnail = "/images/video3.jpg", Url = "https://www.youtube.com/watch?v=BJFyzpBcaCY"
+                Duration = 41, Thumbnail = "/images/video3.jpg", Url = "https://www.youtube.com/watch?v=KfWccwZrrLg"
             },
             new Video
             {
                 Id = 4, ModuleId = 2, CourseId = 1, Position = 1,
                 Title = "Video 4 Title", Description = "Video 4 Description: A very very long description.",
-                Duration = 42, Thumbnail = "/images/video4.jpg", Url = "https://www.youtube.com/watch?v=BJFyzpBcaCY"
+                Duration = 42, Thumbnail = "/images/video4.jpg", Url = "https://www.youtube.com/watch?v=of2XNp6t_7c"
             },
             new Video
             {
                 Id = 5, ModuleId = 1, CourseId = 1, Position = 3,
                 Title = "Video 4 Title", Description = "Video 5 Description: A very very long description.",
-                Duration = 91, Thumbnail = "/images/video5.jpg", Url = "https://www.youtube.com/watch?v=BJFyzpBcaCY"
+                Duration = 91, Thumbnail = "/images/video5.jpg", Url = "https://www.youtube.com/watch?v=of2XNp6t_7c"
             }
         };
 
