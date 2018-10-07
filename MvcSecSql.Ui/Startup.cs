@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MvcSecSql.Data.Data;
 using MvcSecSql.Data.Data.Entities;
+using MvcSecSql.Data.Services;
 using MvcSecSql.Ui.Models.DTOModels;
 using MvcSecSql.Ui.Services;
 using MvcSecSql.UI.Repositories;
@@ -21,7 +22,7 @@ namespace MvcSecSql.Ui
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<VodContext>(options =>
@@ -33,10 +34,11 @@ namespace MvcSecSql.Ui
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            //services.AddSingleton<IReadRepository, MockReadRepository>();
+            services.AddScoped<IReadRepository, SqlReadRepository>();
+            services.AddTransient<IDbReadService, DbReadService>();
 
             services.AddMvc();
-            services.AddSingleton<IReadRepository, MockReadRepository>();
-
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Video, VideoDto>();
