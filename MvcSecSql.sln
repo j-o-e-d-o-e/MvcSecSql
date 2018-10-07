@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSecSql.Ui", "MvcSecSql.Ui\MvcSecSql.Ui.csproj", "{850A5947-76BE-4629-B713-E4A8F8A550A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcSecSql.Ui", "MvcSecSql.Ui\MvcSecSql.Ui.csproj", "{850A5947-76BE-4629-B713-E4A8F8A550A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSecSql.Data", "MvcSecSql.Data\MvcSecSql.Data.csproj", "{73D1CFC5-0B3C-4E08-A1CC-FB8D2821837F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcSecSql.Data", "MvcSecSql.Data\MvcSecSql.Data.csproj", "{73D1CFC5-0B3C-4E08-A1CC-FB8D2821837F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSecSql.Admin", "MvcSecSql.Admin\MvcSecSql.Admin.csproj", "{CCB44E1C-C509-4191-A245-8F009449A568}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{73D1CFC5-0B3C-4E08-A1CC-FB8D2821837F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73D1CFC5-0B3C-4E08-A1CC-FB8D2821837F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73D1CFC5-0B3C-4E08-A1CC-FB8D2821837F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB44E1C-C509-4191-A245-8F009449A568}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB44E1C-C509-4191-A245-8F009449A568}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB44E1C-C509-4191-A245-8F009449A568}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB44E1C-C509-4191-A245-8F009449A568}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
