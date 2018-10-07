@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MvcSecSql.Data.Data;
 using MvcSecSql.Data.Data.Entities;
+using MvcSecSql.Data.Services;
 
 namespace MvcSecSql.Admin
 {
@@ -27,7 +28,7 @@ namespace MvcSecSql.Admin
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<VodContext>()
                 .AddDefaultTokenProviders();
-
+            services.AddTransient<IDbReadService, DbReadService>();
             services.AddMvc();
         }
 
