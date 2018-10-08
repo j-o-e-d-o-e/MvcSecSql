@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcSecSql.Ui", "MvcSecSql.U
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcSecSql.Data", "MvcSecSql.Data\MvcSecSql.Data.csproj", "{73D1CFC5-0B3C-4E08-A1CC-FB8D2821837F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcSecSql.Admin", "MvcSecSql.Admin\MvcSecSql.Admin.csproj", "{CCB44E1C-C509-4191-A245-8F009449A568}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcSecSql.Admin", "MvcSecSql.Admin\MvcSecSql.Admin.csproj", "{CCB44E1C-C509-4191-A245-8F009449A568}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
