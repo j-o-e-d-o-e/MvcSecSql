@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MvcSecSql.Admin.Services;
 using MvcSecSql.Data.Data;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
@@ -29,6 +30,7 @@ namespace MvcSecSql.Admin
                 .AddEntityFrameworkStores<VodContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IDbReadService, DbReadService>();
+            services.AddTransient<IUserService, UserService>();
             services.AddMvc();
         }
 
