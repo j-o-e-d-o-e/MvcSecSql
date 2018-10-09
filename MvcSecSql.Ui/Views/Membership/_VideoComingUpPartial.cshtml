@@ -2,7 +2,7 @@
 
 @if (Model.PreviousVideoId > 0 || Model.NextVideoId > 0)
 {
-    <div class="panel coming-up">
+    <div class="panel coming-up text-dark">
         @if (Model.NextVideoId == 0)
         {
             <img src="@Model.CurrentVideoThumbnail"

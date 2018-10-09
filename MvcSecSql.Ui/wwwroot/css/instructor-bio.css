@@ -1,10 +1,8 @@
-﻿.instructor-bio {
-    text-align: center;
-}
+﻿.instructor-bio { text-align: center; }
 
-    .instructor-bio .avatar {
-        border: 2px solid #2d91fb;
-        padding: 8px;
-        height: 120px;
-        width: 120px;
-    }
+.instructor-bio .avatar {
+    border: 2px solid #2d91fb;
+    padding: 8px;
+    height: 120px;
+    width: 120px;
+}

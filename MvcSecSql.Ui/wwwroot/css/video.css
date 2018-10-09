@@ -1,6 +1,4 @@
-﻿.video-content .media-left img {
-    height: 40px;
-}
+﻿.video-content .media-left img { height: 40px; }
 
 .video-content .panel {
     border: none;
@@ -8,10 +6,7 @@
 }
 
 /*Coming Up Section*/
-.coming-up .btn-group {
-    width: 100%;
-}
 
-    .coming-up .btn-group .btn {
-        width: 50%;
-    }
+.coming-up .btn-group { width: 100%; }
+
+.coming-up .btn-group .btn { width: 50%; }

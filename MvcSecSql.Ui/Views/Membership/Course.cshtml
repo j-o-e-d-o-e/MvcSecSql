@@ -36,7 +36,7 @@
             {
                 <div class="panel module">
                     <div class="panel-body">
-                        <h5>@module.ModuleTitle</h5>
+                        <h5 class="text-dark">@module.ModuleTitle</h5>
                     </div>
 
                     @if (module.Videos != null)
@@ -48,7 +48,7 @@
                     {
                         <hr class="no-margin">
                         <div class="panel-body download-panel">
-                            <h5>Downloads</h5>
+                            <h5 class="text-dark">Band info</h5>
                             @await Html.PartialAsync("_ModuleDownloadsPartial", module.Downloads)
                         </div>
                     }

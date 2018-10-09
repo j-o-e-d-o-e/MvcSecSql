@@ -1,6 +1,4 @@
-﻿#login-panel-heading, #register-panel-heading {
-    margin-top: 40px;
-}
+﻿#login-panel-heading, #register-panel-heading { margin-top: 40px; }
 
 .login-panel, .register-panel {
     width: 280px;
@@ -22,26 +20,21 @@
     color: #555;
     display: block;
 }
-    .icon-addon .glyphicon {
-        position: absolute;
-        left: 10px;
-        padding: 10px 0;
-    }
 
-    .icon-addon .form-control {
-        Padding-left: 30px;
-        border-radius: 0;
-    }
-
-    .icon-addon:hover .glyphicon {
-        color: #2580db;
-    }
-
-.login-form button, .register-form button {
-    width: 100%;
+.icon-addon .glyphicon {
+    position: absolute;
+    left: 10px;
+    padding: 10px 0;
 }
+
+.icon-addon .form-control {
+    Padding-left: 30px;
+    border-radius: 0;
+}
+
+.icon-addon:hover .glyphicon { color: #2580db; }
+
+.login-form button, .register-form button { width: 100%; }
 
 .login-form .validation-summary-errors ul,
-.register-form .validation-summary-errors ul {
-    padding-left: 20px;
-}
+.register-form .validation-summary-errors ul { padding-left: 20px; }

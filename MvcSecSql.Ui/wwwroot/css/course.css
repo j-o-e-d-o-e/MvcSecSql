@@ -1,6 +1,4 @@
-﻿.navigation-bar {
-    margin-bottom: 10px;
-}
+﻿.navigation-bar { margin-bottom: 10px; }
 
 .course-content .marquee {
     width: 100%;
@@ -12,16 +10,14 @@
     position: relative;
 }
 
-    .course-content .marquee .cover-image {
-        width: auto;
-        height: 140px;
-        position: absolute;
-        bottom: 0;
-        margin: 30px;
-        border: 4px solid #FFF;
-        border-radius: 2px;
-    }
-
-.membership h1, .membership h4 {
-    color: #666c74;
+.course-content .marquee .cover-image {
+    width: auto;
+    height: 140px;
+    position: absolute;
+    bottom: 0;
+    margin: 30px;
+    border: 4px solid #FFF;
+    border-radius: 2px;
 }
+
+.membership h1, .membership h4 { color: #666c74; }

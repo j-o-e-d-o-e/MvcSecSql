@@ -11,14 +11,14 @@
 
     <div class="panel-body">
         <h2 class="text-dark">@Model.Video.Title</h2>
-        <p class="text-light">
+        <p class="text-dark">
             <i class="glyphicon glyphicon-facetime-video"></i>
             Lesson @Model.LessonInfo.LessonNumber/
             @Model.LessonInfo.NumberOfLessons&nbsp;&nbsp;
             <i class="glyphicon glyphicon-time"></i>
             @Model.Video.Duration minutes
         </p>
-        <div class="media-object">
+        <div class="media-object text-dark">
             <div class="media-left">
                 <img src="@Model.Course.CourseImageUrl">
             </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <hr class="no-margin">
-    <div class="panel-body">
+    <div class="panel-body text-dark">
         @Model.Video.Description
     </div>
 </div>
