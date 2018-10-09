@@ -16,4 +16,18 @@
   <ItemGroup>
     <ProjectReference Include="..\MvcSecSql.Data\MvcSecSql.Data.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Update="Pages\Videos\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Videos\Delete.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Videos\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Videos\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
 </Project>
