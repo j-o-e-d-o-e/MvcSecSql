@@ -2,7 +2,7 @@
 
 .course-content .marquee {
     width: 100%;
-    height: 400px;
+    height: 250px;
     overflow: hidden;
     background-size: cover;
     /* Relative positioning of the marquee is needed for the cover

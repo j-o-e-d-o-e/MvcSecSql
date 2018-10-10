@@ -41,7 +41,38 @@ namespace MvcSecSql.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Course(int id)
+        public IActionResult Genre(int id)
+        {
+            var course = _db.GetCourse(_userId, id);
+            var mappedCourseDTOs = _mapper.Map<CourseDto>(course);
+            var mappedInstructorDTO = _mapper.Map<InstructorDto>(course.Instructor);
+            var mappedModuleDTOs = _mapper.Map<List<ModuleDto>>(course.Modules);
+
+            for (var i = 0; i < mappedModuleDTOs.Count; i++)
+            {
+                mappedModuleDTOs[i].Downloads =
+                    course.Modules[i].Downloads.Count.Equals(0)
+                        ? null
+                        : _mapper.Map<List<DownloadDto>>(course.Modules[i].Downloads);
+
+                mappedModuleDTOs[i].Videos =
+                    course.Modules[i].Videos.Count.Equals(0)
+                        ? null
+                        : _mapper.Map<List<VideoDto>>(course.Modules[i].Videos);
+            }
+
+            var courseModel = new CourseViewModel
+            {
+                Course = mappedCourseDTOs,
+                Instructor = mappedInstructorDTO,
+                Modules = mappedModuleDTOs
+            };
+
+            return View(courseModel);
+        }
+
+        [HttpGet]
+        public IActionResult Band(int id)
         {
             var course = _db.GetCourse(_userId, id);
             var mappedCourseDTOs = _mapper.Map<CourseDto>(course);

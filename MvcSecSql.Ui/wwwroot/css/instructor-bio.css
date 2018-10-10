@@ -1,8 +1,8 @@
 ﻿.instructor-bio { text-align: center; }
 
 .instructor-bio .avatar {
-    border: 2px solid #2d91fb;
+    border: 1px solid #333;
     padding: 8px;
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
 }
