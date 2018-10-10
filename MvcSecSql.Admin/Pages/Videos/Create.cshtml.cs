@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MvcSecSql.Admin.Models;
-using MvcSecSql.Admin.Services;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
 
@@ -12,8 +10,8 @@ namespace MvcSecSql.Admin.Pages.Videos
     [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
-        private IDbReadService _dbReadService;
-        private IDbWriteService _dbWriteService;
+        private readonly IDbReadService _dbReadService;
+        private readonly IDbWriteService _dbWriteService;
 
         [BindProperty]
         public Video Input { get; set; } = new Video();
@@ -44,6 +42,7 @@ namespace MvcSecSql.Admin.Pages.Videos
                     return RedirectToPage("Index");
                 }
             }
+
             return Page();
         }
     }

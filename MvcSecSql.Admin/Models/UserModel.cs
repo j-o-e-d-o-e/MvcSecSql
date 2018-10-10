@@ -2,7 +2,7 @@
 
 namespace MvcSecSql.Admin.Models
 {
-    public class UserPageModel
+    public class UserModel
     {
         [Required]
         [Display(Name = "User Id")]

@@ -11,7 +11,7 @@ namespace MvcSecSql.Admin.Pages.Users
         private IUserService _userService;
 
         [BindProperty]
-        public UserPageModel Input { get; set; } = new UserPageModel();
+        public UserModel Input { get; set; } = new UserModel();
 
         [TempData]
         public string StatusMessage { get; set; }

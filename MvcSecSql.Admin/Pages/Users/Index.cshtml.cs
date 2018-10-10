@@ -11,7 +11,7 @@ namespace MvcSecSql.Admin.Pages.Users
     public class IndexModel : PageModel
     {
         private IUserService _userService;
-        public IEnumerable<UserPageModel> Users = new List<UserPageModel>();
+        public IEnumerable<UserModel> Users = new List<UserModel>();
         [TempData]
         public string StatusMessage { get; set; }
 

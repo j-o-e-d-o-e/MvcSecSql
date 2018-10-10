@@ -9,23 +9,19 @@
     text-decoration: none;
 }
 
-    .card:hover {
-        text-decoration: none;
-        opacity: .8;
-    }
-
-.card-content {
-    padding: 15px;
+.card:hover {
+    text-decoration: none;
+    opacity: .8;
 }
+
+.card-content { padding: 15px; }
 
 .card-data h3 {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.card-data p {
-    margin-bottom: 0;
-}
+.card-data p { margin-bottom: 0; }
 
 .card-icon {
     position: absolute;

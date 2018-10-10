@@ -20,11 +20,11 @@ namespace MvcSecSql.Admin.Services
             _userManager = userManager;
         }
 
-        public IEnumerable<UserPageModel> GetUsers()
+        public IEnumerable<UserModel> GetUsers()
         {
             return from user in _db.Users
                 orderby user.Email
-                select new UserPageModel
+                select new UserModel
                 {
                     Id = user.Id,
                     Email = user.Email,
@@ -33,11 +33,11 @@ namespace MvcSecSql.Admin.Services
                 };
         }
 
-        public UserPageModel GetUser(string userId)
+        public UserModel GetUser(string userId)
         {
             return (from user in _db.Users
                 where user.Id.Equals(userId)
-                select new UserPageModel
+                select new UserModel
                 {
                     Id = user.Id,
                     Email = user.Email,
@@ -46,7 +46,7 @@ namespace MvcSecSql.Admin.Services
                 }).FirstOrDefault();
         }
 
-        public async Task<IdentityResult> AddUser(RegisterUserPageModel user)
+        public async Task<IdentityResult> AddUser(CreateUserModel user)
         {
             var dbUser = new User
             {
@@ -58,7 +58,7 @@ namespace MvcSecSql.Admin.Services
             return result;
         }
 
-        public async Task<bool> UpdateUser(UserPageModel user)
+        public async Task<bool> UpdateUser(UserModel user)
         {
             var dbUser = await _db.Users.FirstOrDefaultAsync(u =>
                 u.Id.Equals(user.Id));

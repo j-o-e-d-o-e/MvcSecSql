@@ -7,10 +7,10 @@ namespace MvcSecSql.Admin.Services
 {
     public interface IUserService
     {
-        IEnumerable<UserPageModel> GetUsers();
-        UserPageModel GetUser(string userId);
-        Task<IdentityResult> AddUser(RegisterUserPageModel user);
-        Task<bool> UpdateUser(UserPageModel user);
+        IEnumerable<UserModel> GetUsers();
+        UserModel GetUser(string userId);
+        Task<IdentityResult> AddUser(CreateUserModel user);
+        Task<bool> UpdateUser(UserModel user);
         Task<bool> DeleteUser(string userId);
     }
 }

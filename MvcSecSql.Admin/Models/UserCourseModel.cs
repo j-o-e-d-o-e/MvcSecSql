@@ -2,7 +2,7 @@
 
 namespace MvcSecSql.Admin.Models
 {
-    public class UserCoursePageModel
+    public class UserCourseModel
     {
         public string Email { get; set; }
         public string CourseTitle { get; set; }

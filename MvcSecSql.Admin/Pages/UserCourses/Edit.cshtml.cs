@@ -17,7 +17,7 @@ namespace MvcSecSql.Admin.Pages.UserCourses
         private IUserService _userService;
 
         [BindProperty]
-        public UserCoursePageModel Input { get; set; } = new UserCoursePageModel();
+        public UserCourseModel Input { get; set; } = new UserCourseModel();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view

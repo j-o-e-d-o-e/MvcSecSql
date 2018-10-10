@@ -2,7 +2,7 @@
 
 namespace MvcSecSql.Admin.Models
 {
-    public class RegisterUserPageModel
+    public class CreateUserModel
     {
         [Required]
         [EmailAddress]
