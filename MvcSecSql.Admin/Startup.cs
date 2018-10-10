@@ -30,6 +30,7 @@ namespace MvcSecSql.Admin
                 .AddEntityFrameworkStores<VodContext>()
                 .AddDefaultTokenProviders();
             services.AddTransient<IDbReadService, DbReadService>();
+            services.AddTransient<IDbWriteService, DbWriteService>();
             services.AddTransient<IUserService, UserService>();
             services.AddMvc();
         }

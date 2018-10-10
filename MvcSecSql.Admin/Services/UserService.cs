@@ -72,9 +72,9 @@ namespace MvcSecSql.Admin.Services
                 UserId = user.Id
             };
             var isAdmin = await _db.UserRoles.AnyAsync(ur => ur.Equals(userRole));
-            if (isAdmin && !user.IsAdmin)
+            if (isAdmin && !user.IsAdmin) //so far admin, but not in the future
                 _db.UserRoles.Remove(userRole);
-            else if (!isAdmin && user.IsAdmin)
+            else if (!isAdmin && user.IsAdmin) //so far not an admin, but for the future
                 await _db.UserRoles.AddAsync(userRole);
 
             var result = await _db.SaveChangesAsync();

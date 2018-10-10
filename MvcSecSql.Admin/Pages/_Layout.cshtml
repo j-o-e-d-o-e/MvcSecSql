@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MvcSecSql.Admin</title>
+    <title>@ViewData["Title"] - Admin</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -30,8 +30,6 @@
                 <a asp-page="/Index" class="navbar-brand">Administration</a>
             </div>
             <div class="navbar-collapse collapse">
-                @await Html.PartialAsync("_MenuPartial")
-                @await Html.PartialAsync("_AdminMenuPartial")
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
@@ -40,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - MvcSecSql.Admin</p>
+            <p>&copy; 2018 - MetalTube</p>
         </footer>
     </div>
 

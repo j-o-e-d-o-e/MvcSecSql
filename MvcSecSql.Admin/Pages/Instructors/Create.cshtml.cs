@@ -12,16 +12,17 @@ namespace MvcSecSql.Admin.Pages.Instructors
     {
         private readonly IDbWriteService _dbWriteService;
 
-        public CreateModel(IDbWriteService dbWriteService)
-        {
-            _dbWriteService = dbWriteService;
-        }
-
         [BindProperty]
         public Instructor Input { get; set; } = new Instructor();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
+
+
+        public CreateModel(IDbWriteService dbWriteService)
+        {
+            _dbWriteService = dbWriteService;
+        }
 
         public void OnGet()
         {
@@ -40,7 +41,6 @@ namespace MvcSecSql.Admin.Pages.Instructors
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

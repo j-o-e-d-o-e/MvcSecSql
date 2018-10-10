@@ -51,7 +51,7 @@ namespace MvcSecSql.Data.Services
             }
         }
 
-        //this method is used with the UserCourse entity where a combined primery key is used
+        //this method is used with the UserCourse entity where a combined primary key is used
         public async Task<bool> Update<TEntity>(TEntity originalItem, TEntity updatedItem) where TEntity : class
         {
             try

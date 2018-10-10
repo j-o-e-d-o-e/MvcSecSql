@@ -5,14 +5,12 @@
     "outputFileName": "wwwroot/css/site.min.css",
     // An array of relative input file paths. Globbing patterns supported
     "inputFiles": [
-      "wwwroot/css/site.css",
+      "wwwroot/css/album.css",
+      "wwwroot/css/band.css",
+      "wwwroot/css/genre.css",
       "wwwroot/css/login.css",
       "wwwroot/css/menu.css",
-      "wwwroot/css/membership.css",
-      "wwwroot/css/course-panel.css",
-      "wwwroot/css/course.css",
-      "wwwroot/css/module.css",
-      "wwwroot/css/instructor-bio.css",
+      "wwwroot/css/site.css",
       "wwwroot/css/video.css"
     ]
   },

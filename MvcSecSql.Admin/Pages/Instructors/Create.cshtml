@@ -16,7 +16,8 @@
             <page-button path="Instructors/Index" bootstrap-style="primary" glyph="info-sign" description="Back to List"></page-button>
             <page-button path="Index" bootstrap-style="warning" glyph="list-alt" description="Dashboard"></page-button>
             <p></p>
-            <form>
+            @* ReSharper disable once Mvc.ActionNotResolved *@
+            <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Input.Name" class="control-label"></label>

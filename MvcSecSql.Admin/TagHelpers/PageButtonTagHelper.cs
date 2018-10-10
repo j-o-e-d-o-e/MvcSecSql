@@ -12,20 +12,24 @@ namespace MvcSecSql.Admin.TagHelpers
     public class PageButtonTagHelper : TagHelper
     {
         #region Properties
+
         public string Path { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Glyph { get; set; } = string.Empty;
         public string BootstrapStyle { get; set; } = "btn-default";
         public string BootstrapSize { get; set; } = "btn-sm";
+
         #endregion
 
         public override void Process(TagHelperContext context,
-        TagHelperOutput output)
+            TagHelperOutput output)
         {
-            if (context == null) throw new
-                ArgumentNullException(nameof(context));
-            if (output == null) throw new
-                ArgumentNullException(nameof(output));
+            if (context == null)
+                throw new
+                    ArgumentNullException(nameof(context));
+            if (output == null)
+                throw new
+                    ArgumentNullException(nameof(output));
 
             base.Process(context, output);
 
@@ -39,7 +43,8 @@ namespace MvcSecSql.Admin.TagHelpers
                 else
                     href = $@"href='/{Path.Trim()}'";
 
-                var ids = context.AllAttributes.Where(c => c.Name.StartsWith("id"));
+                var ids = context.AllAttributes.Where(attribute
+                    => attribute.Name.StartsWith("id"));
 
                 // Generate Id parameters
                 var param = "";
@@ -50,6 +55,7 @@ namespace MvcSecSql.Admin.TagHelpers
                         name = name.Substring(name.IndexOf('-') + 1);
                     param += $"&{name}={id.Value}";
                 }
+
                 if (param.StartsWith("&")) param = param.Substring(1);
                 if (param.Length > 0)
                     href = href.Insert(href.Length - 1, $"?{param}");
@@ -81,8 +87,8 @@ namespace MvcSecSql.Admin.TagHelpers
                 if (BootstrapStyle.Length > 4 && BootstrapSize.Length > 4)
                     BootstrapClass = $"class='{BootstrapSize} {BootstrapStyle}'";
 
-                output.Content.AppendHtml($"<a style='min-width:30px;display:inline-block;' {BootstrapClass} {href}><span { glyphClasses}></span>{ Description}</a>");
-
+                output.Content.AppendHtml(
+                    $"<a style='min-width:30px;display:inline-block;' {BootstrapClass} {href}><span {glyphClasses}></span>{Description}</a>");
             }
         }
     }
