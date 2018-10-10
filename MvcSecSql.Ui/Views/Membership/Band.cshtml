@@ -42,7 +42,7 @@
 
                         @if (module.Videos != null)
                         {
-                            @await Html.PartialAsync("_ModuleVideosPartial", module.Videos)
+                            @await Html.PartialAsync("_AlbumPartial", module.Videos)
                         }
 
                         @if (module.Downloads != null)
@@ -50,7 +50,7 @@
                             <hr class="no-margin">
                             <div class="panel-body download-panel">
                                 <h5 class="text-dark">Album info</h5>
-                                @await Html.PartialAsync("_ModuleDownloadsPartial", module.Downloads)
+                                @await Html.PartialAsync("_AlbumInfoPartial", module.Downloads)
                             </div>
                         }
                     </div>
@@ -65,7 +65,7 @@
                     <div class="row">
                         @if (Model.Instructor != null)
                         {
-                            @await Html.PartialAsync("_InstructorBioPartial", Model.Instructor)
+                            @await Html.PartialAsync("_BandMemberPartial", Model.Instructor)
                         }
                     </div>
                 }
