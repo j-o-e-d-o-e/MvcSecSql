@@ -1,9 +1,9 @@
-﻿namespace MvcSecSql.Ui.Models.DTOModels
+﻿namespace MvcSecSql.Ui.Models.DtoModels
 {
-    public class LessonInfoDto
+    public class VideoComingUpDto
     {
-        public int LessonNumber { get; set; }
-        public int NumberOfLessons { get; set; }
+        public int VideoNumber { get; set; }
+        public int NumberOfVideos { get; set; }
         public int PreviousVideoId { get; set; }
         public int NextVideoId { get; set; }
         public string CurrentVideoTitle { get; set; }

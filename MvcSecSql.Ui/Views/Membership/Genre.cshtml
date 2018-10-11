@@ -1,7 +1,7 @@
-﻿@model CourseViewModel
+﻿@model GenreViewModel
 
 @{
-    ViewData["Title"] = "Course";
+    ViewData["Title"] = "Genre";
 }
 
 <div class="membership top-margin course-content">
@@ -16,14 +16,14 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel">
-                <div class="marquee" style="background-image: url('@Model.Course.MarqueeImageUrl');">
-                    <img src="@Model.Course.CourseImageUrl"
+                <div class="marquee" style="background-image: url('@Model.Genre.MarqueeImageUrl');">
+                    <img src="@Model.Genre.GenreImageUrl"
                          class="cover-image">
                 </div>
                 <div class="panel-body">
-                    <h1>@Model.Course.CourseTitle</h1>
+                    <h1>@Model.Genre.GenreTitle</h1>
                     <h4 class="product-desc">
-                        @Model.Course.CourseDescription
+                        @Model.Genre.GenreDescription
                     </h4>
                 </div>
             </div>
@@ -33,10 +33,10 @@
         @for (var i = 0; i < 6; i++)
         {
             <div class="col-sm-3">
-                @if (Model.Instructor != null)
+                @if (Model.Band != null)
                 {
                     <a href="~/Membership/Band/1" style="text-decoration: none;">
-                        @await Html.PartialAsync("_BandPartial", Model.Instructor)
+                        @await Html.PartialAsync("_BandPartial", Model.Band)
 
                     </a>
                 }

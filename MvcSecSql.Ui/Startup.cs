@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MvcSecSql.Data.Data;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
-using MvcSecSql.Ui.Models.DTOModels;
+using MvcSecSql.Ui.Models.DtoModels;
 using MvcSecSql.Ui.Services;
 using MvcSecSql.UI.Repositories;
 
@@ -43,34 +43,34 @@ namespace MvcSecSql.Ui
             {
                 cfg.CreateMap<Video, VideoDto>();
 
-                cfg.CreateMap<Instructor, InstructorDto>()
-                    .ForMember(dest => dest.InstructorName,
+                cfg.CreateMap<Instructor, BandDto>()
+                    .ForMember(dest => dest.BandName,
                         src => src.MapFrom(s => s.Name))
-                    .ForMember(dest => dest.InstructorDescription,
+                    .ForMember(dest => dest.BandDescription,
                         src => src.MapFrom(s => s.Description))
-                    .ForMember(dest => dest.InstructorAvatar,
+                    .ForMember(dest => dest.BandImage,
                         src => src.MapFrom(s => s.Thumbnail));
 
-                cfg.CreateMap<Download, DownloadDto>()
-                    .ForMember(dest => dest.DownloadUrl,
+                cfg.CreateMap<Download, AlbumInfoDto>()
+                    .ForMember(dest => dest.AlbumInfoUrl,
                         src => src.MapFrom(s => s.Url))
-                    .ForMember(dest => dest.DownloadTitle,
+                    .ForMember(dest => dest.AlbumInfoTitle,
                         src => src.MapFrom(s => s.Title));
 
-                cfg.CreateMap<Course, CourseDto>()
-                    .ForMember(dest => dest.CourseId, src =>
+                cfg.CreateMap<Course, GenreDto>()
+                    .ForMember(dest => dest.GenreId, src =>
                         src.MapFrom(s => s.Id))
-                    .ForMember(dest => dest.CourseTitle,
+                    .ForMember(dest => dest.GenreTitle,
                         src => src.MapFrom(s => s.Title))
-                    .ForMember(dest => dest.CourseDescription,
+                    .ForMember(dest => dest.GenreDescription,
                         src => src.MapFrom(s => s.Description))
                     .ForMember(dest => dest.MarqueeImageUrl,
                         src => src.MapFrom(s => s.MarqueeImageUrl))
-                    .ForMember(dest => dest.CourseImageUrl,
+                    .ForMember(dest => dest.GenreImageUrl,
                         src => src.MapFrom(s => s.ImageUrl));
 
-                cfg.CreateMap<Module, ModuleDto>()
-                    .ForMember(dest => dest.ModuleTitle,
+                cfg.CreateMap<Module, AlbumDto>()
+                    .ForMember(dest => dest.AlbumTitle,
                         src => src.MapFrom(s => s.Title));
             });
             var mapper = config.CreateMapper();

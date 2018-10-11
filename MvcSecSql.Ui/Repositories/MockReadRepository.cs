@@ -15,21 +15,21 @@ namespace MvcSecSql.UI.Repositories
                 Id = 1, InstructorId = 1,
                 MarqueeImageUrl = "/images/laptop.jpg",
                 ImageUrl = "/images/course.jpg", Title = "C# For Beginners",
-                Description = "Course 1 Description: A very very long description."
+                Description = "Genre 1 Description: A very very long description."
             },
             new Course
             {
                 Id = 2, InstructorId = 1,
                 MarqueeImageUrl = "/images/laptop.jpg",
                 ImageUrl = "/images/course2.jpg", Title = "Programming C#",
-                Description = "Course 2 Description: A very very long description."
+                Description = "Genre 2 Description: A very very long description."
             },
             new Course
             {
                 Id = 3, InstructorId = 2,
                 MarqueeImageUrl = "/images/laptop.jpg",
                 ImageUrl = "/images/course3.jpg", Title = "MVC 5 For Beginners",
-                Description = "Course 3 Description: A very very long description."
+                Description = "Genre 3 Description: A very very long description."
             }
         };
 

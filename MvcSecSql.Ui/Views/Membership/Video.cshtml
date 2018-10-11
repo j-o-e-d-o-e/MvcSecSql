@@ -8,31 +8,31 @@
     <div class="row navigation-bar">
         <div class="col-sm-12">
             <a class="btn btn-primary" href="~/Membership/Course/
-                @Model.Course.CourseId">
+                @Model.Genre.GenreId">
                 <span class="glyphicon glyphicon-menu-left"></span>
-                Back to @Model.Course.CourseTitle
+                Back to @Model.Genre.GenreTitle
             </a>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-9">
             @if (Model != null && Model.Video != null &&
-                 Model.LessonInfo != null && Model.Course != null)
+                 Model.VideoComingUp != null && Model.Genre != null)
             {
                 @await Html.PartialAsync("_VideoPlayerPartial", Model)
             }
         </div>
 
         <div class="col-sm-3">
-            @if (Model != null && Model.LessonInfo != null)
+            @if (Model != null && Model.VideoComingUp != null)
             {
-                @await Html.PartialAsync("_VideoComingUpPartial", Model.LessonInfo)
+                @await Html.PartialAsync("_VideoComingUpPartial", Model.VideoComingUp)
             }
 
-            @if (Model != null && Model.Instructor != null)
+            @if (Model != null && Model.Band != null)
             {
-                @await Html.PartialAsync("_InstructorBioPartial",
-                    Model.Instructor)
+                @await Html.PartialAsync("_BandPartial",
+                    Model.Band)
             }
         </div>
     </div>

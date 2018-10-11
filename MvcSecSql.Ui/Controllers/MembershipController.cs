@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MvcSecSql.Data.Data.Entities;
-using MvcSecSql.Ui.Models.DTOModels;
+using MvcSecSql.Ui.Models.DtoModels;
 using MvcSecSql.UI.Models.MembershipViewModels;
 using MvcSecSql.UI.Repositories;
 
@@ -28,14 +28,14 @@ namespace MvcSecSql.UI.Controllers
         [HttpGet]
         public IActionResult Dashboard()
         {
-            var courseDtoObjects = _mapper.Map<List<CourseDto>>(_db.GetCourses(_userId));
+            var courseDtoObjects = _mapper.Map<List<GenreDto>>(_db.GetCourses(_userId));
 
             var dashboardModel = new DashboardViewModel();
-            dashboardModel.Courses = new List<List<CourseDto>>();
+            dashboardModel.Genres = new List<List<GenreDto>>();
 
             var noOfRows = courseDtoObjects.Count <= 3 ? 1 : courseDtoObjects.Count / 3;
             for (var i = 0; i < noOfRows; i++)
-                dashboardModel.Courses.Add(courseDtoObjects.Take(3).ToList());
+                dashboardModel.Genres.Add(courseDtoObjects.Take(3).ToList());
 
             return View(dashboardModel);
         }
@@ -44,16 +44,16 @@ namespace MvcSecSql.UI.Controllers
         public IActionResult Genre(int id)
         {
             var course = _db.GetCourse(_userId, id);
-            var mappedCourseDTOs = _mapper.Map<CourseDto>(course);
-            var mappedInstructorDTO = _mapper.Map<InstructorDto>(course.Instructor);
-            var mappedModuleDTOs = _mapper.Map<List<ModuleDto>>(course.Modules);
+            var mappedCourseDTOs = _mapper.Map<GenreDto>(course);
+            var mappedInstructorDTO = _mapper.Map<BandDto>(course.Instructor);
+            var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Modules);
 
             for (var i = 0; i < mappedModuleDTOs.Count; i++)
             {
                 mappedModuleDTOs[i].Downloads =
                     course.Modules[i].Downloads.Count.Equals(0)
                         ? null
-                        : _mapper.Map<List<DownloadDto>>(course.Modules[i].Downloads);
+                        : _mapper.Map<List<AlbumInfoDto>>(course.Modules[i].Downloads);
 
                 mappedModuleDTOs[i].Videos =
                     course.Modules[i].Videos.Count.Equals(0)
@@ -61,11 +61,11 @@ namespace MvcSecSql.UI.Controllers
                         : _mapper.Map<List<VideoDto>>(course.Modules[i].Videos);
             }
 
-            var courseModel = new CourseViewModel
+            var courseModel = new GenreViewModel
             {
-                Course = mappedCourseDTOs,
-                Instructor = mappedInstructorDTO,
-                Modules = mappedModuleDTOs
+                Genre = mappedCourseDTOs,
+                Band = mappedInstructorDTO,
+                Albums = mappedModuleDTOs
             };
 
             return View(courseModel);
@@ -75,16 +75,16 @@ namespace MvcSecSql.UI.Controllers
         public IActionResult Band(int id)
         {
             var course = _db.GetCourse(_userId, id);
-            var mappedCourseDTOs = _mapper.Map<CourseDto>(course);
-            var mappedInstructorDTO = _mapper.Map<InstructorDto>(course.Instructor);
-            var mappedModuleDTOs = _mapper.Map<List<ModuleDto>>(course.Modules);
+            var mappedCourseDTOs = _mapper.Map<GenreDto>(course);
+            var mappedInstructorDTO = _mapper.Map<BandDto>(course.Instructor);
+            var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Modules);
 
             for (var i = 0; i < mappedModuleDTOs.Count; i++)
             {
                 mappedModuleDTOs[i].Downloads =
                     course.Modules[i].Downloads.Count.Equals(0)
                         ? null
-                        : _mapper.Map<List<DownloadDto>>(course.Modules[i].Downloads);
+                        : _mapper.Map<List<AlbumInfoDto>>(course.Modules[i].Downloads);
 
                 mappedModuleDTOs[i].Videos =
                     course.Modules[i].Videos.Count.Equals(0)
@@ -92,11 +92,11 @@ namespace MvcSecSql.UI.Controllers
                         : _mapper.Map<List<VideoDto>>(course.Modules[i].Videos);
             }
 
-            var courseModel = new CourseViewModel
+            var courseModel = new GenreViewModel
             {
-                Course = mappedCourseDTOs,
-                Instructor = mappedInstructorDTO,
-                Modules = mappedModuleDTOs
+                Genre = mappedCourseDTOs,
+                Band = mappedInstructorDTO,
+                Albums = mappedModuleDTOs
             };
 
             return View(courseModel);
@@ -108,11 +108,11 @@ namespace MvcSecSql.UI.Controllers
             var video = _db.GetVideo(_userId, id);
             var course = _db.GetCourse(_userId, video.CourseId);
             var mappedVideoDTO = _mapper.Map<VideoDto>(video);
-            var mappedCourseDTO = _mapper.Map<CourseDto>(course);
+            var mappedCourseDTO = _mapper.Map<GenreDto>(course);
             var mappedInstructorDTO =
-                _mapper.Map<InstructorDto>(course.Instructor);
+                _mapper.Map<BandDto>(course.Instructor);
 
-            // Create a LessonInfoDto object
+            // Create a VideoComingUpDto object
             var videos = _db.GetVideos(_userId, video.ModuleId).ToList();
             var count = videos.Count();
             var index = videos.IndexOf(video);
@@ -126,12 +126,12 @@ namespace MvcSecSql.UI.Controllers
             var videoModel = new VideoViewModel
             {
                 Video = mappedVideoDTO,
-                Instructor = mappedInstructorDTO,
-                Course = mappedCourseDTO,
-                LessonInfo = new LessonInfoDto
+                Band = mappedInstructorDTO,
+                Genre = mappedCourseDTO,
+                VideoComingUp = new VideoComingUpDto
                 {
-                    LessonNumber = index + 1,
-                    NumberOfLessons = count,
+                    VideoNumber = index + 1,
+                    NumberOfVideos = count,
                     NextVideoId = nextId,
                     PreviousVideoId = previousId,
                     CurrentVideoTitle = video.Title,

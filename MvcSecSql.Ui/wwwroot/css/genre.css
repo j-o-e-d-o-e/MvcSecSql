@@ -27,6 +27,7 @@
 
 .course-listing.panel .panel-body {
     padding: 10px 30px 30px 30px;
+    height: 220px;
 }
 
 .course-listing.panel {

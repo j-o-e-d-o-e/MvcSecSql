@@ -1,12 +1,12 @@
-﻿@model IEnumerable<DownloadDto>
+﻿@model IEnumerable<AlbumInfoDto>
 
 <ul>
     @foreach (var download in Model)
     {
         <li>
-            <a href="@download.DownloadUrl" target="_blank">
+            <a href="@download.AlbumInfoUrl" target="_blank">
                 <span class="glyphicon glyphicon-download-alt"></span>
-                &nbsp;@download.DownloadTitle
+                &nbsp;@download.AlbumInfoTitle
             </a>
         </li>
     }

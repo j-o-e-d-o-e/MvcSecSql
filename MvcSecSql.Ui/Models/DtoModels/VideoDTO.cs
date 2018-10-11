@@ -1,4 +1,4 @@
-﻿namespace MvcSecSql.Ui.Models.DTOModels
+﻿namespace MvcSecSql.Ui.Models.DtoModels
 {
     public class VideoDto
     {

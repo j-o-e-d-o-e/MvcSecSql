@@ -1,12 +1,12 @@
-﻿@model CourseDto
+﻿@model GenreDto
 
 <div class="col-sm-4">
     <div class="panel course-listing">
-        <img class="thumb" src="@Model.CourseImageUrl">
+        <img class="thumb" src="@Model.GenreImageUrl">
         <div class="panel-body">
-            <h3 class="text-dark">@Model.CourseTitle</h3>
-            <p class="text-dark">@Model.CourseDescription</p>
-            <a class="btn btn-primary" href="~/Membership/Genre/@Model.CourseId">View Bands</a>
+            <h3 class="text-dark">@Model.GenreTitle</h3>
+            <p class="text-dark">@Model.GenreDescription</p>
+            <a class="btn btn-primary" href="~/Membership/Genre/@Model.GenreId">View Bands</a>
         </div>
     </div>
 </div>
