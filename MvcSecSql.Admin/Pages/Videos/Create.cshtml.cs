@@ -27,14 +27,14 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public void OnGet()
         {
-            ViewData["Modules"] = _dbReadService.GetSelectList<Module>("Id", "Title");
+            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                Input.CourseId = _dbReadService.Get<Module>(Input.ModuleId).CourseId;
+                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).GenreId;
                 var success = await _dbWriteService.Add(Input);
                 if (success)
                 {

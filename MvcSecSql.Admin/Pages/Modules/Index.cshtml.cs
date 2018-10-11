@@ -11,7 +11,7 @@ namespace MvcSecSql.Admin.Pages.Modules
     public class IndexModel : PageModel
     {
         private IDbReadService _dbReadService;
-        public IEnumerable<Module> Items = new List<Module>();
+        public IEnumerable<Album> Items = new List<Album>();
         [TempData] public string StatusMessage { get; set; }
 
         public IndexModel(IDbReadService dbReadService)
@@ -21,7 +21,7 @@ namespace MvcSecSql.Admin.Pages.Modules
 
         public void OnGet()
         {
-            Items = _dbReadService.GetWithIncludes<Module>();
+            Items = _dbReadService.GetWithIncludes<Album>();
         }
     }
 }

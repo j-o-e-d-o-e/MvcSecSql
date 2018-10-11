@@ -16,7 +16,7 @@ namespace MvcSecSql.Admin.Pages.UserCourses
         private IUserService _userService;
 
         [BindProperty]
-        public UserCourse Input { get; set; } = new UserCourse();
+        public UserGenre Input { get; set; } = new UserGenre();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -31,7 +31,7 @@ namespace MvcSecSql.Admin.Pages.UserCourses
         public void OnGet()
         {
             ViewData["Users"] = _dbReadService.GetSelectList<User>("Id", "Email");
-            ViewData["Courses"] = _dbReadService.GetSelectList<Course>("Id", "Title");
+            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -43,15 +43,15 @@ namespace MvcSecSql.Admin.Pages.UserCourses
                 if (success)
                 {
                     var user = _userService.GetUser(Input.UserId);
-                    var course = _dbReadService.Get<Course>(Input.CourseId);
-                    StatusMessage = $"User-Course combination [{course.Title} | {user.Email}] was created.";
+                    var course = _dbReadService.Get<Genre>(Input.GenreId);
+                    StatusMessage = $"User-Genre combination [{course.Title} | {user.Email}] was created.";
                     return RedirectToPage("Index");
                 }
             }
 
             // If we got this far, something failed, redisplay form
             ViewData["Users"] = _dbReadService.GetSelectList<User>("Id", "Email");
-            ViewData["Courses"] = _dbReadService.GetSelectList<Course>("Id", "Title");
+            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
             return Page();
         }
     }

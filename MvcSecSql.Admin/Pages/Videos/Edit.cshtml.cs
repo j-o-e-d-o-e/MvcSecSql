@@ -29,7 +29,7 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public void OnGet(int id)
         {
-            ViewData["Modules"] = _dbReadService.GetSelectList<Module>("Id", "Title");
+            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
             Input = _dbReadService.Get<Video>(id, true);
         }
 
@@ -37,8 +37,8 @@ namespace MvcSecSql.Admin.Pages.Videos
         {
             if (ModelState.IsValid)
             {
-                Input.CourseId = _dbReadService.Get<Module>(Input.ModuleId).CourseId;
-                Input.Course = null;
+                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).GenreId;
+                Input.Genre = null;
                 var success = await _dbWriteService.Update(Input);
                 
                 if (success)

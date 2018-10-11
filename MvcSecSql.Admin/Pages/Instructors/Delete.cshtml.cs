@@ -14,7 +14,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
         private IDbReadService _dbReadService;
 
         [BindProperty]
-        public Instructor Input { get; set; } = new Instructor();
+        public Band Input { get; set; } = new Band();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -27,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Instructor>(id);
+            Input = _dbReadService.Get<Band>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Instructor: {Input.Name}.";
+                    StatusMessage = $"Deleted Band: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }

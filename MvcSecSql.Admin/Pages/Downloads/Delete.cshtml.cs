@@ -20,14 +20,14 @@ namespace MvcSecSql.Admin.Pages.Downloads
         }
 
         [BindProperty]
-        public Download Input { get; set; } = new Download();
+        public AlbumInfo Input { get; set; } = new AlbumInfo();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Download>(id, true);
+            Input = _dbReadService.Get<AlbumInfo>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Downloads
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Download: {Input.Title}.";
+                    StatusMessage = $"Deleted AlbumInfo: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

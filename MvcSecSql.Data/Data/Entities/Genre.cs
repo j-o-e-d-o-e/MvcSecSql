@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MvcSecSql.Data.Data.Entities
 {
-    public class Course
+    public class Genre
     {
         [Key]
         public int Id { get; set; }
@@ -20,8 +20,8 @@ namespace MvcSecSql.Data.Data.Entities
         [MaxLength(1024)]
         public string Description { get; set; }
 
-        public int InstructorId { get; set; }
-        public Instructor Instructor { get; set; }
-        public List<Module> Modules { get; set; }
+        public int BandId { get; set; }
+        public Band Band { get; set; }
+        public List<Album> Albums { get; set; }
     }
 }

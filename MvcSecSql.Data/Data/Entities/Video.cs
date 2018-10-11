@@ -24,13 +24,13 @@ namespace MvcSecSql.Data.Data.Entities
 
         public int Position { get; set; }
 
-        public int ModuleId { get; set; }
+        public int AlbumId { get; set; }
 
-        public Module Module { get; set; }
+        public Album Album { get; set; }
 
         // Side-step from 3rd normal form for easier 
-        // access to a video’s course
-        public int CourseId { get; set; }
-        public Course Course { get; set; }
+        // access to a video’s genre
+        public int GenreId { get; set; }
+        public Genre Genre { get; set; }
     }
 }

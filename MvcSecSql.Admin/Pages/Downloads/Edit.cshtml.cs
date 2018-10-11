@@ -14,7 +14,7 @@ namespace MvcSecSql.Admin.Pages.Downloads
         private IDbReadService _dbReadService;
 
         [BindProperty]
-        public Download Input { get; set; } = new Download();
+        public AlbumInfo Input { get; set; } = new AlbumInfo();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -27,21 +27,21 @@ namespace MvcSecSql.Admin.Pages.Downloads
 
         public void OnGet(int id)
         {
-            ViewData["Modules"] = _dbReadService.GetSelectList<Module>("Id", "Title");
-            Input = _dbReadService.Get<Download>(id, true);
+            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
+            Input = _dbReadService.Get<AlbumInfo>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                Input.CourseId = _dbReadService.Get<Module>(Input.ModuleId).CourseId;
-                Input.Course = null;
+                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).GenreId;
+                Input.Genre = null;
                 var success = await _dbWriteService.Update(Input);
 
                 if (success)
                 {
-                    StatusMessage = $"Updated Download: {Input.Title}.";
+                    StatusMessage = $"Updated AlbumInfo: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

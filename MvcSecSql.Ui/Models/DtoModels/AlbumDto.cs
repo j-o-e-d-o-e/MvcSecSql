@@ -8,6 +8,6 @@ namespace MvcSecSql.Ui.Models.DtoModels
         public string AlbumTitle { get; set; }
         public int AlbumReleaseYear { get; set; }
         public List<VideoDto> Videos { get; set; }
-        public List<AlbumInfoDto> Downloads { get; set; }
+        public List<AlbumInfoDto> Infos { get; set; }
     }
 }

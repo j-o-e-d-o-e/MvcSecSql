@@ -14,7 +14,7 @@ namespace MvcSecSql.Admin.Pages.Courses
         private IDbReadService _dbReadService;
 
         [BindProperty]
-        public Course Input { get; set; } = new Course();
+        public Genre Input { get; set; } = new Genre();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -27,8 +27,8 @@ namespace MvcSecSql.Admin.Pages.Courses
 
         public void OnGet(int id)
         {
-            ViewData["Instructors"] = _dbReadService.GetSelectList<Instructor>("Id", "Name");
-            Input = _dbReadService.Get<Course>(id);
+            ViewData["Instructors"] = _dbReadService.GetSelectList<Band>("Id", "Name");
+            Input = _dbReadService.Get<Genre>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -39,7 +39,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
                 if (success)
                 {
-                    StatusMessage = $"Updated Course: {Input.Title}.";
+                    StatusMessage = $"Updated Genre: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

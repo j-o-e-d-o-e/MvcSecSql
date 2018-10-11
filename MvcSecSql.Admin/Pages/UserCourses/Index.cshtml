@@ -4,7 +4,7 @@
 @inject SignInManager<User> SignInManager
 @model IndexModel
 @{
-    ViewData["Title"] = "Users and Courses";
+    ViewData["Title"] = "Users and Genres";
 }
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -27,11 +27,11 @@
                     @foreach (var item in Model.Items)
                     {
                         <tr>
-                            <td>@Html.DisplayFor(modelItem => item.Course.Title)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Genre.Title)</td>
                             <td>@Html.DisplayFor(modelItem => item.User.Email)</td>
                             <td class="button-col-width">
-                                <page-button path="UserCourses/Edit" bootstrap-style="success" glyph="pencil" id-userId="@item.UserId" id-courseId="@item.CourseId"></page-button>
-                                <page-button path="UserCourses/Delete" bootstrap-style="danger" glyph="remove" id-userId="@item.UserId" id-courseId="@item.CourseId"></page-button>
+                                <page-button path="UserCourses/Edit" bootstrap-style="success" glyph="pencil" id-userId="@item.UserId" id-courseId="@item.GenreId"></page-button>
+                                <page-button path="UserCourses/Delete" bootstrap-style="danger" glyph="remove" id-userId="@item.UserId" id-courseId="@item.GenreId"></page-button>
                             </td>
                         </tr>
                     }

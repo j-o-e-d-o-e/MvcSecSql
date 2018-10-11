@@ -11,7 +11,7 @@ namespace MvcSecSql.Admin.Pages.Courses
     public class IndexModel : PageModel
     {
         private IDbReadService _dbReadService;
-        public IEnumerable<Course> Items = new List<Course>();
+        public IEnumerable<Genre> Items = new List<Genre>();
         [TempData] public string StatusMessage { get; set; }
 
         public IndexModel(IDbReadService dbReadService)
@@ -21,7 +21,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
         public void OnGet()
         {
-            Items = _dbReadService.GetWithIncludes<Course>();
+            Items = _dbReadService.GetWithIncludes<Genre>();
         }
     }
 }

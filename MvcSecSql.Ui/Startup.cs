@@ -43,21 +43,21 @@ namespace MvcSecSql.Ui
             {
                 cfg.CreateMap<Video, VideoDto>();
 
-                cfg.CreateMap<Instructor, BandDto>()
+                cfg.CreateMap<Band, BandDto>()
                     .ForMember(dest => dest.BandName,
                         src => src.MapFrom(s => s.Name))
                     .ForMember(dest => dest.BandDescription,
                         src => src.MapFrom(s => s.Description))
                     .ForMember(dest => dest.BandImage,
-                        src => src.MapFrom(s => s.Thumbnail));
+                        src => src.MapFrom(s => s.BandImage));
 
-                cfg.CreateMap<Download, AlbumInfoDto>()
+                cfg.CreateMap<AlbumInfo, AlbumInfoDto>()
                     .ForMember(dest => dest.AlbumInfoUrl,
                         src => src.MapFrom(s => s.Url))
                     .ForMember(dest => dest.AlbumInfoTitle,
                         src => src.MapFrom(s => s.Title));
 
-                cfg.CreateMap<Course, GenreDto>()
+                cfg.CreateMap<Genre, GenreDto>()
                     .ForMember(dest => dest.GenreId, src =>
                         src.MapFrom(s => s.Id))
                     .ForMember(dest => dest.GenreTitle,
@@ -69,7 +69,7 @@ namespace MvcSecSql.Ui
                     .ForMember(dest => dest.GenreImageUrl,
                         src => src.MapFrom(s => s.ImageUrl));
 
-                cfg.CreateMap<Module, AlbumDto>()
+                cfg.CreateMap<Album, AlbumDto>()
                     .ForMember(dest => dest.AlbumTitle,
                         src => src.MapFrom(s => s.Title));
             });

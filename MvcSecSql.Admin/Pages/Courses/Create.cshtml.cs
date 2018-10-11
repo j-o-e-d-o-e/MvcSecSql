@@ -14,7 +14,7 @@ namespace MvcSecSql.Admin.Pages.Courses
         private IDbWriteService _dbWriteService;
 
         [BindProperty]
-        public Course Input { get; set; } = new Course();
+        public Genre Input { get; set; } = new Genre();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -27,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
         public void OnGet()
         {
-            ViewData["Instructors"] = _dbReadService.GetSelectList<Instructor>("Id", "Name");
+            ViewData["Instructors"] = _dbReadService.GetSelectList<Band>("Id", "Name");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
                 if (success)
                 {
-                    StatusMessage = $"Created a new Course: {Input.Title}.";
+                    StatusMessage = $"Created a new Genre: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

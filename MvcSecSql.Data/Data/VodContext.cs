@@ -7,11 +7,11 @@ namespace MvcSecSql.Data.Data
 {
     public class VodContext : IdentityDbContext<User>
     {
-        public DbSet<Course> Courses { get; set; }
-        public DbSet<Download> Downloads { get; set; }
-        public DbSet<Instructor> Instructors { get; set; }
-        public DbSet<Module> Modules { get; set; }
-        public DbSet<UserCourse> UserCourses { get; set; }
+        public DbSet<Genre> Courses { get; set; }
+        public DbSet<AlbumInfo> Downloads { get; set; }
+        public DbSet<Band> Instructors { get; set; }
+        public DbSet<Album> Modules { get; set; }
+        public DbSet<UserGenre> UserCourses { get; set; }
         public DbSet<Video> Videos { get; set; }
 
         public VodContext(DbContextOptions<VodContext> options) : base(options)
@@ -22,7 +22,7 @@ namespace MvcSecSql.Data.Data
         {
             base.OnModelCreating(builder);
             //composite key
-            builder.Entity<UserCourse>().HasKey(uc => new {uc.UserId, uc.CourseId});
+            builder.Entity<UserGenre>().HasKey(uc => new {uc.UserId, CourseId = uc.GenreId});
             //restrict cascading deletes
             foreach (var relationship in builder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;

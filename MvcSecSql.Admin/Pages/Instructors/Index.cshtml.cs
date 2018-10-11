@@ -11,7 +11,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
     public class IndexModel : PageModel
     {
         private IDbReadService _dbReadService;
-        public IEnumerable<Instructor> Items = new List<Instructor>();
+        public IEnumerable<Band> Items = new List<Band>();
         [TempData] public string StatusMessage { get; set; }
 
         public IndexModel(IDbReadService dbReadService)
@@ -21,7 +21,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
         public void OnGet()
         {
-            Items = _dbReadService.Get<Instructor>();
+            Items = _dbReadService.Get<Band>();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace MvcSecSql.Admin.Pages.Modules
         private IDbReadService _dbReadService;
 
         [BindProperty]
-        public Module Input { get; set; } = new Module();
+        public Album Input { get; set; } = new Album();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -27,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.Modules
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Module>(id, true);
+            Input = _dbReadService.Get<Album>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Modules
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Module: {Input.Title}.";
+                    StatusMessage = $"Deleted Album: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

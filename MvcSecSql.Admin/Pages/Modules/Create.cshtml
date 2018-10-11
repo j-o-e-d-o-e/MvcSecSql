@@ -5,7 +5,7 @@
 
 @model CreateModel
 @{
-    ViewData["Title"] = "Create Module";
+    ViewData["Title"] = "Create Album";
 }
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -24,8 +24,8 @@
                     <span asp-validation-for="Input.Title" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.CourseId" class="control-label"></label>
-                    <select asp-for="Input.CourseId" class="form-control" asp-items="ViewBag.Courses"></select>
+                    <label asp-for="Input.GenreId" class="control-label"></label>
+                    <select asp-for="Input.GenreId" class="form-control" asp-items="ViewBag.Courses"></select>
                 </div>
                 <button type="submit" class="btn btn-success">Create</button>
             </form>

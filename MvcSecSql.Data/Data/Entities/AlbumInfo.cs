@@ -2,7 +2,7 @@
 
 namespace MvcSecSql.Data.Data.Entities
 {
-    public class Download
+    public class AlbumInfo
     {
         [Key]
         public int Id { get; set; }
@@ -13,12 +13,12 @@ namespace MvcSecSql.Data.Data.Entities
         [MaxLength(1024)]
         public string Url { get; set; }
 
-        public Module Module { get; set; }
-        public int ModuleId { get; set; }
+        public Album Album { get; set; }
+        public int AlbumId { get; set; }
 
         // Side-step from 3rd normal form for easier
-        // access to a video’s course
-        public Course Course { get; set; }
-        public int CourseId { get; set; }
+        // access to a album’s genre
+        public Genre Genre { get; set; }
+        public int GenreId { get; set; }
     }
 }

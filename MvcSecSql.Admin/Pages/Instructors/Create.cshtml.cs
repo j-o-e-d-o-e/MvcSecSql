@@ -13,7 +13,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
         private readonly IDbWriteService _dbWriteService;
 
         [BindProperty]
-        public Instructor Input { get; set; } = new Instructor();
+        public Band Input { get; set; } = new Band();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -36,7 +36,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
                 if (success)
                 {
-                    StatusMessage = $"Created a new Instructor: {Input.Name}.";
+                    StatusMessage = $"Created a new Band: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }

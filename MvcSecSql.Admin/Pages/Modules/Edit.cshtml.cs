@@ -14,7 +14,7 @@ namespace MvcSecSql.Admin.Pages.Modules
         private IDbReadService _dbReadService;
 
         [BindProperty]
-        public Module Input { get; set; } = new Module();
+        public Album Input { get; set; } = new Album();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -27,8 +27,8 @@ namespace MvcSecSql.Admin.Pages.Modules
 
         public void OnGet(int id)
         {
-            ViewData["Courses"] = _dbReadService.GetSelectList<Course>("Id", "Title");
-            Input = _dbReadService.Get<Module>(id);
+            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
+            Input = _dbReadService.Get<Album>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -39,7 +39,7 @@ namespace MvcSecSql.Admin.Pages.Modules
 
                 if (success)
                 {
-                    StatusMessage = $"Updated Module: {Input.Title}.";
+                    StatusMessage = $"Updated Album: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

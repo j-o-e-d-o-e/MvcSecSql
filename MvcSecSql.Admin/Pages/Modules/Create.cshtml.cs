@@ -14,7 +14,7 @@ namespace MvcSecSql.Admin.Pages.Modules
         private IDbWriteService _dbWriteService;
 
         [BindProperty]
-        public Module Input { get; set; } = new Module();
+        public Album Input { get; set; } = new Album();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -27,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.Modules
 
         public void OnGet()
         {
-            ViewData["Courses"] = _dbReadService.GetSelectList<Course>("Id", "Title");
+            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Modules
 
                 if (success)
                 {
-                    StatusMessage = $"Created a new Module: {Input.Title}.";
+                    StatusMessage = $"Created a new Album: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

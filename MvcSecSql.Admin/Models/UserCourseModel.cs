@@ -6,7 +6,7 @@ namespace MvcSecSql.Admin.Models
     {
         public string Email { get; set; }
         public string CourseTitle { get; set; }
-        public UserCourse UserCourse { get; set; } = new UserCourse();
-        public UserCourse UpdatedUserCourse { get; set; } = new UserCourse();
+        public UserGenre UserGenre { get; set; } = new UserGenre();
+        public UserGenre UpdatedUserGenre { get; set; } = new UserGenre();
     }
 }

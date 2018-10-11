@@ -11,7 +11,7 @@ namespace MvcSecSql.Admin.Pages.Downloads
     public class IndexModel : PageModel
     {
         private IDbReadService _dbReadService;
-        public IEnumerable<Download> Items = new List<Download>();
+        public IEnumerable<AlbumInfo> Items = new List<AlbumInfo>();
         [TempData] public string StatusMessage { get; set; }
 
         public IndexModel(IDbReadService dbReadService)
@@ -21,7 +21,7 @@ namespace MvcSecSql.Admin.Pages.Downloads
 
         public void OnGet()
         {
-            Items = _dbReadService.GetWithIncludes<Download>();
+            Items = _dbReadService.GetWithIncludes<AlbumInfo>();
         }
     }
 }

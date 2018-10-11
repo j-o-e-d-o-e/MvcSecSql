@@ -32,8 +32,8 @@ namespace MvcSecSql.Admin.Pages.UserCourses
         public void OnGet(int courseId, string userId)
         {
             var user = _userService.GetUser(userId);
-            var course = _dbReadService.Get<Course>(courseId);
-            Input.UserCourse = _dbReadService.Get<UserCourse>(userId, courseId);
+            var course = _dbReadService.Get<Genre>(courseId);
+            Input.UserGenre = _dbReadService.Get<UserGenre>(userId, courseId);
             Input.Email = user.Email;
             Input.CourseTitle = course.Title;
         }
@@ -42,11 +42,11 @@ namespace MvcSecSql.Admin.Pages.UserCourses
         {
             if (ModelState.IsValid)
             {
-                var success = await _dbWriteService.Delete(Input.UserCourse);
+                var success = await _dbWriteService.Delete(Input.UserGenre);
 
                 if (success)
                 {
-                    StatusMessage = $"User-Course combination [{Input.CourseTitle} | {Input.Email}] was deleted.";
+                    StatusMessage = $"User-Genre combination [{Input.CourseTitle} | {Input.Email}] was deleted.";
                     return RedirectToPage("Index");
                 }
             }

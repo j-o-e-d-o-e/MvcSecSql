@@ -28,19 +28,19 @@ namespace MvcSecSql.Data.Migrations
             {
                 if (!context.Instructors.Any())
                 {
-                    var instructors = new List<Instructor>
+                    var instructors = new List<Band>
                     {
-                        new Instructor
+                        new Band
                         {
                             Name = "John Doe",
                             Description = description.Substring(20, 50),
-                            Thumbnail = "/images/Ice-Age-Scrat-icon.png"
+                            BandImage = "/images/Ice-Age-Scrat-icon.png"
                         },
-                        new Instructor
+                        new Band
                         {
                             Name = "Jane Doe",
                             Description = description.Substring(30, 40),
-                            Thumbnail = "/images/Ice-Age-Scrat-icon.png"
+                            BandImage = "/images/Ice-Age-Scrat-icon.png"
                         }
                     };
                     context.Instructors.AddRange(instructors);
@@ -55,27 +55,27 @@ namespace MvcSecSql.Data.Migrations
                     if (instructor != null) instructorId2 = instructor.Id;
                     else instructorId2 = instructorId1;
 
-                    var courses = new List<Course>
+                    var courses = new List<Genre>
                     {
-                        new Course
+                        new Genre
                         {
-                            InstructorId = instructorId1,
+                            BandId = instructorId1,
                             Title = "Course 1",
                             Description = description,
                             ImageUrl = "/images/course.jpg",
                             MarqueeImageUrl = "/images/laptop.jpg"
                         },
-                        new Course
+                        new Genre
                         {
-                            InstructorId = instructorId2,
+                            BandId = instructorId2,
                             Title = "Course 2",
                             Description = description,
                             ImageUrl = "/images/course2.jpg",
                             MarqueeImageUrl = "/images/laptop.jpg"
                         },
-                        new Course
+                        new Genre
                         {
-                            InstructorId = instructorId1,
+                            BandId = instructorId1,
                             Title = "Course 3",
                             Description = description,
                             ImageUrl = "/images/course3.jpg",
@@ -103,27 +103,27 @@ namespace MvcSecSql.Data.Migrations
                 if (!context.UserCourses.Any())
                 {
                     if (!courseId1.Equals(int.MinValue))
-                        context.UserCourses.Add(new UserCourse
-                            {UserId = userId, CourseId = courseId1});
+                        context.UserCourses.Add(new UserGenre
+                            {UserId = userId, GenreId = courseId1});
 
                     if (!courseId2.Equals(int.MinValue))
-                        context.UserCourses.Add(new UserCourse
-                            {UserId = userId, CourseId = courseId2});
+                        context.UserCourses.Add(new UserGenre
+                            {UserId = userId, GenreId = courseId2});
 
                     if (!courseId3.Equals(int.MinValue))
-                        context.UserCourses.Add(new UserCourse
-                            {UserId = userId, CourseId = courseId3});
+                        context.UserCourses.Add(new UserGenre
+                            {UserId = userId, GenreId = courseId3});
 
                     context.SaveChanges();
                 }
 
                 if (!context.Modules.Any())
                 {
-                    var modules = new List<Module>
+                    var modules = new List<Album>
                     {
-                        new Module {CourseId = courseId1, Title = "Module 1"},
-                        new Module {CourseId = courseId1, Title = "Module 2"},
-                        new Module {CourseId = courseId2, Title = "Module 3"}
+                        new Album {GenreId = courseId1, Title = "Module 1"},
+                        new Album {GenreId = courseId1, Title = "Module 2"},
+                        new Album {GenreId = courseId2, Title = "Module 3"}
                     };
                     context.Modules.AddRange(modules);
                     context.SaveChanges();
@@ -151,7 +151,7 @@ namespace MvcSecSql.Data.Migrations
                     {
                         new Video
                         {
-                            ModuleId = moduleId1, CourseId = courseId1,
+                            AlbumId = moduleId1, GenreId = courseId1,
                             Position = 1, Title = "Video 1 Title",
                             Description = description.Substring(1, 35),
                             Duration = 50, Thumbnail = "/images/video1.jpg",
@@ -159,8 +159,8 @@ namespace MvcSecSql.Data.Migrations
                         },
                         new Video
                         {
-                            ModuleId = moduleId1,
-                            CourseId = courseId1,
+                            AlbumId = moduleId1,
+                            GenreId = courseId1,
                             Position = 2,
                             Title = "Video 2 Title",
                             Description = description.Substring(5, 35),
@@ -170,8 +170,8 @@ namespace MvcSecSql.Data.Migrations
                         },
                         new Video
                         {
-                            ModuleId = moduleId1,
-                            CourseId = courseId1,
+                            AlbumId = moduleId1,
+                            GenreId = courseId1,
                             Position = 3,
                             Title = "Video 3 Title",
                             Description = description.Substring(10, 35),
@@ -181,8 +181,8 @@ namespace MvcSecSql.Data.Migrations
                         },
                         new Video
                         {
-                            ModuleId = moduleId3,
-                            CourseId = courseId2,
+                            AlbumId = moduleId3,
+                            GenreId = courseId2,
                             Position = 1,
                             Title = "Video 4 Title",
                             Description = description.Substring(15, 35),
@@ -192,8 +192,8 @@ namespace MvcSecSql.Data.Migrations
                         },
                         new Video
                         {
-                            ModuleId = moduleId2,
-                            CourseId = courseId1,
+                            AlbumId = moduleId2,
+                            GenreId = courseId1,
                             Position = 1,
                             Title = "Video 5 Title",
                             Description = description.Substring(20, 35),
@@ -208,21 +208,21 @@ namespace MvcSecSql.Data.Migrations
 
                 if (!context.Downloads.Any())
                 {
-                    var downloads = new List<Download>
+                    var downloads = new List<AlbumInfo>
                     {
-                        new Download
+                        new AlbumInfo
                         {
-                            ModuleId = moduleId1, CourseId = courseId1,
+                            AlbumId = moduleId1, GenreId = courseId1,
                             Title = "ADO.NET 1 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg"
                         },
-                        new Download
+                        new AlbumInfo
                         {
-                            ModuleId = moduleId1, CourseId = courseId1,
+                            AlbumId = moduleId1, GenreId = courseId1,
                             Title = "ADO.NET 2 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg"
                         },
-                        new Download
+                        new AlbumInfo
                         {
-                            ModuleId = moduleId3, CourseId = courseId2,
+                            AlbumId = moduleId3, GenreId = courseId2,
                             Title = "ADO.NET 1 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg"
                         }
                     };

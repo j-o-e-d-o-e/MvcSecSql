@@ -20,14 +20,14 @@ namespace MvcSecSql.Admin.Pages.Instructors
         }
 
         [BindProperty]
-        public Instructor Input { get; set; } = new Instructor();
+        public Band Input { get; set; } = new Band();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Instructor>(id);
+            Input = _dbReadService.Get<Band>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
                 if (success)
                 {
-                    StatusMessage = $"Updated Instructor: {Input.Name}.";
+                    StatusMessage = $"Updated Band: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }

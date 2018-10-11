@@ -14,30 +14,30 @@ namespace MvcSecSql.UI.Repositories
             _db = db;
         }
 
-        public Course GetCourse(string userId, int courseId)
+        public Genre GetCourse(string userId, int courseId)
         {
-            var hasAccess = _db.Get<UserCourse>(userId, courseId) != null;
-            if (!hasAccess) return default(Course);
+            var hasAccess = _db.Get<UserGenre>(userId, courseId) != null;
+            if (!hasAccess) return default(Genre);
 
-            var course = _db.Get<Course>(courseId, true);
+            var course = _db.Get<Genre>(courseId, true);
 
-            foreach (var module in course.Modules)
+            foreach (var module in course.Albums)
             {
-                module.Downloads = _db.Get<Download>().Where(d =>
-                    d.ModuleId.Equals(module.Id)).ToList();
+                module.Infos = _db.Get<AlbumInfo>().Where(d =>
+                    d.AlbumId.Equals(module.Id)).ToList();
 
                 module.Videos = _db.Get<Video>().Where(d =>
-                    d.ModuleId.Equals(module.Id)).ToList();
+                    d.AlbumId.Equals(module.Id)).ToList();
             }
 
             return course;
         }
 
-        public IEnumerable<Course> GetCourses(string userId)
+        public IEnumerable<Genre> GetCourses(string userId)
         {
-            var courses = _db.GetWithIncludes<UserCourse>()
+            var courses = _db.GetWithIncludes<UserGenre>()
                 .Where(uc => uc.UserId.Equals(userId))
-                .Select(c => c.Course);
+                .Select(c => c.Genre);
 
             return courses;
         }
@@ -46,7 +46,7 @@ namespace MvcSecSql.UI.Repositories
         {
             var video = _db.Get<Video>(videoId);
 
-            var hasAccess = _db.Get<UserCourse>(userId, video.CourseId) != null;
+            var hasAccess = _db.Get<UserGenre>(userId, video.GenreId) != null;
             if (!hasAccess) return default(Video);
 
             return video;
@@ -54,12 +54,12 @@ namespace MvcSecSql.UI.Repositories
 
         public IEnumerable<Video> GetVideos(string userId, int moduleId = 0)
         {
-            var module = _db.Get<Module>(moduleId);
+            var module = _db.Get<Album>(moduleId);
 
-            var hasAccess = _db.Get<UserCourse>(userId, module.CourseId) != null;
+            var hasAccess = _db.Get<UserGenre>(userId, module.GenreId) != null;
             if (!hasAccess) return default(IEnumerable<Video>);
 
-            var videos = _db.Get<Video>().Where(v => v.ModuleId.Equals(moduleId));
+            var videos = _db.Get<Video>().Where(v => v.AlbumId.Equals(moduleId));
 
             return videos;
         }

@@ -45,20 +45,20 @@ namespace MvcSecSql.UI.Controllers
         {
             var course = _db.GetCourse(_userId, id);
             var mappedCourseDTOs = _mapper.Map<GenreDto>(course);
-            var mappedInstructorDTO = _mapper.Map<BandDto>(course.Instructor);
-            var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Modules);
+            var mappedInstructorDTO = _mapper.Map<BandDto>(course.Band);
+            var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Albums);
 
             for (var i = 0; i < mappedModuleDTOs.Count; i++)
             {
-                mappedModuleDTOs[i].Downloads =
-                    course.Modules[i].Downloads.Count.Equals(0)
+                mappedModuleDTOs[i].Infos =
+                    course.Albums[i].Infos.Count.Equals(0)
                         ? null
-                        : _mapper.Map<List<AlbumInfoDto>>(course.Modules[i].Downloads);
+                        : _mapper.Map<List<AlbumInfoDto>>(course.Albums[i].Infos);
 
                 mappedModuleDTOs[i].Videos =
-                    course.Modules[i].Videos.Count.Equals(0)
+                    course.Albums[i].Videos.Count.Equals(0)
                         ? null
-                        : _mapper.Map<List<VideoDto>>(course.Modules[i].Videos);
+                        : _mapper.Map<List<VideoDto>>(course.Albums[i].Videos);
             }
 
             var courseModel = new GenreViewModel
@@ -76,20 +76,20 @@ namespace MvcSecSql.UI.Controllers
         {
             var course = _db.GetCourse(_userId, id);
             var mappedCourseDTOs = _mapper.Map<GenreDto>(course);
-            var mappedInstructorDTO = _mapper.Map<BandDto>(course.Instructor);
-            var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Modules);
+            var mappedInstructorDTO = _mapper.Map<BandDto>(course.Band);
+            var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Albums);
 
             for (var i = 0; i < mappedModuleDTOs.Count; i++)
             {
-                mappedModuleDTOs[i].Downloads =
-                    course.Modules[i].Downloads.Count.Equals(0)
+                mappedModuleDTOs[i].Infos =
+                    course.Albums[i].Infos.Count.Equals(0)
                         ? null
-                        : _mapper.Map<List<AlbumInfoDto>>(course.Modules[i].Downloads);
+                        : _mapper.Map<List<AlbumInfoDto>>(course.Albums[i].Infos);
 
                 mappedModuleDTOs[i].Videos =
-                    course.Modules[i].Videos.Count.Equals(0)
+                    course.Albums[i].Videos.Count.Equals(0)
                         ? null
-                        : _mapper.Map<List<VideoDto>>(course.Modules[i].Videos);
+                        : _mapper.Map<List<VideoDto>>(course.Albums[i].Videos);
             }
 
             var courseModel = new GenreViewModel
@@ -106,14 +106,14 @@ namespace MvcSecSql.UI.Controllers
         public IActionResult Video(int id)
         {
             var video = _db.GetVideo(_userId, id);
-            var course = _db.GetCourse(_userId, video.CourseId);
+            var course = _db.GetCourse(_userId, video.GenreId);
             var mappedVideoDTO = _mapper.Map<VideoDto>(video);
             var mappedCourseDTO = _mapper.Map<GenreDto>(course);
             var mappedInstructorDTO =
-                _mapper.Map<BandDto>(course.Instructor);
+                _mapper.Map<BandDto>(course.Band);
 
             // Create a VideoComingUpDto object
-            var videos = _db.GetVideos(_userId, video.ModuleId).ToList();
+            var videos = _db.GetVideos(_userId, video.AlbumId).ToList();
             var count = videos.Count();
             var index = videos.IndexOf(video);
             var previous = videos.ElementAtOrDefault(index - 1);

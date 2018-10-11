@@ -43,17 +43,17 @@ namespace MvcSecSql.Admin.Pages
                {
                    BackgroundColor = "#009688",
                    Count = count.courses,
-                   Description = "Courses",
+                   Description = "Genres",
                    Icon = "blackboard",
-                   Url = "./Courses/Index"
+                   Url = "./Genres/Index"
                },
                modules: new CardViewModel
                {
                    BackgroundColor = "#f44336",
                    Count = count.modules,
-                   Description = "Modules",
+                   Description = "Genres",
                    Icon = "list",
-                   Url = "./Modules/Index"
+                   Url = "./Genres/Index"
                },
                videos: new CardViewModel
                {
@@ -67,15 +67,15 @@ namespace MvcSecSql.Admin.Pages
                {
                    BackgroundColor = "#ffcc00",
                    Count = count.downloads,
-                   Description = "Downloads",
+                   Description = "Infos",
                    Icon = "file",
-                   Url = "./Downloads/Index"
+                   Url = "./Infos/Index"
                },
                userCourses: new CardViewModel
                {
                    BackgroundColor = "#176c37",
                    Count = count.userCourses,
-                   Description = "User Courses",
+                   Description = "User Genres",
                    Icon = "file",
                    Url = "./UserCourses/Index"
                }

@@ -31,10 +31,10 @@ namespace MvcSecSql.Admin.Pages.UserCourses
 
         public void OnGet(int courseId, string userId)
         {
-            ViewData["Courses"] = _dbReadService.GetSelectList<Course>("Id", "Title");
-            Input.UserCourse = _dbReadService.Get<UserCourse>(userId, courseId);
-            Input.UpdatedUserCourse = Input.UserCourse;
-            var course = _dbReadService.Get<Course>(courseId);
+            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
+            Input.UserGenre = _dbReadService.Get<UserGenre>(userId, courseId);
+            Input.UpdatedUserGenre = Input.UserGenre;
+            var course = _dbReadService.Get<Genre>(courseId);
             var user = _userService.GetUser(userId);
             Input.CourseTitle = course.Title;
             Input.Email = user.Email;
@@ -44,18 +44,18 @@ namespace MvcSecSql.Admin.Pages.UserCourses
         {
             if (ModelState.IsValid)
             {
-                var success = await _dbWriteService.Update(Input.UserCourse, Input.UpdatedUserCourse);
+                var success = await _dbWriteService.Update(Input.UserGenre, Input.UpdatedUserGenre);
 
                 if (success)
                 {
-                    var updatedCourse = _dbReadService.Get<Course>(Input.UpdatedUserCourse.CourseId);
+                    var updatedCourse = _dbReadService.Get<Genre>(Input.UpdatedUserGenre.GenreId);
                     StatusMessage = $"The [{Input.CourseTitle} | {Input.Email}] combination was changed to [{updatedCourse.Title} | {Input.Email}].";
                     return RedirectToPage("Index");
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            ViewData["Courses"] = _dbReadService.GetSelectList<Course>("Id", "Title");
+            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
             return Page();
         }
 
