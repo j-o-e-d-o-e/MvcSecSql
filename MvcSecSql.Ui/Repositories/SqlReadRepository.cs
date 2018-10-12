@@ -14,12 +14,12 @@ namespace MvcSecSql.UI.Repositories
             _db = db;
         }
 
-        public Genre GetCourse(string userId, int courseId)
+        public Genre GetGenre(string userId, int genreId)
         {
-            var hasAccess = _db.Get<UserGenre>(userId, courseId) != null;
+            var hasAccess = _db.Get<UserGenre>(userId, genreId) != null;
             if (!hasAccess) return default(Genre);
 
-            var course = _db.Get<Genre>(courseId, true);
+            var course = _db.Get<Genre>(genreId, true);
 
             foreach (var module in course.Albums)
             {
@@ -33,7 +33,7 @@ namespace MvcSecSql.UI.Repositories
             return course;
         }
 
-        public IEnumerable<Genre> GetCourses(string userId)
+        public IEnumerable<Genre> GetGenres(string userId)
         {
             var courses = _db.GetWithIncludes<UserGenre>()
                 .Where(uc => uc.UserId.Equals(userId))
@@ -52,14 +52,14 @@ namespace MvcSecSql.UI.Repositories
             return video;
         }
 
-        public IEnumerable<Video> GetVideos(string userId, int moduleId = 0)
+        public IEnumerable<Video> GetVideos(string userId, int albumId = 0)
         {
-            var module = _db.Get<Album>(moduleId);
+            var module = _db.Get<Album>(albumId);
 
             var hasAccess = _db.Get<UserGenre>(userId, module.GenreId) != null;
             if (!hasAccess) return default(IEnumerable<Video>);
 
-            var videos = _db.Get<Video>().Where(v => v.AlbumId.Equals(moduleId));
+            var videos = _db.Get<Video>().Where(v => v.AlbumId.Equals(albumId));
 
             return videos;
         }

@@ -5,9 +5,9 @@ namespace MvcSecSql.UI.Repositories
 {
     public interface IReadRepository
     {
-        IEnumerable<Genre> GetCourses(string userId);
-        Genre GetCourse(string userId, int courseId);
+        IEnumerable<Genre> GetGenres(string userId);
+        Genre GetGenre(string userId, int genreId);
         Video GetVideo(string userId, int videoId);
-        IEnumerable<Video> GetVideos(string userId, int moduleId = default(int));
+        IEnumerable<Video> GetVideos(string userId, int albumId = default(int));
     }
 }

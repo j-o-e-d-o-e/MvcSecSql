@@ -28,7 +28,7 @@ namespace MvcSecSql.UI.Controllers
         [HttpGet]
         public IActionResult Dashboard()
         {
-            var courseDtoObjects = _mapper.Map<List<GenreDto>>(_db.GetCourses(_userId));
+            var courseDtoObjects = _mapper.Map<List<GenreDto>>(_db.GetGenres(_userId));
 
             var dashboardModel = new DashboardViewModel();
             dashboardModel.Genres = new List<List<GenreDto>>();
@@ -43,7 +43,7 @@ namespace MvcSecSql.UI.Controllers
         [HttpGet]
         public IActionResult Genre(int id)
         {
-            var course = _db.GetCourse(_userId, id);
+            var course = _db.GetGenre(_userId, id);
             var mappedCourseDTOs = _mapper.Map<GenreDto>(course);
             var mappedInstructorDTO = _mapper.Map<BandDto>(course.Band);
             var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Albums);
@@ -74,7 +74,7 @@ namespace MvcSecSql.UI.Controllers
         [HttpGet]
         public IActionResult Band(int id)
         {
-            var course = _db.GetCourse(_userId, id);
+            var course = _db.GetGenre(_userId, id);
             var mappedCourseDTOs = _mapper.Map<GenreDto>(course);
             var mappedInstructorDTO = _mapper.Map<BandDto>(course.Band);
             var mappedModuleDTOs = _mapper.Map<List<AlbumDto>>(course.Albums);
@@ -106,7 +106,7 @@ namespace MvcSecSql.UI.Controllers
         public IActionResult Video(int id)
         {
             var video = _db.GetVideo(_userId, id);
-            var course = _db.GetCourse(_userId, video.GenreId);
+            var course = _db.GetGenre(_userId, video.GenreId);
             var mappedVideoDTO = _mapper.Map<VideoDto>(video);
             var mappedCourseDTO = _mapper.Map<GenreDto>(course);
             var mappedInstructorDTO =
