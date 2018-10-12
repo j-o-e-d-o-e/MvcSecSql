@@ -59,7 +59,7 @@ namespace MvcSecSql.Data.Migrations
                     {
                         new Genre
                         {
-                            BandId = instructorId1,
+//                            BandId = instructorId1, todo
                             Title = "Course 1",
                             Description = description,
                             ImageUrl = "/images/course.jpg",
@@ -67,7 +67,7 @@ namespace MvcSecSql.Data.Migrations
                         },
                         new Genre
                         {
-                            BandId = instructorId2,
+//                            BandId = instructorId2, todo
                             Title = "Course 2",
                             Description = description,
                             ImageUrl = "/images/course2.jpg",
@@ -75,7 +75,7 @@ namespace MvcSecSql.Data.Migrations
                         },
                         new Genre
                         {
-                            BandId = instructorId1,
+//                            BandId = instructorId1, todo
                             Title = "Course 3",
                             Description = description,
                             ImageUrl = "/images/course3.jpg",
@@ -121,9 +121,9 @@ namespace MvcSecSql.Data.Migrations
                 {
                     var modules = new List<Album>
                     {
-                        new Album {GenreId = courseId1, Title = "Module 1"},
-                        new Album {GenreId = courseId1, Title = "Module 2"},
-                        new Album {GenreId = courseId2, Title = "Module 3"}
+                        new Album {BandId = courseId1, Title = "Module 1"},
+                        new Album {BandId = courseId1, Title = "Module 2"},
+                        new Album {BandId = courseId2, Title = "Module 3"}
                     };
                     context.Modules.AddRange(modules);
                     context.SaveChanges();
@@ -212,17 +212,20 @@ namespace MvcSecSql.Data.Migrations
                     {
                         new AlbumInfo
                         {
-                            AlbumId = moduleId1, GenreId = courseId1,
+                            AlbumId = moduleId1,
+//                            GenreId = courseId1, todo
                             Title = "ADO.NET 1 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg"
                         },
                         new AlbumInfo
                         {
-                            AlbumId = moduleId1, GenreId = courseId1,
+                            AlbumId = moduleId1,
+//                            GenreId = courseId1, todo
                             Title = "ADO.NET 2 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg"
                         },
                         new AlbumInfo
                         {
-                            AlbumId = moduleId3, GenreId = courseId2,
+                            AlbumId = moduleId3,
+//                            GenreId = courseId2, todo
                             Title = "ADO.NET 1 (PDF)", Url = "https://1drv.ms/b/s!AuD5OaH0ExAwn48rX9TZZ3kAOX6Peg"
                         }
                     };

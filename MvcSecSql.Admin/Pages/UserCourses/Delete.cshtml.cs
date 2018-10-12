@@ -46,7 +46,7 @@ namespace MvcSecSql.Admin.Pages.UserCourses
 
                 if (success)
                 {
-                    StatusMessage = $"User-Genre combination [{Input.CourseTitle} | {Input.Email}] was deleted.";
+                    StatusMessage = $"User-Band combination [{Input.CourseTitle} | {Input.Email}] was deleted.";
                     return RedirectToPage("Index");
                 }
             }

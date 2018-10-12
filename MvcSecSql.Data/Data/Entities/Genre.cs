@@ -20,8 +20,7 @@ namespace MvcSecSql.Data.Data.Entities
         [MaxLength(1024)]
         public string Description { get; set; }
 
-        public int BandId { get; set; }
-        public Band Band { get; set; }
+        public List<Band> Bands { get; set; }
         public List<Album> Albums { get; set; }
     }
 }

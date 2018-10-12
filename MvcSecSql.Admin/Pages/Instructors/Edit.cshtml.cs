@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
                 if (success)
                 {
-                    StatusMessage = $"Updated Band: {Input.Name}.";
+                    StatusMessage = $"Updated Bands: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }

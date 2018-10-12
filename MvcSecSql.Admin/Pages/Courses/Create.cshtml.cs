@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
                 if (success)
                 {
-                    StatusMessage = $"Created a new Genre: {Input.Title}.";
+                    StatusMessage = $"Created a new Band: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

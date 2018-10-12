@@ -4,7 +4,7 @@
 @inject SignInManager<User> SignInManager
 @model IndexModel
 @{
-    ViewData["Title"] = "Band";
+    ViewData["Title"] = "Bands";
 }
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))

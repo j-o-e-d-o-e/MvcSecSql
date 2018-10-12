@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Band: {Input.Name}.";
+                    StatusMessage = $"Deleted Bands: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }

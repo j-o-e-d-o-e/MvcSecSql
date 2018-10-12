@@ -28,7 +28,7 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                            <td>@Html.DisplayFor(modelItem => item.Genre.Title)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Band.Title)</td>
                             <td class="button-col-width">
                                 <page-button path="Modules/Edit" bootstrap-style="success" glyph="pencil" id="@item.Id"></page-button>
                                 <page-button path="Modules/Delete" bootstrap-style="danger" glyph="remove" id="@item.Id"></page-button>

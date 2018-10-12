@@ -39,7 +39,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
                 if (success)
                 {
-                    StatusMessage = $"Updated Genre: {Input.Title}.";
+                    StatusMessage = $"Updated Band: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

@@ -15,10 +15,5 @@ namespace MvcSecSql.Data.Data.Entities
 
         public Album Album { get; set; }
         public int AlbumId { get; set; }
-
-        // Side-step from 3rd normal form for easier
-        // access to a album’s genre
-        public Genre Genre { get; set; }
-        public int GenreId { get; set; }
     }
 }

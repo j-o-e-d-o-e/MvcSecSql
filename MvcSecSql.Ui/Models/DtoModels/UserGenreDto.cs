@@ -6,7 +6,7 @@ namespace MvcSecSql.Ui.Models.DtoModels
     {
         [DisplayName("User Id")]
         public string UserId { get; set; }
-        [DisplayName("Genre Id")]
+        [DisplayName("Band Id")]
         public int GenreId { get; set; }
         [DisplayName("Email")]
         public string UserEmail { get; set; }

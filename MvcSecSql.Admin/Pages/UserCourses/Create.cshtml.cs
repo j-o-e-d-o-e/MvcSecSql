@@ -44,7 +44,7 @@ namespace MvcSecSql.Admin.Pages.UserCourses
                 {
                     var user = _userService.GetUser(Input.UserId);
                     var course = _dbReadService.Get<Genre>(Input.GenreId);
-                    StatusMessage = $"User-Genre combination [{course.Title} | {user.Email}] was created.";
+                    StatusMessage = $"User-Band combination [{course.Title} | {user.Email}] was created.";
                     return RedirectToPage("Index");
                 }
             }

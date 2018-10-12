@@ -38,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Genre: {Input.Title}.";
+                    StatusMessage = $"Deleted Band: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

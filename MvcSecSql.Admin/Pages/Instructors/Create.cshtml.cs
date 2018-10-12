@@ -36,7 +36,7 @@ namespace MvcSecSql.Admin.Pages.Instructors
 
                 if (success)
                 {
-                    StatusMessage = $"Created a new Band: {Input.Name}.";
+                    StatusMessage = $"Created a new Bands: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }

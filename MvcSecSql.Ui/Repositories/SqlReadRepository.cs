@@ -56,7 +56,7 @@ namespace MvcSecSql.UI.Repositories
         {
             var module = _db.Get<Album>(albumId);
 
-            var hasAccess = _db.Get<UserGenre>(userId, module.GenreId) != null;
+            var hasAccess = _db.Get<UserGenre>(userId, module.BandId) != null;
             if (!hasAccess) return default(IEnumerable<Video>);
 
             var videos = _db.Get<Video>().Where(v => v.AlbumId.Equals(albumId));

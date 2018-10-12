@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.WindowsAzure.Storage.Blob.Protocol;
 
 namespace MvcSecSql.Data.Data.Entities
 {
@@ -13,8 +14,10 @@ namespace MvcSecSql.Data.Data.Entities
 
         public int ReleaseYear { get; set; }
 
+        public int BandId { get; set; }
+        public Band Band { get; set; }
         public int GenreId { get; set; }
-        public Genre Genre { get; set; }
+        public Genre genre { get; set; }
         public List<Video> Videos { get; set; }
         public List<AlbumInfo> Infos { get; set; }
     }
