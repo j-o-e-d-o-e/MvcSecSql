@@ -35,8 +35,8 @@ namespace MvcSecSql.Admin.Pages.Downloads
         {
             if (ModelState.IsValid)
             {
-                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).BandId;
-                Input.Genre = null;
+//                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).BandId; //todo
+//                Input.Genre = null;
                 var success = await _dbWriteService.Update(Input);
 
                 if (success)

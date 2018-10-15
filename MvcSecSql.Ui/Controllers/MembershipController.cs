@@ -20,8 +20,7 @@ namespace MvcSecSql.UI.Controllers
         public MembershipController(IHttpContextAccessor httpContextAccessor,
             UserManager<User> userManager, IMapper mapper, IReadRepository db)
         {
-//            _userId = userManager.GetUserId(httpContextAccessor.HttpContext.User);
-            _userId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45"; //todo: delete hardcoded
+            _userId = userManager.GetUserId(httpContextAccessor.HttpContext.User);
             _mapper = mapper;
             _db = db;
         }

@@ -9,17 +9,17 @@ namespace MvcSecSql.Data.Data
         {
             new UserGenre
             {
-                UserId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45",
+                UserId = "4bb65775-4553-4e37-85a7-c9e08e04ca5a",
                 GenreId = 1
             },
             new UserGenre
             {
-                UserId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45",
+                UserId = "4bb65775-4553-4e37-85a7-c9e08e04ca5a",
                 GenreId = 2
             },
             new UserGenre
             {
-                UserId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45",
+                UserId = "4bb65775-4553-4e37-85a7-c9e08e04ca5a",
                 GenreId = 3
             },
         };

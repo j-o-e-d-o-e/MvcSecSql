@@ -37,8 +37,8 @@ namespace MvcSecSql.Admin.Pages.Videos
         {
             if (ModelState.IsValid)
             {
-                Input.BandId = _dbReadService.Get<Album>(Input.AlbumId).BandId;
-                Input.Band = null;
+//                Input.BandId = _dbReadService.Get<Album>(Input.AlbumId).BandId; todo
+//                Input.Band = null;
                 var success = await _dbWriteService.Update(Input);
                 
                 if (success)
