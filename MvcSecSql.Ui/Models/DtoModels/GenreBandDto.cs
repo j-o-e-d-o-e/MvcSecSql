@@ -8,10 +8,10 @@ namespace MvcSecSql.Ui.Models.DtoModels
 {
     public class GenreBandDto
     {
-        [DisplayName("Band Id")]
+        [DisplayName("Band VideoId")]
         public string GenreId { get; set; }
 
-        [DisplayName("Bands Id")]
+        [DisplayName("Bands VideoId")]
         public int BandId { get; set; }
 
         [DisplayName("Band Title")]

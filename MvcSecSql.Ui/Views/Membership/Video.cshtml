@@ -7,10 +7,9 @@
 <div class="membership top-margin video-content">
     <div class="row navigation-bar">
         <div class="col-sm-12">
-            <a class="btn btn-primary" href="~/Membership/Course/
-                @Model.Genre.GenreId">
+            <a class="btn btn-primary" href="~/Membership/Band/@Model.Band.BandId">
                 <span class="glyphicon glyphicon-menu-left"></span>
-                Back to @Model.Genre.GenreTitle
+                Back to @Model.Band.BandName
             </a>
         </div>
     </div>
@@ -39,9 +38,9 @@
 </div>
 
 @section Scripts
-    {
+{
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             videoJS($("#hiddenUrl").text());
         });
     </script>

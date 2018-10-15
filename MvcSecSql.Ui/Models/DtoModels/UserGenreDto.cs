@@ -4,9 +4,9 @@ namespace MvcSecSql.Ui.Models.DtoModels
 {
     public class UserGenreDto
     {
-        [DisplayName("User Id")]
+        [DisplayName("User VideoId")]
         public string UserId { get; set; }
-        [DisplayName("Bands Id")]
+        [DisplayName("Bands VideoId")]
         public int GenreId { get; set; }
         [DisplayName("Email")]
         public string UserEmail { get; set; }

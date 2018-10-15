@@ -25,12 +25,9 @@ namespace MvcSecSql.Data.Data.Entities
         public int Position { get; set; }
 
         public int AlbumId { get; set; }
-
         public Album Album { get; set; }
 
-        // Side-step from 3rd normal form for easier 
-        // access to a video’s genre
-        public int GenreId { get; set; }
-        public Genre Genre { get; set; }
+//        public int BandId { get; set; }
+//        public Band Band { get; set; }
     }
 }

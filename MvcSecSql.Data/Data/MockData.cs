@@ -43,80 +43,41 @@ namespace MvcSecSql.Data.Data
             },
         };
 
-        public static readonly List<GenreBand> GenreBands = new List<GenreBand>
-        {
-            new GenreBand
-            {
-                GenreId = 1,
-                BandId = 1
-            },
-            new GenreBand
-            {
-                GenreId = 1,
-                BandId = 2
-            },
-            new GenreBand
-            {
-                GenreId = 2,
-                BandId = 3
-            },
-            new GenreBand
-            {
-                GenreId = 2,
-                BandId = 4
-            },
-            new GenreBand
-            {
-                GenreId = 3,
-                BandId = 5
-            },
-            new GenreBand
-            {
-                GenreId = 1,
-                BandId = 6
-            },
-            new GenreBand
-            {
-                GenreId = 3,
-                BandId = 6
-            }
-        };
-
         public static readonly List<Band> Bands = new List<Band>
         {
             new Band
             {
-                Id = 1, Name = "Haken",
+                Id = 1, Name = "Haken", GenreId = 1,
                 Description = "Formed in 2007",
                 Image = "/images/avatar.png",
             },
             new Band
             {
-                Id = 2, Name = "Caligula's Horse",
+                Id = 2, Name = "Caligula's Horse", GenreId = 1,
                 Description = "Formed in 2011",
                 Image = "/images/avatar.png",
             },
             new Band
             {
-                Id = 3, Name = "Nile",
+                Id = 3, Name = "Nile", GenreId = 2,
                 Description = "Formed in 1993",
                 Image = "/images/avatar.png",
             },
             new Band
             {
-                Id = 4, Name = "Immolation",
+                Id = 4, Name = "Immolation", GenreId = 2,
                 Description = "Formed in 1986",
                 Image = "/images/avatar.png",
             },
             new Band
             {
-                Id = 5, Name = "Rush",
+                Id = 5, Name = "Rush", GenreId = 3,
                 Description = "Formed in 1986",
                 Image = "/images/avatar.png",
             },
             new Band
             {
-                Id = 6, Name = "Dream Theater",
+                Id = 6, Name = "Dream Theater", GenreId = 3,
                 Description = "Formed in 1986",
                 Image = "/images/avatar.png",
             }
@@ -137,8 +98,8 @@ namespace MvcSecSql.Data.Data
             new BandMember
             {
                 Id = 2,
-                FirstName = "Sneaky",
-                LastName = "Pete",
+                FirstName = "Boris",
+                LastName = "String",
                 Instrument = "Guitar",
                 BandId = 1,
                 Description = "Since 2011",
@@ -165,6 +126,7 @@ namespace MvcSecSql.Data.Data
                 Image = "/images/avatar.png",
             }
         };
+
         public static readonly List<Album> Albums = new List<Album>
         {
             new Album {Id = 1, Title = "Visions", BandId = 1, ReleaseYear = 2011, GenreId = 1},
@@ -200,65 +162,77 @@ namespace MvcSecSql.Data.Data
         {
             new Video
             {
-                Id = 1, AlbumId = 1, GenreId = 1, Position = 1,
+                Id = 1, AlbumId = 1, Position = 1,
                 Title = "Haken - Visions",
                 Description = "Made by Marc Papeghin, multi instrumentalist and producer from France﻿",
                 Duration = 23, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=of2XNp6t_7c"
             },
             new Video
             {
-                Id = 2, AlbumId = 1, GenreId = 1, Position = 1,
+                Id = 2, AlbumId = 1, Position = 1,
                 Title = "Haken - Streams", Description = "Album track",
                 Duration = 11, Thumbnail = "/images/video2.jpg", Url = "https://www.youtube.com/watch?v=UW4D6v75iH4"
             },
             new Video
             {
-                Id = 3, AlbumId = 2, GenreId = 1, Position = 1,
+                Id = 3, AlbumId = 2, Position = 1,
                 Title = "Haken - Cockroach King", Description = "Live in Mexico",
                 Duration = 9, Thumbnail = "/images/video3.jpg", Url = "https://www.youtube.com/watch?v=M-54x0Qz4og"
             },
             new Video
             {
-                Id = 4, AlbumId = 2, GenreId = 1, Position = 1,
+                Id = 4, AlbumId = 2, Position = 1,
                 Title = "Haken - Falling Back To Earth", Description = "Album Track",
                 Duration = 12, Thumbnail = "/images/video4.jpg", Url = "https://www.youtube.com/watch?v=9XKPW0XVXe4"
             },
             new Video
             {
-                Id = 5, AlbumId = 3, GenreId = 1, Position = 1,
+                Id = 5, AlbumId = 3, Position = 1,
                 Title = "Haken - The Good Doctor", Description = "Official Music Video",
                 Duration = 16, Thumbnail = "/images/video5.jpg", Url = "https://www.youtube.com/watch?v=BD3v8w57_lU"
             },
             new Video
             {
-                Id = 6, AlbumId = 4, GenreId = 1, Position = 1,
+                Id = 6, AlbumId = 4, Position = 1,
                 Title = "Caligula's Horse - The Hands Are The Hardest", Description = "Album Track",
                 Duration = 5, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=3OeS3RbZL7U"
             },
             new Video
             {
-                Id = 7, AlbumId = 5, GenreId = 2, Position = 1,
+                Id = 7, AlbumId = 5, Position = 1,
                 Title = "Nile - Unas, Slayer of the Gods", Description = "Album Track",
                 Duration = 12, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=HPYQB7AsSkg"
             },
             new Video
             {
-                Id = 8, AlbumId = 6, GenreId = 2, Position = 1,
+                Id = 8, AlbumId = 6, Position = 1,
                 Title = "Immolation - When The Jackals Come", Description = "Official Music Video",
                 Duration = 4, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=1u7wZFkmaVA"
             },
             new Video
             {
-                Id = 9, AlbumId = 7, GenreId = 3, Position = 1,
+                Id = 9, AlbumId = 7, Position = 1,
                 Title = "Rush - YYZ", Description = "Album Track",
                 Duration = 5, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=LdpMpfp-J_I"
             },
             new Video
             {
-                Id = 10, AlbumId = 8, GenreId = 3, Position = 1,
+                Id = 10, AlbumId = 8, Position = 1,
                 Title = "Dream Theater - Take The Time", Description = "Official Video",
                 Duration = 6, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=C5sg8heGdyk"
-            }
+            },
+            new Video
+            {
+                Id = 11, AlbumId = 8, Position = 1,
+                Title = "Dream Theater - Pull Me Under", Description = "Official Video",
+                Duration = 5, Thumbnail = "/images/video2.jpg", Url = "https://www.youtube.com/watch?v=mipc-JxrhRk"
+            },
+            new Video
+            {
+                Id = 12, AlbumId = 8, Position = 1,
+                Title = "Dream Theater - Metropolis Part I", Description = "Album Track",
+                Duration = 10, Thumbnail = "/images/video3.jpg", Url = "https://www.youtube.com/watch?v=IqqRx77T4Vo"
+            },
         };
     }
 }

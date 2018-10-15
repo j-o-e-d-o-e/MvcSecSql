@@ -151,7 +151,8 @@ namespace MvcSecSql.Data.Migrations
                     {
                         new Video
                         {
-                            AlbumId = moduleId1, GenreId = courseId1,
+                            AlbumId = moduleId1,
+//                            BandId = courseId1,
                             Position = 1, Title = "Video 1 Title",
                             Description = description.Substring(1, 35),
                             Duration = 50, Thumbnail = "/images/video1.jpg",
@@ -160,7 +161,7 @@ namespace MvcSecSql.Data.Migrations
                         new Video
                         {
                             AlbumId = moduleId1,
-                            GenreId = courseId1,
+//                            BandId = courseId1,
                             Position = 2,
                             Title = "Video 2 Title",
                             Description = description.Substring(5, 35),
@@ -171,7 +172,7 @@ namespace MvcSecSql.Data.Migrations
                         new Video
                         {
                             AlbumId = moduleId1,
-                            GenreId = courseId1,
+//                            BandId = courseId1,
                             Position = 3,
                             Title = "Video 3 Title",
                             Description = description.Substring(10, 35),
@@ -182,7 +183,7 @@ namespace MvcSecSql.Data.Migrations
                         new Video
                         {
                             AlbumId = moduleId3,
-                            GenreId = courseId2,
+//                            BandId = courseId2,
                             Position = 1,
                             Title = "Video 4 Title",
                             Description = description.Substring(15, 35),
@@ -193,7 +194,7 @@ namespace MvcSecSql.Data.Migrations
                         new Video
                         {
                             AlbumId = moduleId2,
-                            GenreId = courseId1,
+//                            BandId = courseId1,
                             Position = 1,
                             Title = "Video 5 Title",
                             Description = description.Substring(20, 35),

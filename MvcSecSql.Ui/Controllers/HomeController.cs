@@ -20,7 +20,7 @@ namespace MvcSecSql.Ui.Controllers
         {
 //            if (!_signInManager.IsSignedIn(User))
 //                return RedirectToAction("Login", "Account");
-            return RedirectToAction("Genre", "Membership");
+            return RedirectToAction("Dashboard", "Membership");
         }
 
 //        public object Index()

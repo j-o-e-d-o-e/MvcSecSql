@@ -38,7 +38,7 @@ namespace MvcSecSql.UI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Genre(int id = 1) //todo: no default value
+        public IActionResult Genre(int id = 1)
         {
             var genre = _db.GetGenre(_userId, id);
             var genreViewModel = new GenreViewModel
@@ -54,15 +54,12 @@ namespace MvcSecSql.UI.Controllers
         public IActionResult Band(int id)
         {
             var band = _db.GetBand(id);
-            var mappedBand = _mapper.Map<BandDto>(band);
-            var mappedBandMembers = _mapper.Map<List<BandMemberDto>>(band.BandMembers);
-            var mappedAlbums = _mapper.Map<List<AlbumDto>>(band.Albums);
             var bandViewModel = new BandViewModel
             {
-                Genre = _mapper.Map<GenreDto>(_db.GetGenre(_userId, id)),
-                Band = mappedBand,
-                BandMembers = mappedBandMembers,
-                Albums = mappedAlbums
+                Genre = _mapper.Map<GenreDto>(band.Genre),
+                Band = _mapper.Map<BandDto>(band),
+                BandMembers = _mapper.Map<List<BandMemberDto>>(band.BandMembers),
+                Albums = _mapper.Map<List<AlbumDto>>(band.Albums)
             };
 
             return View(bandViewModel);
@@ -72,33 +69,26 @@ namespace MvcSecSql.UI.Controllers
         public IActionResult Video(int id)
         {
             var video = _db.GetVideo(_userId, id);
-            var course = _db.GetGenre(_userId, video.GenreId);
-            var mappedVideos = _mapper.Map<VideoDto>(video);
-            var mappedGenres = _mapper.Map<GenreDto>(course);
-            var mappedBand = _mapper.Map<BandDto>(course.Bands);
 
             // Create a VideoComingUpDto object
-            var videos = _db.GetVideos(_userId, video.AlbumId).ToList();
-            var count = videos.Count();
+            var videos = _db.GetVideos(video.AlbumId).ToList();
             var index = videos.IndexOf(video);
-            var previous = videos.ElementAtOrDefault(index - 1);
-            var previousId = previous?.Id ?? 0;
-            var next = videos.ElementAtOrDefault(index + 1);
-            var nextId = next?.Id ?? 0;
-            var nextTitle = next == null ? string.Empty : next.Title;
-            var nextThumb = next == null ? string.Empty : next.Thumbnail;
+            var prevVideo = videos.ElementAtOrDefault(index - 1);
+            var nextVideo = videos.ElementAtOrDefault(index + 1);
+            var nextTitle = nextVideo == null ? string.Empty : nextVideo.Title;
+            var nextThumb = nextVideo == null ? string.Empty : nextVideo.Thumbnail;
 
             var videoModel = new VideoViewModel
             {
-                Video = mappedVideos,
-                Band = mappedBand,
-                Genre = mappedGenres,
+                Genre = _mapper.Map<GenreDto>(_db.GetGenre(_userId, video.Album.GenreId)),
+                Band = _mapper.Map<BandDto>(_db.GetBand(video.Album.BandId)),
+                Video = _mapper.Map<VideoDto>(video),
                 VideoComingUp = new VideoComingUpDto
                 {
                     VideoNumber = index + 1,
-                    NumberOfVideos = count,
-                    NextVideoId = nextId,
-                    PreviousVideoId = previousId,
+                    NumberOfVideos = videos.Count(),
+                    NextVideoId = nextVideo?.Id ?? 0,
+                    PreviousVideoId = prevVideo?.Id ?? 0,
                     CurrentVideoTitle = video.Title,
                     CurrentVideoThumbnail = video.Thumbnail,
                     NextVideoTitle = nextTitle,

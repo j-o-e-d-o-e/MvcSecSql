@@ -28,14 +28,14 @@ namespace MvcSecSql.UI.Repositories
 
             var genre = _db.Get<Genre>(genreId, true);
 
-            foreach (var album in genre.Albums)
-            {
-                album.Infos = _db.Get<AlbumInfo>().Where(albumInfo =>
-                    albumInfo.AlbumId.Equals(album.Id)).ToList();
-
-                album.Videos = _db.Get<Video>().Where(video =>
-                    video.AlbumId.Equals(album.Id)).ToList();
-            }
+//            foreach (var album in genre.Albums)
+//            {
+//                album.Infos = _db.Get<AlbumInfo>().Where(albumInfo =>
+//                    albumInfo.AlbumId.Equals(album.VideoId)).ToList();
+//
+//                album.Videos = _db.Get<Video>().Where(video =>
+//                    video.AlbumId.Equals(album.VideoId)).ToList();
+//            }
 
             return genre;
         }
@@ -49,10 +49,15 @@ namespace MvcSecSql.UI.Repositories
         {
             var video = _db.Get<Video>(videoId);
 
-            var hasAccess = _db.Get<UserGenre>(userId, video.GenreId) != null;
-            if (!hasAccess) return default(Video);
+//            var hasAccess = _db.Get<UserGenre>(userId, video.BandId) != null;
+//            if (!hasAccess) return default(Video);
 
             return video;
+        }
+
+        public IEnumerable<Video> GetVideos(int albumId = default(int))
+        {
+            throw new System.NotImplementedException();
         }
 
         public IEnumerable<Video> GetVideos(string userId, int albumId = 0)

@@ -20,9 +20,12 @@ namespace MvcSecSql.Data.Data.Entities
         [MaxLength(1024)]
         public string Image { get; set; }
 
+        public int GenreId { get; set; }
+
+        public Genre Genre { get; set; }
+
         public List<BandMember> BandMembers { get; set; }
 
         public List<Album> Albums { get; set; }
-        public List<Genre> Genres { get; set; }
     }
 }

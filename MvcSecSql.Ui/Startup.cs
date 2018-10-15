@@ -41,7 +41,19 @@ namespace MvcSecSql.Ui
 
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Video, VideoDto>();
+                cfg.CreateMap<Video, VideoDto>()
+                    .ForMember(dest => dest.VideoId,
+                        src => src.MapFrom(s => s.Id))
+                    .ForMember(dest => dest.Title,
+                        src => src.MapFrom(s => s.Title))
+                    .ForMember(dest => dest.Duration,
+                        src => src.MapFrom(s => s.Duration))
+                    .ForMember(dest => dest.Description,
+                        src => src.MapFrom(s => s.Description))
+                    .ForMember(dest => dest.Thumbnail,
+                        src => src.MapFrom(s => s.Thumbnail))
+                    .ForMember(dest => dest.Url,
+                        src => src.MapFrom(s => s.Url));
 
                 cfg.CreateMap<Band, BandDto>()
                     .ForMember(dest => dest.BandId,
