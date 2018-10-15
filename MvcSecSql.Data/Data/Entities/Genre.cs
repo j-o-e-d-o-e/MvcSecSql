@@ -21,6 +21,5 @@ namespace MvcSecSql.Data.Data.Entities
         public string Description { get; set; }
 
         public IEnumerable<Band> Bands { get; set; }
-//        public IEnumerable<Album> Albums { get; set; }
     }
 }

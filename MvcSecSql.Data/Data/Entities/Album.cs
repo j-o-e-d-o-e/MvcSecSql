@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.WindowsAzure.Storage.Blob.Protocol;
 
 namespace MvcSecSql.Data.Data.Entities
 {
@@ -9,7 +8,8 @@ namespace MvcSecSql.Data.Data.Entities
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(80), Required]
+        [MaxLength(80)]
+        [Required]
         public string Title { get; set; }
 
         public int ReleaseYear { get; set; }

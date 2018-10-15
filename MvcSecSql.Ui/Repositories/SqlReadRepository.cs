@@ -7,7 +7,7 @@ namespace MvcSecSql.UI.Repositories
 {
     public class SqlReadRepository : IReadRepository
     {
-        private IDbReadService _db;
+        private readonly IDbReadService _db;
 
         public SqlReadRepository(IDbReadService db)
         {
