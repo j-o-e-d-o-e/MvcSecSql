@@ -16,16 +16,23 @@ namespace MvcSecSql.Ui.Controllers
             _signInManager = signInManager;
         }
 
-        public object Index()
+        public IActionResult Index()
         {
-            var rep = new MockReadRepository();
-            var userId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45";
-//            return rep.GetGenres(userId);
-//            return rep.GetGenre(userId, 1);
-//            return rep.GetVideo(userId, 1);
-//            return rep.GetVideos(userId, 1);
-            return rep.GetVideos(userId, 0);
+//            if (!_signInManager.IsSignedIn(User))
+//                return RedirectToAction("Login", "Account");
+            return RedirectToAction("Genre", "Membership");
         }
+
+//        public object Index()
+//        {
+//            var rep = new MockReadRepository();
+//            const string userId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45";
+//            return rep.GetGenres(userId);
+////            return rep.GetGenre(userId, 1);
+////            return rep.GetVideo(userId, 1);
+////            return rep.GetVideos(userId, 9);
+////            return rep.GetVideos(userId, 0);
+//        }
 
         public IActionResult Error()
         {

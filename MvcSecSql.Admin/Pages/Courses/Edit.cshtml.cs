@@ -27,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.Courses
 
         public void OnGet(int id)
         {
-            ViewData["Instructors"] = _dbReadService.GetSelectList<Band>("Id", "Name");
+            ViewData["Bands"] = _dbReadService.GetSelectList<Band>("Id", "Name");
             Input = _dbReadService.Get<Genre>(id);
         }
 

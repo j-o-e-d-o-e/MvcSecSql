@@ -10,6 +10,8 @@ namespace MvcSecSql.Data.Data.Entities
         [MaxLength(80), Required]
         public string Title { get; set; }
 
+        public int AlbumReleaseYear { get; set; }
+
         [MaxLength(1024)]
         public string Url { get; set; }
 

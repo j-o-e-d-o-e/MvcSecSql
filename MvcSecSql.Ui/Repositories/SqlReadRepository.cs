@@ -14,32 +14,35 @@ namespace MvcSecSql.UI.Repositories
             _db = db;
         }
 
+        public IEnumerable<Genre> GetGenres(string userId)
+        {
+            return _db.GetWithIncludes<UserGenre>()
+                .Where(userGenre => userGenre.UserId.Equals(userId))
+                .Select(genre => genre.Genre);
+        }
+
         public Genre GetGenre(string userId, int genreId)
         {
             var hasAccess = _db.Get<UserGenre>(userId, genreId) != null;
             if (!hasAccess) return default(Genre);
 
-            var course = _db.Get<Genre>(genreId, true);
+            var genre = _db.Get<Genre>(genreId, true);
 
-            foreach (var module in course.Albums)
+            foreach (var album in genre.Albums)
             {
-                module.Infos = _db.Get<AlbumInfo>().Where(d =>
-                    d.AlbumId.Equals(module.Id)).ToList();
+                album.Infos = _db.Get<AlbumInfo>().Where(albumInfo =>
+                    albumInfo.AlbumId.Equals(album.Id)).ToList();
 
-                module.Videos = _db.Get<Video>().Where(d =>
-                    d.AlbumId.Equals(module.Id)).ToList();
+                album.Videos = _db.Get<Video>().Where(video =>
+                    video.AlbumId.Equals(album.Id)).ToList();
             }
 
-            return course;
+            return genre;
         }
 
-        public IEnumerable<Genre> GetGenres(string userId)
+        public Band GetBand(int bandId)
         {
-            var courses = _db.GetWithIncludes<UserGenre>()
-                .Where(uc => uc.UserId.Equals(userId))
-                .Select(c => c.Genre);
-
-            return courses;
+            throw new System.NotImplementedException();
         }
 
         public Video GetVideo(string userId, int videoId)

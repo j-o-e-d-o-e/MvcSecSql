@@ -36,7 +36,7 @@ namespace MvcSecSql.UI.Repositories
             if (res == null) return null;
             res.Bands = MockData.GenreBands.Where(genreBand => genreBand.GenreId.Equals(res.Id))
                 .Join(MockData.Bands, genreBand => genreBand.BandId, band => band.Id,
-                    (genreBand, band) => new GenreBand { Band = band })
+                    (genreBand, band) => new GenreBand {Band = band})
                 .Select(band => band.Band).ToList();
             res.Albums = MockData.Albums.Where(album => album.GenreId.Equals(res.Id)).ToList();
 
@@ -46,6 +46,20 @@ namespace MvcSecSql.UI.Repositories
                 album.Videos = MockData.Videos.Where(video => video.AlbumId.Equals(album.Id)).ToList();
             }
 
+            return res;
+        }
+
+        public Band GetBand(int bandId)
+        {
+            var res = MockData.Bands.SingleOrDefault(band => band.Id.Equals(bandId));
+            if (res == null) return null;
+            res.BandMembers = MockData.BandMembers.Where(bandMember => bandMember.BandId.Equals(bandId)).ToList();
+            res.Albums = MockData.Albums.Where(album => album.BandId.Equals(bandId)).ToList();
+            foreach(var album in res.Albums)
+            {
+                album.Infos = MockData.AlbumInfos.Where(albumInfo => albumInfo.AlbumId.Equals(album.Id)).ToList();
+                album.Videos = MockData.Videos.Where(video => video.AlbumId.Equals(album.Id)).ToList();
+            }
             return res;
         }
 

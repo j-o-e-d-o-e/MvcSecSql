@@ -1,15 +1,15 @@
-﻿@model GenreViewModel
+﻿@model BandViewModel
 
 @{
-    ViewData["Title"] = "Band";
+    ViewData["Title"] = "Bands";
 }
 
 <div class="membership top-margin course-content">
     <div class="row navigation-bar">
         <div class="col-sm-12">
-            <a class="btn btn-primary" href="~/Membership/Course/1">
+            <a class="btn btn-primary" href="~/Membership/Genre/@Model.Genre.GenreId">
                 <span class="glyphicon glyphicon-menu-left"></span>
-                Back to Course
+                Back to @Model.Genre.GenreTitle
             </a>
         </div>
     </div>
@@ -21,9 +21,9 @@
                          class="cover-image">
                 </div>
                 <div class="panel-body">
-                    <h1>Haken</h1>
-                    <h4 class="product-desc">
-                        @Model.Genre.GenreDescription
+                    <h1>@Model.Band.BandName</h1>
+                    <h4>
+                        @Model.Band.BandDescription
                     </h4>
                 </div>
             </div>
@@ -33,24 +33,24 @@
         <div class="col-sm-9">
             <div class="panel panel-body">
                 <h4>Albums</h4>
-                @foreach (var module in Model.Albums)
+                @foreach (var album in Model.Albums)
                 {
                     <div class="panel module">
                         <div class="panel-body">
-                            <h5 class="text-dark">@module.AlbumTitle</h5>
+                            <h5 class="text-dark">@album.AlbumTitle (@album.AlbumReleaseYear)</h5>
                         </div>
 
-                        @if (module.Videos != null)
+                        @if (album.Videos != null)
                         {
-                            @await Html.PartialAsync("_AlbumPartial", module.Videos)
+                            @await Html.PartialAsync("_AlbumPartial", album.Videos)
                         }
 
-                        @if (module.Infos != null)
+                        @if (album.Infos != null)
                         {
                             <hr class="no-margin">
                             <div class="panel-body download-panel">
                                 <h5 class="text-dark">Album info</h5>
-                                @await Html.PartialAsync("_AlbumInfoPartial", module.Infos)
+                                @await Html.PartialAsync("_AlbumInfoPartial", album.Infos)
                             </div>
                         }
                     </div>
@@ -60,12 +60,12 @@
         <div class="col-sm-3">
             <div class="panel panel-body">
                 <h4>Bandmembers</h4>
-                @for (var i = 0; i < 6; i++)
+                @foreach (var bandmember in Model.BandMembers)
                 {
                     <div class="row">
-                        @if (Model.Band != null)
+                        @if (Model.BandMembers != null)
                         {
-                            @await Html.PartialAsync("_BandMemberPartial", Model.Band)
+                            @await Html.PartialAsync("_BandMemberPartial", bandmember)
                         }
                     </div>
                 }

@@ -16,93 +16,83 @@ namespace MvcSecSql.Data.Services
             _db = db;
         }
 
-        public IQueryable<TEntity> Get<TEntity>() where TEntity : class
+        public IQueryable<T> Get<T>() where T : class
         {
-            return _db.Set<TEntity>();
+            return _db.Set<T>();
         }
 
-        public TEntity Get<TEntity>(int id, bool includeRelatedEntities = false) where TEntity : class
+        public T Get<T>(int id, bool includeRelatedEntities = false) where T : class
         {
-//            var record = _db.Set<TEntity>().Find(new object[] {id});
-            var record = _db.Set<TEntity>().Find(id);
+            var res = _db.Set<T>().Find(id);
 
-            if (record != null && includeRelatedEntities)
+            if (res != null && includeRelatedEntities)
             {
-                var entities = GetEntityNames<TEntity>();
+                var (collections, classes) = GetEntityNames<T>();
 
-                // Eager load all the tables referenced by the generic type T
-                foreach (var entity in entities.collections)
-                    _db.Entry(record).Collection(entity).Load();
+                //Eager load all the tables referenced by the generic type T
+                foreach (var entity in collections)
+                    _db.Entry(res).Collection(entity).Load();
 
-                foreach (var entity in entities.references)
-                    _db.Entry(record).Reference(entity).Load();
+                foreach (var entity in classes)
+                    _db.Entry(res).Reference(entity).Load();
             }
 
-            return record;
+            return res;
         }
 
-        public TEntity Get<TEntity>(string userId, int id) where TEntity : class
+        public T Get<T>(string userId, int id) where T : class
         {
-            //            var record = _db.Set<TEntity>().Find(new object[] {id});
-            var record = _db.Set<TEntity>().Find(userId, id);
-            return record;
+            return _db.Set<T>().Find(userId, id);
         }
 
-        public IEnumerable<TEntity> GetWithIncludes<TEntity>() where TEntity : class
+        public IEnumerable<T> GetWithIncludes<T>() where T : class
         {
-            var entityNames = GetEntityNames<TEntity>();
-            var dbset = _db.Set<TEntity>();
+            var dbset = _db.Set<T>();
 
-            var entities = entityNames.collections.Union(entityNames.references);
-
+            var (collections, classes) = GetEntityNames<T>();
+            var entities = collections.Union(classes);
             foreach (var entity in entities)
-                _db.Set<TEntity>().Include(entity).Load();
-
+                _db.Set<T>().Include(entity).Load();
             return dbset;
         }
 
-        public SelectList GetSelectList<TEntity>(string valueField, string textField) where TEntity : class
+        public SelectList GetSelectList<T>(string valueField, string textField) where T : class
         {
-            var items = Get<TEntity>();
-            return new SelectList(items, valueField, textField);
+            return new SelectList(Get<T>(), valueField, textField);
         }
 
-        public (int courses, int downloads, int instructors, int modules, int videos, int users, int userCourses)
+        public (int users, int userGenres, int genres, int bands, int albums, int albumInfos, int videos)
             Count()
         {
-            return (
-                courses: _db.Courses.Count(),
-                downloads: _db.Downloads.Count(),
-                instructors: _db.Instructors.Count(),
-                modules: _db.Modules.Count(),
-                videos: _db.Videos.Count(),
+            return ( //todo: add all dbsets
                 users: _db.Users.Count(),
-                userCourses: _db.UserCourses.Count());
+                userGenres: _db.UserGenres.Count(),
+                genres: _db.Genres.Count(),
+                bands: _db.Bands.Count(),
+                albums: _db.Albums.Count(),
+                albumInfos: _db.AlbumInfos.Count(),
+                videos: _db.Videos.Count());
         }
 
         //helper method to return the names of all properties that correspond to DbSet properties
-        private (IEnumerable<string> collections, IEnumerable<string> references) GetEntityNames<TEntity>()
-            where TEntity : class
+        private static (IEnumerable<string> collections, IEnumerable<string> classes) GetEntityNames<T>()
+            where T : class
         {
             var dbsets = typeof(VodContext)
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .Where(z => z.PropertyType.Name.Contains("DbSet"))
-                .Select(z => z.Name);
+                .Where(table => table.PropertyType.Name.Contains("DbSet"))
+                .Select(table => table.Name);
 
-            // Get the names of all the properties (tables) in the generic
-            // type T that is represented by a DbSet
-            var properties = typeof(TEntity)
-                .GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            //get names of all properties (tables) in the generic type T
+            var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
-            var collections = properties
-                .Where(l => dbsets.Contains(l.Name))
-                .Select(s => s.Name);
+            var collections = properties.Where(property => dbsets.Contains(property.Name))
+                .Select(property => property.Name);
 
-            var classes = properties
-                .Where(c => dbsets.Contains(c.Name + "s"))
-                .Select(s => s.Name);
+            var classes = properties.Where(property => dbsets.Contains(property.Name + "s"))
+                .Select(property => property.Name);
 
-            return (collections: collections, references: classes);
+            return (collections: collections, classes: classes);
         }
     }
 }

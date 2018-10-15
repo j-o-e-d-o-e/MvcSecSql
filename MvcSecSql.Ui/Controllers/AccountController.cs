@@ -280,7 +280,7 @@ namespace MvcSecSql.Ui.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Get the information about the user from the external login provider
+                // GetBand the information about the user from the external login provider
                 var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                     throw new ApplicationException("Error loading external login information during confirmation.");

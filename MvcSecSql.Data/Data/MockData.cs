@@ -14,7 +14,7 @@ namespace MvcSecSql.Data.Data
             },
             new UserGenre
             {
-                UserId = "00000000-0000-0000-0000-000000000000",
+                UserId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45",
                 GenreId = 2
             },
             new UserGenre
@@ -22,11 +22,6 @@ namespace MvcSecSql.Data.Data
                 UserId = "5ebbf9f5-e4ed-4250-bc2c-e03a961c6a45",
                 GenreId = 3
             },
-            new UserGenre
-            {
-                UserId = "00000000-0000-0000-0000-000000000000",
-                GenreId = 1
-            }
         };
 
         public static readonly List<Genre> Genres = new List<Genre>
@@ -45,7 +40,7 @@ namespace MvcSecSql.Data.Data
             {
                 Id = 3, Title = "Classics", Description = "Influential and all-time-favorites",
                 ImageUrl = "/images/genre3.jpg", MarqueeImageUrl = "/images/background.jpg",
-            }
+            },
         };
 
         public static readonly List<GenreBand> GenreBands = new List<GenreBand>
@@ -93,40 +88,83 @@ namespace MvcSecSql.Data.Data
             {
                 Id = 1, Name = "Haken",
                 Description = "Formed in 2007",
-                BandImage = "/images/avatar.png",
+                Image = "/images/avatar.png",
             },
             new Band
             {
                 Id = 2, Name = "Caligula's Horse",
                 Description = "Formed in 2011",
-                BandImage = "/images/avatar.png",
+                Image = "/images/avatar.png",
             },
             new Band
             {
                 Id = 3, Name = "Nile",
                 Description = "Formed in 1993",
-                BandImage = "/images/avatar.png",
+                Image = "/images/avatar.png",
             },
             new Band
             {
                 Id = 4, Name = "Immolation",
                 Description = "Formed in 1986",
-                BandImage = "/images/avatar.png",
+                Image = "/images/avatar.png",
             },
             new Band
             {
                 Id = 5, Name = "Rush",
                 Description = "Formed in 1986",
-                BandImage = "/images/avatar.png",
+                Image = "/images/avatar.png",
             },
             new Band
             {
                 Id = 6, Name = "Dream Theater",
                 Description = "Formed in 1986",
-                BandImage = "/images/avatar.png",
+                Image = "/images/avatar.png",
             }
         };
 
+        public static readonly List<BandMember> BandMembers = new List<BandMember>
+        {
+            new BandMember
+            {
+                Id = 1,
+                FirstName = "Mary",
+                LastName = "Jane",
+                Instrument = "Vocals",
+                BandId = 1,
+                Description = "Since 2010",
+                Image = "/images/avatar.png",
+            },
+            new BandMember
+            {
+                Id = 2,
+                FirstName = "Sneaky",
+                LastName = "Pete",
+                Instrument = "Guitar",
+                BandId = 1,
+                Description = "Since 2011",
+                Image = "/images/avatar.png",
+            },
+            new BandMember
+            {
+                Id = 3,
+                FirstName = "Carla",
+                LastName = "Montepulciano",
+                Instrument = "Drums",
+                BandId = 1,
+                Description = "Since 2012",
+                Image = "/images/avatar.png",
+            },
+            new BandMember
+            {
+                Id = 4,
+                FirstName = "Joe",
+                LastName = "Doe",
+                Instrument = "Bass",
+                BandId = 1,
+                Description = "Since 2013",
+                Image = "/images/avatar.png",
+            }
+        };
         public static readonly List<Album> Albums = new List<Album>
         {
             new Album {Id = 1, Title = "Visions", BandId = 1, ReleaseYear = 2011, GenreId = 1},
@@ -199,25 +237,25 @@ namespace MvcSecSql.Data.Data
             },
             new Video
             {
-                Id = 6, AlbumId = 5, GenreId = 1, Position = 1,
+                Id = 7, AlbumId = 5, GenreId = 2, Position = 1,
                 Title = "Nile - Unas, Slayer of the Gods", Description = "Album Track",
                 Duration = 12, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=HPYQB7AsSkg"
             },
             new Video
             {
-                Id = 7, AlbumId = 6, GenreId = 2, Position = 1,
+                Id = 8, AlbumId = 6, GenreId = 2, Position = 1,
                 Title = "Immolation - When The Jackals Come", Description = "Official Music Video",
                 Duration = 4, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=1u7wZFkmaVA"
             },
             new Video
             {
-                Id = 8, AlbumId = 7, GenreId = 3, Position = 1,
+                Id = 9, AlbumId = 7, GenreId = 3, Position = 1,
                 Title = "Rush - YYZ", Description = "Album Track",
                 Duration = 5, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=LdpMpfp-J_I"
             },
             new Video
             {
-                Id = 9, AlbumId = 8, GenreId = 3, Position = 1,
+                Id = 10, AlbumId = 8, GenreId = 3, Position = 1,
                 Title = "Dream Theater - Take The Time", Description = "Official Video",
                 Duration = 6, Thumbnail = "/images/video1.jpg", Url = "https://www.youtube.com/watch?v=C5sg8heGdyk"
             }

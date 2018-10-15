@@ -7,6 +7,7 @@ namespace MvcSecSql.UI.Repositories
     {
         IEnumerable<Genre> GetGenres(string userId);
         Genre GetGenre(string userId, int genreId);
+        Band GetBand(int bandId);
         Video GetVideo(string userId, int videoId);
         IEnumerable<Video> GetVideos(string userId, int albumId = default(int));
     }

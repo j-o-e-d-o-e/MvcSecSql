@@ -12,14 +12,17 @@ namespace MvcSecSql.Data.Data.Entities
         public string Name { get; set; }
 
         [MaxLength(80)]
-        public string BandSubGenre { get; set; }
+        public string SubGenre { get; set; }
 
         [MaxLength(1024)]
         public string Description { get; set; }
 
         [MaxLength(1024)]
-        public string BandImage { get; set; }
+        public string Image { get; set; }
 
+        public List<BandMember> BandMembers { get; set; }
+
+        public List<Album> Albums { get; set; }
         public List<Genre> Genres { get; set; }
     }
 }

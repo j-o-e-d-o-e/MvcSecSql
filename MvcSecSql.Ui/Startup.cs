@@ -22,7 +22,7 @@ namespace MvcSecSql.Ui
 
         public IConfiguration Configuration { get; }
 
-         // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<VodContext>(options =>
@@ -34,22 +34,26 @@ namespace MvcSecSql.Ui
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            //services.AddSingleton<IReadRepository, MockReadRepository>();
+            services.AddSingleton<IReadRepository, MockReadRepository>();
 //            services.AddScoped<IReadRepository, SqlReadRepository>();
 //            services.AddTransient<IDbReadService, DbReadService>();
-
             services.AddMvc();
+
             var config = new AutoMapper.MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Video, VideoDto>();
 
                 cfg.CreateMap<Band, BandDto>()
+                    .ForMember(dest => dest.BandId,
+                        src => src.MapFrom(s => s.Id))
                     .ForMember(dest => dest.BandName,
                         src => src.MapFrom(s => s.Name))
+                    .ForMember(dest => dest.BandSubGenre,
+                        src => src.MapFrom(s => s.SubGenre))
                     .ForMember(dest => dest.BandDescription,
                         src => src.MapFrom(s => s.Description))
                     .ForMember(dest => dest.BandImage,
-                        src => src.MapFrom(s => s.BandImage));
+                        src => src.MapFrom(s => s.Image));
 
                 cfg.CreateMap<AlbumInfo, AlbumInfoDto>()
                     .ForMember(dest => dest.AlbumInfoUrl,
@@ -70,8 +74,12 @@ namespace MvcSecSql.Ui
                         src => src.MapFrom(s => s.ImageUrl));
 
                 cfg.CreateMap<Album, AlbumDto>()
+                    .ForMember(dest => dest.Id,
+                        src => src.MapFrom(s => s.Id))
                     .ForMember(dest => dest.AlbumTitle,
-                        src => src.MapFrom(s => s.Title));
+                        src => src.MapFrom(s => s.Title))
+                    .ForMember(dest => dest.AlbumReleaseYear,
+                        src => src.MapFrom(s => s.ReleaseYear));
             });
             var mapper = config.CreateMapper();
             services.AddSingleton(mapper);

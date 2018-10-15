@@ -26,7 +26,7 @@ namespace MvcSecSql.Data.Migrations
 
             if (!userId.Equals(string.Empty))
             {
-                if (!context.Instructors.Any())
+                if (!context.Bands.Any())
                 {
                     var instructors = new List<Band>
                     {
@@ -34,24 +34,24 @@ namespace MvcSecSql.Data.Migrations
                         {
                             Name = "John Doe",
                             Description = description.Substring(20, 50),
-                            BandImage = "/images/Ice-Age-Scrat-icon.png"
+                            Image = "/images/Ice-Age-Scrat-icon.png"
                         },
                         new Band
                         {
                             Name = "Jane Doe",
                             Description = description.Substring(30, 40),
-                            BandImage = "/images/Ice-Age-Scrat-icon.png"
+                            Image = "/images/Ice-Age-Scrat-icon.png"
                         }
                     };
-                    context.Instructors.AddRange(instructors);
+                    context.Bands.AddRange(instructors);
                     context.SaveChanges();
                 }
 
-                if (!context.Courses.Any())
+                if (!context.Genres.Any())
                 {
-                    var instructorId1 = context.Instructors.First().Id;
+                    var instructorId1 = context.Bands.First().Id;
                     var instructorId2 = int.MinValue;
-                    var instructor = context.Instructors.Skip(1).FirstOrDefault();
+                    var instructor = context.Bands.Skip(1).FirstOrDefault();
                     if (instructor != null) instructorId2 = instructor.Id;
                     else instructorId2 = instructorId1;
 
@@ -82,42 +82,42 @@ namespace MvcSecSql.Data.Migrations
                             MarqueeImageUrl = "/images/laptop.jpg"
                         }
                     };
-                    context.Courses.AddRange(courses);
+                    context.Genres.AddRange(courses);
                     context.SaveChanges();
                 }
 
                 var courseId1 = int.MinValue;
                 var courseId2 = int.MinValue;
                 var courseId3 = int.MinValue;
-                if (context.Courses.Any())
+                if (context.Genres.Any())
                 {
-                    courseId1 = context.Courses.First().Id;
+                    courseId1 = context.Genres.First().Id;
 
-                    var course = context.Courses.Skip(1).FirstOrDefault();
+                    var course = context.Genres.Skip(1).FirstOrDefault();
                     if (course != null) courseId2 = course.Id;
 
-                    course = context.Courses.Skip(2).FirstOrDefault();
+                    course = context.Genres.Skip(2).FirstOrDefault();
                     if (course != null) courseId3 = course.Id;
                 }
 
-                if (!context.UserCourses.Any())
+                if (!context.UserGenres.Any())
                 {
                     if (!courseId1.Equals(int.MinValue))
-                        context.UserCourses.Add(new UserGenre
+                        context.UserGenres.Add(new UserGenre
                             {UserId = userId, GenreId = courseId1});
 
                     if (!courseId2.Equals(int.MinValue))
-                        context.UserCourses.Add(new UserGenre
+                        context.UserGenres.Add(new UserGenre
                             {UserId = userId, GenreId = courseId2});
 
                     if (!courseId3.Equals(int.MinValue))
-                        context.UserCourses.Add(new UserGenre
+                        context.UserGenres.Add(new UserGenre
                             {UserId = userId, GenreId = courseId3});
 
                     context.SaveChanges();
                 }
 
-                if (!context.Modules.Any())
+                if (!context.Albums.Any())
                 {
                     var modules = new List<Album>
                     {
@@ -125,22 +125,22 @@ namespace MvcSecSql.Data.Migrations
                         new Album {BandId = courseId1, Title = "Module 2"},
                         new Album {BandId = courseId2, Title = "Module 3"}
                     };
-                    context.Modules.AddRange(modules);
+                    context.Albums.AddRange(modules);
                     context.SaveChanges();
                 }
 
                 var moduleId1 = int.MinValue;
                 var moduleId2 = int.MinValue;
                 var moduleId3 = int.MinValue;
-                if (context.Modules.Any())
+                if (context.Albums.Any())
                 {
-                    moduleId1 = context.Modules.First().Id;
+                    moduleId1 = context.Albums.First().Id;
 
-                    var module = context.Modules.Skip(1).FirstOrDefault();
+                    var module = context.Albums.Skip(1).FirstOrDefault();
                     if (module != null) moduleId2 = module.Id;
                     else moduleId2 = moduleId1;
 
-                    module = context.Modules.Skip(2).FirstOrDefault();
+                    module = context.Albums.Skip(2).FirstOrDefault();
                     if (module != null) moduleId3 = module.Id;
                     else moduleId3 = moduleId1;
                 }
@@ -206,7 +206,7 @@ namespace MvcSecSql.Data.Migrations
                     context.SaveChanges();
                 }
 
-                if (!context.Downloads.Any())
+                if (!context.AlbumInfos.Any())
                 {
                     var downloads = new List<AlbumInfo>
                     {
@@ -230,7 +230,7 @@ namespace MvcSecSql.Data.Migrations
                         }
                     };
 
-                    context.Downloads.AddRange(downloads);
+                    context.AlbumInfos.AddRange(downloads);
                     context.SaveChanges();
                 }
             }
