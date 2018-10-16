@@ -29,8 +29,8 @@ namespace MvcSecSql.UI.Controllers
         public IActionResult Dashboard()
         {
             var mappedGenres = _mapper.Map<List<GenreDto>>(_db.GetGenres(_userId));
-            var dashboardModel = new DashboardViewModel {Genres = new List<List<GenreDto>>()};
             var rows = mappedGenres.Count <= 3 ? 1 : mappedGenres.Count / 3;
+            var dashboardModel = new DashboardViewModel { Genres = new List<List<GenreDto>>() };
             for (var i = 0; i < rows; i++)
                 dashboardModel.Genres.Add(mappedGenres.Take(3).ToList());
             return View(dashboardModel);
@@ -67,7 +67,7 @@ namespace MvcSecSql.UI.Controllers
         [HttpGet]
         public IActionResult Video(int id)
         {
-            var video = _db.GetVideo(_userId, id);
+            var video = _db.GetVideo(id);
 
             // Create a VideoComingUpDto object
             var videos = _db.GetVideos(video.AlbumId).ToList();

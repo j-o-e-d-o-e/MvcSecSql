@@ -24,7 +24,7 @@ namespace MvcSecSql.Data.Data
             },
         };
 
-        public static readonly List<Genre> Genres = new List<Genre>
+        public static readonly IEnumerable<Genre> Genres = new List<Genre>
         {
             new Genre
             {
@@ -43,7 +43,7 @@ namespace MvcSecSql.Data.Data
             },
         };
 
-        public static readonly List<Band> Bands = new List<Band>
+        public static readonly IEnumerable<Band> Bands = new List<Band>
         {
             new Band
             {
@@ -83,51 +83,35 @@ namespace MvcSecSql.Data.Data
             }
         };
 
-        public static readonly List<BandMember> BandMembers = new List<BandMember>
+        public static readonly IEnumerable<BandMember> BandMembers = new List<BandMember>
         {
             new BandMember
             {
-                Id = 1,
-                FirstName = "Mary",
-                LastName = "Jane",
-                Instrument = "Vocals",
-                BandId = 1,
-                Description = "Since 2010",
+                Id = 1, FirstName = "Mary", LastName = "Jane",
+                Instrument = "Vocals", BandId = 1, Description = "Since 2010",
                 Image = "/images/avatar.png",
             },
             new BandMember
             {
-                Id = 2,
-                FirstName = "Boris",
-                LastName = "String",
-                Instrument = "Guitar",
-                BandId = 1,
-                Description = "Since 2011",
+                Id = 2, FirstName = "Boris", LastName = "String",
+                Instrument = "Guitar", BandId = 1, Description = "Since 2011",
                 Image = "/images/avatar.png",
             },
             new BandMember
             {
-                Id = 3,
-                FirstName = "Carla",
-                LastName = "Montepulciano",
-                Instrument = "Drums",
-                BandId = 1,
-                Description = "Since 2012",
+                Id = 3, FirstName = "Carla", LastName = "Montepulciano",
+                Instrument = "Drums", BandId = 1, Description = "Since 2012",
                 Image = "/images/avatar.png",
             },
             new BandMember
             {
-                Id = 4,
-                FirstName = "Joe",
-                LastName = "Doe",
-                Instrument = "Bass",
-                BandId = 1,
-                Description = "Since 2013",
+                Id = 4, FirstName = "Joe", LastName = "Doe",
+                Instrument = "Bass", BandId = 1, Description = "Since 2013",
                 Image = "/images/avatar.png",
             }
         };
 
-        public static readonly List<Album> Albums = new List<Album>
+        public static readonly IEnumerable<Album> Albums = new List<Album>
         {
             new Album {Id = 1, Title = "Visions", BandId = 1, ReleaseYear = 2011, GenreId = 1},
             new Album {Id = 2, Title = "The Mountain", BandId = 1, ReleaseYear = 2013, GenreId = 1},
@@ -139,7 +123,7 @@ namespace MvcSecSql.Data.Data
             new Album {Id = 8, Title = "Images and Words", BandId = 6, ReleaseYear = 1992, GenreId = 3}
         };
 
-        public static readonly List<AlbumInfo> AlbumInfos = new List<AlbumInfo>
+        public static readonly IEnumerable<AlbumInfo> AlbumInfos = new List<AlbumInfo>
         {
             new AlbumInfo
             {
@@ -158,7 +142,7 @@ namespace MvcSecSql.Data.Data
             }
         };
 
-        public static readonly List<Video> Videos = new List<Video>
+        public static readonly IEnumerable<Video> Videos = new List<Video>
         {
             new Video
             {

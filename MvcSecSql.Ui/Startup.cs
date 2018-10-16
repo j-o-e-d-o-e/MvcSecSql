@@ -34,9 +34,9 @@ namespace MvcSecSql.Ui
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddSingleton<IReadRepository, MockReadRepository>();
-//            services.AddScoped<IReadRepository, SqlReadRepository>();
-//            services.AddTransient<IDbReadService, DbReadService>();
+//            services.AddSingleton<IReadRepository, MockReadRepository>();
+            services.AddScoped<IReadRepository, SqlReadRepository>();
+            services.AddTransient<IDbReadService, DbReadService>();
             services.AddMvc();
 
             var config = new AutoMapper.MapperConfiguration(cfg =>

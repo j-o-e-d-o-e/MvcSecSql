@@ -38,7 +38,7 @@ namespace MvcSecSql.Data
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 //            DbInitializer.RecreateDatabase(db);
             DbInitializer.Initialize(db);
-            app.Run(async context => { await context.Response.WriteAsync("Hello World!"); });
+            app.Run(async context => { await context.Response.WriteAsync("Data seeded!"); });
         }
     }
 }

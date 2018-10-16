@@ -16,7 +16,7 @@ namespace MvcSecSql.UI.Repositories
 
         public IEnumerable<Genre> GetGenres(string userId)
         {
-            return _db.GetWithIncludes<UserGenre>()
+            return _db.Get<UserGenre>()
                 .Where(userGenre => userGenre.UserId.Equals(userId))
                 .Select(genre => genre.Genre);
         }
@@ -24,52 +24,34 @@ namespace MvcSecSql.UI.Repositories
         public Genre GetGenre(string userId, int genreId)
         {
             var hasAccess = _db.Get<UserGenre>(userId, genreId) != null;
-            if (!hasAccess) return default(Genre);
+            if (!hasAccess) return default(Genre); //null
 
-            var genre = _db.Get<Genre>(genreId, true);
-
-//            foreach (var album in genre.Albums)
-//            {
-//                album.Infos = _db.Get<AlbumInfo>().Where(albumInfo =>
-//                    albumInfo.AlbumId.Equals(album.VideoId)).ToList();
-//
-//                album.Videos = _db.Get<Video>().Where(video =>
-//                    video.AlbumId.Equals(album.VideoId)).ToList();
-//            }
-
-            return genre;
+            var res = _db.Get<Genre>(genreId, true);
+            return res;
         }
 
         public Band GetBand(int bandId)
         {
-            throw new System.NotImplementedException();
+            var res = _db.Get<Band>(bandId, true);
+            foreach (var album in res.Albums)
+            {
+                album.Infos = _db.Get<AlbumInfo>().Where(info => info.Id.Equals(album.Id)).ToList();
+                album.Videos = _db.Get<Video>().Where(video => video.Id.Equals(album.Id)).ToList();
+            }
+
+            return res;
         }
 
-        public Video GetVideo(string userId, int videoId)
+        public Video GetVideo(int videoId)
         {
-            var video = _db.Get<Video>(videoId);
-
-//            var hasAccess = _db.Get<UserGenre>(userId, video.BandId) != null;
-//            if (!hasAccess) return default(Video);
-
-            return video;
+            var res = _db.Get<Video>(videoId);
+            res.Album = _db.Get<Album>(res.AlbumId);
+            return res;
         }
 
-        public IEnumerable<Video> GetVideos(int albumId = default(int))
+        public IEnumerable<Video> GetVideos(int videoId = default(int))
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<Video> GetVideos(string userId, int albumId = 0)
-        {
-            var module = _db.Get<Album>(albumId);
-
-            var hasAccess = _db.Get<UserGenre>(userId, module.BandId) != null;
-            if (!hasAccess) return default(IEnumerable<Video>);
-
-            var videos = _db.Get<Video>().Where(v => v.AlbumId.Equals(albumId));
-
-            return videos;
+            return _db.Get<Video>().Where(v => v.AlbumId.Equals(videoId));
         }
     }
 }
