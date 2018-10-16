@@ -1,23 +1,25 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Authorization;
 using MvcSecSql.Data.Services;
 using MvcSecSql.Data.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
-namespace MvcSecSql.Admin.Pages.Videos
+namespace MvcSecSql.Admin.Pages.Bands
 {
     [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
-        private readonly IDbWriteService _dbWriteService;
-        private readonly IDbReadService _dbReadService;
+        private IDbWriteService _dbWriteService;
+        private IDbReadService _dbReadService;
 
-        [BindProperty] public Video Input { get; set; } = new Video();
-        [TempData] public string StatusMessage { get; set; }
+        [BindProperty]
+        public Band Input { get; set; } = new Band();
 
-        public DeleteModel(IDbReadService dbReadService,
-            IDbWriteService dbWriteService)
+        [TempData]
+        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+
+        public DeleteModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
             _dbWriteService = dbWriteService;
             _dbReadService = dbReadService;
@@ -25,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Video>(id, true);
+            Input = _dbReadService.Get<Band>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -36,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Videos
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Video: {Input.Title}.";
+                    StatusMessage = $"Deleted Bands: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }
@@ -44,5 +46,6 @@ namespace MvcSecSql.Admin.Pages.Videos
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
     }
 }

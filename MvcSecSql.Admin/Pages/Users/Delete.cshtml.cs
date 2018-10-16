@@ -8,7 +8,7 @@ namespace MvcSecSql.Admin.Pages.Users
 {
     public class DeleteModel : PageModel
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         [BindProperty]
         public UserModel Input { get; set; } = new UserModel();

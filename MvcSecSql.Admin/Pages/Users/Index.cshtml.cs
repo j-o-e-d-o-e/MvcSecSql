@@ -10,8 +10,9 @@ namespace MvcSecSql.Admin.Pages.Users
     [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
         public IEnumerable<UserModel> Users = new List<UserModel>();
+
         [TempData]
         public string StatusMessage { get; set; }
 

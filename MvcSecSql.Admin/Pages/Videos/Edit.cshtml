@@ -53,10 +53,10 @@
                     <input asp-for="Input.Position" class="form-control"/>
                     <span asp-validation-for="Input.Position" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label class="control-label">Course</label>
-                    <input asp-for="Input.Band.Title" readonly class="form-control"/>
-                </div>
+                @* <div class="form-group"> *@
+                    @* <label class="control-label">Course</label> *@
+                    @* <input asp-for="Input.Band.Title" readonly class="form-control"/> *@
+                @* </div> *@
                 <div class="form-group">
                     <label aps-for="Input.ModuleId" class="control-label"></label>
                     <select aps-for="Input.ModuleId" class="form-control" aps-items="ViewBag.Modules"></select>

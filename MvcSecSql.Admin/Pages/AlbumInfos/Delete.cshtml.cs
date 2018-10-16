@@ -1,31 +1,33 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Authorization;
-using MvcSecSql.Data.Services;
 using MvcSecSql.Data.Data.Entities;
+using MvcSecSql.Data.Services;
 
-namespace MvcSecSql.Admin.Pages.Videos
+namespace MvcSecSql.Admin.Pages.AlbumInfos
 {
     [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
-        private readonly IDbWriteService _dbWriteService;
         private readonly IDbReadService _dbReadService;
+        private readonly IDbWriteService _dbWriteService;
 
-        [BindProperty] public Video Input { get; set; } = new Video();
-        [TempData] public string StatusMessage { get; set; }
-
-        public DeleteModel(IDbReadService dbReadService,
-            IDbWriteService dbWriteService)
+        public DeleteModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
             _dbWriteService = dbWriteService;
             _dbReadService = dbReadService;
         }
 
+        [BindProperty]
+        public AlbumInfo Input { get; set; } = new AlbumInfo();
+
+        [TempData]
+        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Video>(id, true);
+            Input = _dbReadService.Get<AlbumInfo>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -36,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Videos
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Video: {Input.Title}.";
+                    StatusMessage = $"Deleted AlbumInfo: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }

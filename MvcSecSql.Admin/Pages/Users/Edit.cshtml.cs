@@ -13,7 +13,7 @@ namespace MvcSecSql.Admin.Pages.Users
     [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         [BindProperty]
         public UserModel Input { get; set; } = new UserModel();

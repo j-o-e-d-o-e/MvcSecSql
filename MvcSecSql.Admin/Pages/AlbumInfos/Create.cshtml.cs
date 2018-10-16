@@ -1,53 +1,50 @@
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MvcSecSql.Admin.Models;
-using MvcSecSql.Admin.Services;
-using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
+using MvcSecSql.Data.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
-namespace MvcSecSql.Admin.Pages.Videos
+namespace MvcSecSql.Admin.Pages.AlbumInfos
 {
     [Authorize(Roles = "Admin")]
-    public class EditModel : PageModel
+    public class CreateModel : PageModel
     {
         private readonly IDbReadService _dbReadService;
         private readonly IDbWriteService _dbWriteService;
 
         [BindProperty]
-        public Video Input { get; set; } = new Video();
+        public AlbumInfo Input { get; set; } = new AlbumInfo();
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string StatusMessage { get; set; } //used to send a message back to the Index view
 
-        public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
+        public CreateModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
             _dbReadService = dbReadService;
             _dbWriteService = dbWriteService;
         }
 
-        public void OnGet(int id)
+        public void OnGet()
         {
             ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
-            Input = _dbReadService.Get<Video>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-//                Input.BandId = _dbReadService.Get<Album>(Input.AlbumId).BandId; todo
-//                Input.Band = null;
-                var success = await _dbWriteService.Update(Input);
-                
+//                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).BandId; todo
+                var success = await _dbWriteService.Add(Input);
+
                 if (success)
                 {
-                    StatusMessage = $"Video {Input.Title} was updated.";
+                    StatusMessage = $"Created a new AlbumInfo: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }
 
+            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

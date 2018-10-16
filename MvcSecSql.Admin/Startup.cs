@@ -49,10 +49,14 @@ namespace MvcSecSql.Admin
             }
 
             app.UseStaticFiles();
-
             app.UseAuthentication();
-
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}"
+                );
+            });
         }
     }
 }

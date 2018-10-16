@@ -1,54 +1,52 @@
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MvcSecSql.Admin.Models;
-using MvcSecSql.Admin.Services;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
+using Microsoft.AspNetCore.Authorization;
 
-namespace MvcSecSql.Admin.Pages.Videos
+namespace MvcSecSql.Admin.Pages.Genres
 {
     [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
-        private readonly IDbReadService _dbReadService;
         private readonly IDbWriteService _dbWriteService;
+        private readonly IDbReadService _dbReadService;
 
         [BindProperty]
-        public Video Input { get; set; } = new Video();
+        public Genre Input { get; set; } = new Genre();
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string StatusMessage { get; set; } // Used to send a message back to the Index view
 
         public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
-            _dbReadService = dbReadService;
             _dbWriteService = dbWriteService;
+            _dbReadService = dbReadService;
         }
 
         public void OnGet(int id)
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
-            Input = _dbReadService.Get<Video>(id, true);
+            ViewData["Bands"] = _dbReadService.GetSelectList<Band>("Id", "Name");
+            Input = _dbReadService.Get<Genre>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-//                Input.BandId = _dbReadService.Get<Album>(Input.AlbumId).BandId; todo
-//                Input.Band = null;
                 var success = await _dbWriteService.Update(Input);
-                
+
                 if (success)
                 {
-                    StatusMessage = $"Video {Input.Title} was updated.";
+                    StatusMessage = $"Updated Band: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }
 
+            // If we got this far, something failed, redisplay form
             return Page();
         }
+
     }
 }

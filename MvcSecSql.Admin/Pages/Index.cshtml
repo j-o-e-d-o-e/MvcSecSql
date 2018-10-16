@@ -11,28 +11,29 @@
     <div class="row">
         <div class="col-xs-offset-2 col-sm-8 col-sm-offset-3 col-md-6
         col-md-offset-4">
-            @await Html.PartialAsync("_CardPartial", Model.Cards.bands)
             @await Html.PartialAsync("_CardPartial", Model.Cards.users)
+            @await Html.PartialAsync("_CardPartial", Model.Cards.userGenres)
         </div>
     </div>
     <div class="row">
         <div class="col-xs-offset-2 col-sm-8 col-sm-offset-3 col-md-6
         col-md-offset-4">
             @await Html.PartialAsync("_CardPartial", Model.Cards.genres)
-            @await Html.PartialAsync("_CardPartial", Model.Cards.albums)
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-offset-2 col-sm-8 col-sm-offset-3 col-md-6
-        col-md-offset-4">
             @await Html.PartialAsync("_CardPartial", Model.Cards.videos)
-            @await Html.PartialAsync("_CardPartial", Model.Cards.albumInfos)
         </div>
     </div>
     <div class="row">
         <div class="col-xs-offset-2 col-sm-8 col-sm-offset-3 col-md-6
         col-md-offset-4">
-            @await Html.PartialAsync("_CardPartial", Model.Cards.userGenres)
+            @await Html.PartialAsync("_CardPartial", Model.Cards.bands)
+            @await Html.PartialAsync("_CardPartial", Model.Cards.bandmembers)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-offset-2 col-sm-8 col-sm-offset-3 col-md-6
+        col-md-offset-4">
+            @await Html.PartialAsync("_CardPartial", Model.Cards.albums)
+            @await Html.PartialAsync("_CardPartial", Model.Cards.albumInfos)
         </div>
     </div>
 }

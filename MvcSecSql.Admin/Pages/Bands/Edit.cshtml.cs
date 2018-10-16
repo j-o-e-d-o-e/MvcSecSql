@@ -2,12 +2,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MvcSecSql.Admin.Models;
-using MvcSecSql.Admin.Services;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
 
-namespace MvcSecSql.Admin.Pages.Videos
+namespace MvcSecSql.Admin.Pages.Bands
 {
     [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
@@ -15,39 +13,37 @@ namespace MvcSecSql.Admin.Pages.Videos
         private readonly IDbReadService _dbReadService;
         private readonly IDbWriteService _dbWriteService;
 
-        [BindProperty]
-        public Video Input { get; set; } = new Video();
-
-        [TempData]
-        public string StatusMessage { get; set; }
-
         public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
-            _dbReadService = dbReadService;
             _dbWriteService = dbWriteService;
+            _dbReadService = dbReadService;
         }
+
+        [BindProperty]
+        public Band Input { get; set; } = new Band();
+
+        [TempData]
+        public string StatusMessage { get; set; } // Used to send a message back to the Index view
 
         public void OnGet(int id)
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
-            Input = _dbReadService.Get<Video>(id, true);
+            Input = _dbReadService.Get<Band>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-//                Input.BandId = _dbReadService.Get<Album>(Input.AlbumId).BandId; todo
-//                Input.Band = null;
                 var success = await _dbWriteService.Update(Input);
-                
+
                 if (success)
                 {
-                    StatusMessage = $"Video {Input.Title} was updated.";
+                    StatusMessage = $"Updated Bands: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }
 
+            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

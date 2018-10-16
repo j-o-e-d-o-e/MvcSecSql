@@ -10,7 +10,7 @@ namespace MvcSecSql.Admin.Pages.Users
     [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         [BindProperty]
         public CreateUserModel Input { get; set; } = new CreateUserModel();

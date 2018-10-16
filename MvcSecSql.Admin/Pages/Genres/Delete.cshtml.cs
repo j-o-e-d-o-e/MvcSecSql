@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Authorization;
 using MvcSecSql.Data.Services;
 using MvcSecSql.Data.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
-namespace MvcSecSql.Admin.Pages.Videos
+namespace MvcSecSql.Admin.Pages.Genres
 {
     [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
@@ -13,11 +13,13 @@ namespace MvcSecSql.Admin.Pages.Videos
         private readonly IDbWriteService _dbWriteService;
         private readonly IDbReadService _dbReadService;
 
-        [BindProperty] public Video Input { get; set; } = new Video();
-        [TempData] public string StatusMessage { get; set; }
+        [BindProperty]
+        public Genre Input { get; set; } = new Genre();
 
-        public DeleteModel(IDbReadService dbReadService,
-            IDbWriteService dbWriteService)
+        [TempData]
+        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+
+        public DeleteModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
             _dbWriteService = dbWriteService;
             _dbReadService = dbReadService;
@@ -25,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Video>(id, true);
+            Input = _dbReadService.Get<Genre>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -36,7 +38,7 @@ namespace MvcSecSql.Admin.Pages.Videos
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Video: {Input.Title}.";
+                    StatusMessage = $"Deleted Band: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }
@@ -44,5 +46,6 @@ namespace MvcSecSql.Admin.Pages.Videos
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
     }
 }

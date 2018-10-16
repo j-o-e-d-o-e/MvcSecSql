@@ -67,7 +67,7 @@ namespace MvcSecSql.Data.Services
         }
 
         // returns count numbers for cards in administration index view
-        public (int users, int userGenres, int genres, int bands, int albums, int albumInfos, int videos)
+        public (int users, int userGenres, int genres, int bands, int bandmembers, int albums, int albumInfos, int videos)
             Count()
         {
             return (
@@ -75,7 +75,7 @@ namespace MvcSecSql.Data.Services
                 userGenres: _db.UserGenres.Count(),
                 genres: _db.Genres.Count(),
                 bands: _db.Bands.Count(),
-//                bandmembers: _db.BandMembers.Count(),
+                bandmembers: _db.BandMembers.Count(),
                 albums: _db.Albums.Count(),
                 albumInfos: _db.AlbumInfos.Count(),
                 videos: _db.Videos.Count());
