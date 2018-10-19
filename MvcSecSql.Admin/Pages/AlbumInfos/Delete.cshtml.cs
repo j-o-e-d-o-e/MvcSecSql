@@ -27,7 +27,7 @@ namespace MvcSecSql.Admin.Pages.AlbumInfos
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<AlbumInfo>(id, true);
+            Input = _dbReadService.Get<AlbumInfo>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()

@@ -14,7 +14,6 @@
         <div class="col-md-6 col-md-offset-2">
             <h2>@ViewData["Title"]</h2>
             <page-button path="Bandmembers/Index" bootstrap-style="primary" glyph="info-sign" description="Back to List"></page-button>
-            <page-button path="Bandmembers/Edit" bootstrap-style="success" glyph="pencil" description="Edit" id="@Model.Input.Id"></page-button>
             <page-button path="Index" bootstrap-style="warning" glyph="list-alt" description="Dashboard"></page-button> <p></p>
             <dl class="dl-horizontal">
                 <dt>@Html.DisplayNameFor(model => model.Input.FirstName)</dt>
@@ -27,12 +26,11 @@
                 <dd>@Html.DisplayFor(model => model.Input.Band.Name)</dd>
             </dl>
             <form method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                @* <input type="hidden" asp-for="@Model.Input.Id" /> *@
-                @* <input type="hidden" asp-for="Input.FirstName" /> *@
-                @* <input type="hidden" asp-for="Input.LastName" /> *@
-                @* <input type="hidden" asp-for="Input.BandId" /> *@
-                @* <input type="hidden" asp-for="Input.Band.Name" /> *@
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" asp-for="Input.Id" />
+                <input type="hidden" asp-for="Input.FirstName" />
+                <input type="hidden" asp-for="Input.LastName" />
+                <input type="hidden" asp-for="Input.Instrument" />
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </div>

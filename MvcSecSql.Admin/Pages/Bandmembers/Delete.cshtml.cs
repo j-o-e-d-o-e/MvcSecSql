@@ -32,9 +32,9 @@ namespace MvcSecSql.Admin.Pages.Bandmembers
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return RedirectToPage("Delete");
+            if (!ModelState.IsValid) return Page();
             var success = await _dbWriteService.Delete(Input);
-            if (!success) return RedirectToPage("Delete");
+            if (!success) return Page();
             StatusMessage = $"Deleted Bandmember: {Input.FirstName} {Input.LastName}.";
             return RedirectToPage("Index");
         }
