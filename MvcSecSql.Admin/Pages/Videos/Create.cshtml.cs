@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
 
@@ -27,14 +29,24 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public void OnGet()
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
+            ViewData["Albums"] = _dbReadService.GetSelectList<Album>("Id", "Title");
+            ViewData["Thumbnails"] = new SelectList(
+                new List<string>
+                {
+                    "/images/video1.jpg",
+                    "/images/video2.jpg",
+                    "/images/video3.jpg",
+                    "/images/video4.jpg",
+                    "/images/video5.jpg"
+                });
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-//                Input.BandId = _dbReadService.Get<Album>(Input.AlbumId).BandId; todo
+                Input.AlbumId = _dbReadService.Get<Album>(Input.AlbumId).Id;
+                Input.Position = 1;
                 var success = await _dbWriteService.Add(Input);
                 if (success)
                 {

@@ -17,7 +17,7 @@ namespace MvcSecSql.Admin.Pages.UserGenres
         private readonly IUserService _userService;
 
         [BindProperty]
-        public UserCourseModel Input { get; set; } = new UserCourseModel();
+        public UseGenreModel Input { get; set; } = new UseGenreModel();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
@@ -35,7 +35,7 @@ namespace MvcSecSql.Admin.Pages.UserGenres
             var course = _dbReadService.Get<Genre>(courseId);
             Input.UserGenre = _dbReadService.Get<UserGenre>(userId, courseId);
             Input.Email = user.Email;
-            Input.CourseTitle = course.Title;
+            Input.GenreTitle = course.Title;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -46,7 +46,7 @@ namespace MvcSecSql.Admin.Pages.UserGenres
 
                 if (success)
                 {
-                    StatusMessage = $"User-Band combination [{Input.CourseTitle} | {Input.Email}] was deleted.";
+                    StatusMessage = $"User-Band combination [{Input.GenreTitle} | {Input.Email}] was deleted.";
                     return RedirectToPage("Index");
                 }
             }

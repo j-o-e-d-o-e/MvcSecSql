@@ -1,0 +1,51 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using MvcSecSql.Data.Data.Entities
+@inject SignInManager<User> SignInManager
+
+@model EditModel
+@{
+    ViewData["Title"] = "Edit Bandmember";
+}
+
+@if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h2>@ViewData["Title"]</h2>
+            <page-button path="Bandmembers/Index" bootstrap-style="primary" glyph="info-sign" description="Back to List"></page-button>
+            <page-button path="Index" bootstrap-style="warning" glyph="list-alt" description="Dashboard"></page-button>
+            <p></p>
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Input.Id" />
+                <div class="form-group">
+                    <label asp-for="Input.FirstName" class="control-label"></label>
+                    <input asp-for="Input.FirstName" class="form-control" />
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.LastName" class="control-label"></label>
+                    <input asp-for="Input.LastName" class="form-control" />
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Instrument" class="control-label"></label>
+                    <input asp-for="Input.Instrument" class="form-control" />
+                    <span asp-validation-for="Input.Instrument" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.BandId"></label>
+                    <select asp-for="Input.BandId" class="form-control"
+                            asp-items="ViewBag.Band"></select>
+                </div>
+                <button type="submit" class="btn btn-success">Save</button>
+            </form>
+        </div>
+    </div>
+        <div>
+        </div>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

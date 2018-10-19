@@ -20,6 +20,8 @@
                     <tr>
                         <td>Title</td>
                         <td>Band</td>
+                        <td>Release Year</td>
+                        <td>Genre</td>
                         <th></th>
                     </tr>
                 </thead>
@@ -29,6 +31,8 @@
                         <tr>
                             <td>@Html.DisplayFor(modelItem => item.Title)</td>
                             <td>@Html.DisplayFor(modelItem => item.Band.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ReleaseYear)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Genre.Title)</td>
                             <td class="button-col-width">
                                 <page-button path="Albums/Edit" bootstrap-style="success" glyph="pencil" id="@item.Id"></page-button>
                                 <page-button path="Albums/Delete" bootstrap-style="danger" glyph="remove" id="@item.Id"></page-button>

@@ -17,7 +17,7 @@ namespace MvcSecSql.Admin.Pages.Albums
         public Album Input { get; set; } = new Album();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -27,26 +27,18 @@ namespace MvcSecSql.Admin.Pages.Albums
 
         public void OnGet(int id)
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
-            Input = _dbReadService.Get<Album>(id);
+            Input = _dbReadService.Get<Album>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Update(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Updated Album: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            Input.Band = null;
+            Input.Genre = null;
+            var success = await _dbWriteService.Update(Input);
+            if (!success) return Page();
+            StatusMessage = $"Updated Album: {Input.Title}.";
+            return RedirectToPage("Index");
         }
-
     }
 }

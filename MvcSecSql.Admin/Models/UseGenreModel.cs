@@ -2,10 +2,10 @@
 
 namespace MvcSecSql.Admin.Models
 {
-    public class UserCourseModel
+    public class UseGenreModel
     {
         public string Email { get; set; }
-        public string CourseTitle { get; set; }
+        public string GenreTitle { get; set; }
         public UserGenre UserGenre { get; set; } = new UserGenre();
         public UserGenre UpdatedUserGenre { get; set; } = new UserGenre();
     }

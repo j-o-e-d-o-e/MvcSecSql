@@ -19,7 +19,7 @@ namespace MvcSecSql.Admin.Pages.UserGenres
         public UserGenre Input { get; set; } = new UserGenre();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public CreateModel(IDbReadService dbReadService, IDbWriteService dbWriteService, IUserService userService)
         {
@@ -42,14 +42,13 @@ namespace MvcSecSql.Admin.Pages.UserGenres
 
                 if (success)
                 {
+                    var genre = _dbReadService.Get<Genre>(Input.GenreId);
                     var user = _userService.GetUser(Input.UserId);
-                    var course = _dbReadService.Get<Genre>(Input.GenreId);
-                    StatusMessage = $"User-Band combination [{course.Title} | {user.Email}] was created.";
+                    StatusMessage = $"User-Genre combination {genre.Title}/{user.Email} was created.";
                     return RedirectToPage("Index");
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             ViewData["Users"] = _dbReadService.GetSelectList<User>("Id", "Email");
             ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
             return Page();

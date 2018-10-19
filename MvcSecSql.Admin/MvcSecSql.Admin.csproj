@@ -17,6 +17,18 @@
     <ProjectReference Include="..\MvcSecSql.Data\MvcSecSql.Data.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Content Update="Pages\Bandmembers\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Bandmembers\Delete.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Bandmembers\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Pages\Bandmembers\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Pages\Videos\Create.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

@@ -6,7 +6,7 @@ using MvcSecSql.Data.Services;
 using MvcSecSql.Data.Data.Entities;
 using Microsoft.AspNetCore.Authorization;
 
-namespace MvcSecSql.Admin.Pages.Genres
+namespace MvcSecSql.Admin.Pages.Bandmembers
 {
     [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
@@ -15,7 +15,7 @@ namespace MvcSecSql.Admin.Pages.Genres
         private readonly IDbReadService _dbReadService;
 
         [BindProperty]
-        public Genre Input { get; set; } = new Genre();
+        public BandMember Input { get; set; } = new BandMember();
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -28,30 +28,25 @@ namespace MvcSecSql.Admin.Pages.Genres
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Genre>(id, true);
+            Input = _dbReadService.GetWithIncludes<BandMember>().FirstOrDefault(bandMember => bandMember.Id.Equals(id));
+//            Input = _dbReadService.Get<BandMember>(id);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-//                var genre = _dbReadService.Get<Genre>(Input.Id, true);
-//                var userGenres = _dbReadService.Get<UserGenre>().Where(userGenre => userGenre.GenreId.Equals(genre.Id));
-
-//                if (dbUser == null) return false;
-
-//                var userGenres = _db.UserGenres.Where(userGenre => userGenre.UserId.Equals(dbUser.Id));
-//                _db.UserGenres.RemoveRange(userGenres);
                 var success = await _dbWriteService.Delete(Input);
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Genre: {Input.Title}.";
+                    StatusMessage = $"Deleted Bandmember: {Input.FirstName} {Input.LastName}.";
                     return RedirectToPage("Index");
                 }
             }
 
-            return Page();
+            return RedirectToPage("Delete");
         }
+
     }
 }

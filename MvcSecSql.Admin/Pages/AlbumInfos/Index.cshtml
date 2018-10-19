@@ -18,8 +18,8 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Album</th>
                         <th>Title</th>
+                        <th>Album</th>
                         <th>Url</th>
                         <th></th>
                     </tr>
@@ -28,8 +28,8 @@
                     @foreach (var item in Model.Items)
                     {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Album.Title)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Album.Title)</td>
                         <td>@Html.DisplayFor(modelItem => item.Url)</td>
                         <td class="button-col-width">
                             <page-button path="AlbumInfos/Edit" bootstrap-style="success" glyph="pencil" id="@item.Id"></page-button>

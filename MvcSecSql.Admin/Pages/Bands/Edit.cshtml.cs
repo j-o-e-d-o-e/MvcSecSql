@@ -23,7 +23,7 @@ namespace MvcSecSql.Admin.Pages.Bands
         public Band Input { get; set; } = new Band();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public void OnGet(int id)
         {
@@ -32,19 +32,12 @@ namespace MvcSecSql.Admin.Pages.Bands
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Update(Input);
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Update(Input);
+            if (!success) return Page();
+            StatusMessage = $"Updated Band: {Input.Name}.";
+            return RedirectToPage("Index");
 
-                if (success)
-                {
-                    StatusMessage = $"Updated Bands: {Input.Name}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
         }
     }
 }

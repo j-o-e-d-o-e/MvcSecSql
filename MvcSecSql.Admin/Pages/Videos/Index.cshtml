@@ -23,22 +23,28 @@
             </page-button>
             <table class="table">
                 <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Url</th>
-                    <th>Album</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>Title</th>
+                        <th>Album</th>
+                        <th>Band</th>
+                        <th>Description</th>
+                        <th>Duration</th>
+                        <th>Url</th>
+                        <th>Thumbnail</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
                 @foreach (var item in Model.Items)
                 {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Url)</td>
                         <td>@Html.DisplayFor(modelItem => item.Album.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Album.Band.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Duration)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Url)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Thumbnail)</td>
                         <td class="button-col-width">
                             <page-button path="Videos/Edit" bootstrap-style="success" glyph="pencil" id="@item.Id"></page-button>
                             <page-button path="Videos/Delete" bootstrap-style="danger" glyph="remove" id="@item.Id"></page-button>

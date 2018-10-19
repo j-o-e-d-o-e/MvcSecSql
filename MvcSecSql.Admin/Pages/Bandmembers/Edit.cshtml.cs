@@ -1,13 +1,11 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
 
-namespace MvcSecSql.Admin.Pages.Videos
+namespace MvcSecSql.Admin.Pages.Bandmembers
 {
     [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
@@ -17,45 +15,36 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
-            _dbReadService = dbReadService;
             _dbWriteService = dbWriteService;
+            _dbReadService = dbReadService;
         }
 
         [BindProperty]
-        public Video Input { get; set; } = new Video();
+        public BandMember Input { get; set; } = new BandMember();
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string StatusMessage { get; set; } // Used to send a message back to the Index view
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.Get<Video>(id, true);
-            Input.Album.Band = _dbReadService.Get<Band>(Input.Album.BandId);
-            ViewData["Thumbnails"] = new SelectList(
-                new List<string>
-                {
-                    "/images/video1.jpg",
-                    "/images/video2.jpg",
-                    "/images/video3.jpg",
-                    "/images/video4.jpg",
-                    "/images/video5.jpg"
-                });
+            Input = _dbReadService.Get<BandMember>(id);
+            ViewData["Band"] = _dbReadService.GetSelectList<Band>("Id", "Name");
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
-                Input.Album = null;
                 var success = await _dbWriteService.Update(Input);
 
                 if (success)
                 {
-                    StatusMessage = $"Video {Input.Title} was updated.";
+                    StatusMessage = $"Updated Bandmember: {Input.FirstName} {Input.LastName}.";
                     return RedirectToPage("Index");
                 }
             }
 
+            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

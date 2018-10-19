@@ -5,7 +5,7 @@
 
 @model DeleteModel
 @{
-    ViewData["Title"] = "Remove user from course";
+    ViewData["Title"] = "Remove user from genre";
 }
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -18,8 +18,8 @@
             <page-button path="Index" bootstrap-style="warning" glyph="list-alt" description="Dashboard"></page-button>
             <p></p>
             <dl class="dl-horizontal">
-                <dt>@Html.DisplayNameFor(model => model.Input.CourseTitle)</dt>
-                <dd>@Html.DisplayFor(model => model.Input.CourseTitle)</dd>
+                <dt>@Html.DisplayNameFor(model => model.Input.GenreTitle)</dt>
+                <dd>@Html.DisplayFor(model => model.Input.GenreTitle)</dd>
                 <dt>@Html.DisplayNameFor(model => model.Input.Email)</dt>
                 <dd>@Html.DisplayFor(model => model.Input.Email)</dd>
             </dl>
@@ -28,7 +28,7 @@
                 <input type="hidden" asp-for="Input.UserGenre.GenreId" />
                 <input type="hidden" asp-for="Input.UserGenre.UserId" />
                 <input type="hidden" asp-for="Input.Email" />
-                <input type="hidden" asp-for="Input.CourseTitle" />
+                <input type="hidden" asp-for="Input.GenreTitle" />
                 <button type="submit" class="btn btn-danger">Delete</button>
             </form>
         </div>

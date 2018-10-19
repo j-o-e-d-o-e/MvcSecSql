@@ -17,7 +17,7 @@ namespace MvcSecSql.Admin.Pages.Genres
         public Genre Input { get; set; } = new Genre();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public CreateModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -38,12 +38,11 @@ namespace MvcSecSql.Admin.Pages.Genres
 
                 if (success)
                 {
-                    StatusMessage = $"Created a new Band: {Input.Title}.";
+                    StatusMessage = $"Created a new Genre: {Input.Title}.";
                     return RedirectToPage("Index");
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

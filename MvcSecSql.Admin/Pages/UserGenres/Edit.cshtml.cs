@@ -17,10 +17,10 @@ namespace MvcSecSql.Admin.Pages.UserGenres
         private readonly IUserService _userService;
 
         [BindProperty]
-        public UserCourseModel Input { get; set; } = new UserCourseModel();
+        public UseGenreModel Input { get; set; } = new UseGenreModel();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService, IUserService userService)
         {
@@ -34,10 +34,8 @@ namespace MvcSecSql.Admin.Pages.UserGenres
             ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
             Input.UserGenre = _dbReadService.Get<UserGenre>(userId, courseId);
             Input.UpdatedUserGenre = Input.UserGenre;
-            var course = _dbReadService.Get<Genre>(courseId);
-            var user = _userService.GetUser(userId);
-            Input.CourseTitle = course.Title;
-            Input.Email = user.Email;
+            Input.GenreTitle = _dbReadService.Get<Genre>(courseId).Title;
+            Input.Email = _userService.GetUser(userId).Email;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -49,12 +47,10 @@ namespace MvcSecSql.Admin.Pages.UserGenres
                 if (success)
                 {
                     var updatedCourse = _dbReadService.Get<Genre>(Input.UpdatedUserGenre.GenreId);
-                    StatusMessage = $"The [{Input.CourseTitle} | {Input.Email}] combination was changed to [{updatedCourse.Title} | {Input.Email}].";
+                    StatusMessage = $"The {Input.GenreTitle}/{Input.Email} combination was changed to: {updatedCourse.Title}/{Input.Email}.";
                     return RedirectToPage("Index");
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
             return Page();
         }

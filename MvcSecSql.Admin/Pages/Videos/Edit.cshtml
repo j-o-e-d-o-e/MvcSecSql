@@ -21,45 +21,43 @@
             </page-button>
             <p></p>
             <form method="post">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Input.Id"/>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input type="hidden" asp-for="Input.Id" />
+                <input type="hidden" asp-for="Input.AlbumId" />
                 <div class="form-group">
                     <label asp-for="Input.Title" class="control-label"></label>
-                    <input asp-for="Input.Title" class="form-control"/>
+                    <input asp-for="Input.Title" class="form-control" />
                     <span asp-validation-for="Input.Title" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Input.Album.Title"></label>
+                    <input asp-for="Input.Album.Title" readonly class="form-control" />
+                    <span asp-validation-for="Input.Album.Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Album.Band.Name"></label>
+                    <input asp-for="Input.Album.Band.Name" readonly class="form-control" />
+                    <span asp-validation-for="Input.Album.Band.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
                     <label asp-for="Input.Description" class="control-label"></label>
-                    <input asp-for="Input.Description" class="form-control"/>
+                    <input asp-for="Input.Description" class="form-control" />
                     <span asp-validation-for="Input.Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Input.Duration" class="control-label"></label>
-                    <input asp-for="Input.Duration" class="form-control"/>
+                    <input asp-for="Input.Duration" class="form-control" />
                     <span asp-validation-for="Input.Duration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Thumbnail" class="control-label"></label>
-                    <input asp-for="Input.Thumbnail" class="form-control"/>
-                    <span asp-validation-for="Input.Thumbnail" class="text-danger"></span>
-                </div>
-                <div class="form-group">
                     <label asp-for="Input.Url" class="control-label"></label>
-                    <input asp-for="Input.Url" class="form-control"/>
+                    <input asp-for="Input.Url" class="form-control" />
                     <span asp-validation-for="Input.Url" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Input.Position" class="control-label"></label>
-                    <input asp-for="Input.Position" class="form-control"/>
-                    <span asp-validation-for="Input.Position" class="text-danger"></span>
-                </div>
-                @* <div class="form-group"> *@
-                    @* <label class="control-label">Course</label> *@
-                    @* <input asp-for="Input.Band.Title" readonly class="form-control"/> *@
-                @* </div> *@
-                <div class="form-group">
-                    <label aps-for="Input.ModuleId" class="control-label"></label>
-                    <select aps-for="Input.ModuleId" class="form-control" aps-items="ViewBag.Modules"></select>
+                    <label asp-for="Input.Thumbnail"></label>
+                    <select asp-for="Input.Thumbnail" class="form-control"
+                            asp-items="ViewBag.Thumbnails"></select>
                 </div>
                 <button type="submit" class="btn btn-success">Save</button>
             </form>

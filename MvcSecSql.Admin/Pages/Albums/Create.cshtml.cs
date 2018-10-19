@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,7 +18,7 @@ namespace MvcSecSql.Admin.Pages.Albums
         public Album Input { get; set; } = new Album();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public CreateModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -27,23 +28,24 @@ namespace MvcSecSql.Admin.Pages.Albums
 
         public void OnGet()
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
+            ViewData["Bands"] = _dbReadService.GetSelectList<Band>("Id", "Name");
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            Input.Band = _dbReadService.Get<Band>(Input.BandId, true);
+            Input.Genre = _dbReadService.Get<Genre>(Input.Band.GenreId, false);
             if (ModelState.IsValid)
             {
-                var success = await _dbWriteService.Add(Input);
+            var success = await _dbWriteService.Add(Input);
 
-                if (success)
-                {
-                    StatusMessage = $"Created a new Album: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
+            if (success)
+            {
+                StatusMessage = $"Created a new Album: {Input.Title}.";
+                return RedirectToPage("Index");
             }
-
-            // If we got this far, something failed, redisplay form
+            }
+            ViewData["Bands"] = _dbReadService.GetSelectList<Band>("Id", "Name");
             return Page();
         }
     }

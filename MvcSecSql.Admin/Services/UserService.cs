@@ -28,8 +28,8 @@ namespace MvcSecSql.Admin.Services
                 {
                     Id = user.Id,
                     Email = user.Email,
-                    IsAdmin = _db.UserRoles.Any(ur => ur.UserId.Equals(user.Id)
-                                                      && ur.RoleId.Equals(1.ToString()))
+                    IsAdmin = _db.UserRoles.Any(userRole => userRole.UserId.Equals(user.Id)
+                                                            && userRole.RoleId.Equals(1.ToString()))
                 };
         }
 
@@ -52,7 +52,9 @@ namespace MvcSecSql.Admin.Services
             {
                 UserName = user.Email,
                 Email = user.Email,
-                EmailConfirmed = true
+                EmailConfirmed = true,
+                
+                
             };
             var result = await _userManager.CreateAsync(dbUser, user.Password);
             return result;
@@ -85,10 +87,16 @@ namespace MvcSecSql.Admin.Services
         {
             try
             {
-                var dbUser = await _db.Users.FirstOrDefaultAsync(d => d.Id.Equals(userId));
+                var dbUser = await _db.Users.FirstOrDefaultAsync(user => user.Id.Equals(userId));
                 if (dbUser == null) return false;
 
-                var userRoles = _db.UserRoles.Where(ur => ur.UserId.Equals(dbUser.Id));
+                var userGenres = _db.UserGenres.Where(userGenre => userGenre.UserId.Equals(dbUser.Id));
+                _db.UserGenres.RemoveRange(userGenres);
+
+                var userRoles = _db.UserRoles.Where(userRole => userRole.UserId.Equals(dbUser.Id));
+                _db.UserRoles.RemoveRange(userRoles);
+
+                _db.Users.Remove(dbUser);
                 var result = await _db.SaveChangesAsync();
                 if (result < 0) return false;
             }

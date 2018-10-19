@@ -5,7 +5,7 @@
 
 @model EditModel
 @{
-    ViewData["Title"] = "Edit AlbumInfo";
+    ViewData["Title"] = "Edit Album Info";
 }
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -25,17 +25,13 @@
                     <span asp-validation-for="Input.Title" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Input.Album.Title" class="control-label"></label>
+                    <select asp-for="Input.Album.Title" class="form-control" asp-items="ViewBag.Modules"></select>
+                </div>
+                <div class="form-group">
                     <label asp-for="Input.Url" class="control-label"></label>
                     <input asp-for="Input.Url" class="form-control" />
                     <span asp-validation-for="Input.Url" class="text-danger"></span>
-                </div>
-                @* <div class="form-group"> *@
-                    @* <label class="control-label">Course</label> *@
-                    @* <input asp-for="Input.Genre.Title" readonly class="form-control" /> *@
-                @* </div> *@
-                <div class="form-group">
-                    <label asp-for="Input.AlbumId" class="control-label"></label>
-                    <select asp-for="Input.AlbumId" class="form-control" asp-items="ViewBag.Modules"></select>
                 </div>
                 <button type="submit" class="btn btn-success">Save</button>
             </form>

@@ -5,7 +5,7 @@
 
 @model EditModel
 @{
-    ViewData["Title"] = "Change course for user";
+    ViewData["Title"] = "Change genre for user";
 }
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -21,7 +21,7 @@
                 <input type="hidden" asp-for="Input.UserGenre.UserId" />
                 <input type="hidden" asp-for="Input.UserGenre.GenreId" />
                 <input type="hidden" asp-for="Input.UpdatedUserGenre.UserId" />
-                <input type="hidden" asp-for="Input.CourseTitle" />
+                <input type="hidden" asp-for="Input.GenreTitle" />
 
                 <div class="form-group">
                     <label asp-for="Input.Email" class="control-label"></label>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Input.UpdatedUserGenre.GenreId" class="control-label"></label>
-                    <select asp-for="Input.UpdatedUserGenre.GenreId" class="form-control" asp-items="ViewBag.Courses"></select>
+                    <select asp-for="Input.UpdatedUserGenre.GenreId" class="form-control" asp-items="ViewBag.Genres"></select>
                 </div>
                 <button type="submit" class="btn btn-success">Save</button>
             </form>

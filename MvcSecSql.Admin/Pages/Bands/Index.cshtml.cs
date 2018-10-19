@@ -10,9 +10,11 @@ namespace MvcSecSql.Admin.Pages.Bands
     [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
-        private IDbReadService _dbReadService;
+        private readonly IDbReadService _dbReadService;
         public IEnumerable<Band> Items = new List<Band>();
-        [TempData] public string StatusMessage { get; set; }
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         public IndexModel(IDbReadService dbReadService)
         {

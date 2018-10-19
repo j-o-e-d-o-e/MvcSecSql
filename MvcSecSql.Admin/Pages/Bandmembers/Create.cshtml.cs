@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MvcSecSql.Data.Data.Entities;
 using MvcSecSql.Data.Services;
 
-namespace MvcSecSql.Admin.Pages.Bands
+namespace MvcSecSql.Admin.Pages.Bandmembers
 {
     [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
@@ -14,21 +14,21 @@ namespace MvcSecSql.Admin.Pages.Bands
         private readonly IDbReadService _dbReadService;
 
         [BindProperty]
-        public Band Input { get; set; } = new Band();
+        public BandMember Input { get; set; } = new BandMember();
 
         [TempData]
         public string StatusMessage { get; set; } // Used to send a message back to the Index view
 
 
-        public CreateModel(IDbWriteService dbWriteService, IDbReadService dbReadService)
+        public CreateModel(IDbReadService dbReadService,IDbWriteService dbWriteService)
         {
-            _dbWriteService = dbWriteService;
             _dbReadService = dbReadService;
+            _dbWriteService = dbWriteService;
         }
 
         public void OnGet()
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
+            ViewData["Band"] = _dbReadService.GetSelectList<Band>("Id", "Name");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -39,7 +39,7 @@ namespace MvcSecSql.Admin.Pages.Bands
 
                 if (success)
                 {
-                    StatusMessage = $"Created a new Bands: {Input.Name}.";
+                    StatusMessage = $"Created a new Bandmember: {Input.FirstName} {Input.LastName}.";
                     return RedirectToPage("Index");
                 }
             }

@@ -4,7 +4,7 @@
 @inject SignInManager<User> SignInManager
 @model IndexModel
 @{
-    ViewData["Title"] = "Bands";
+    ViewData["Title"] = "Bandmembers";
 }
 
 @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
@@ -13,14 +13,14 @@
         <div class="col-md-12">
             <h2>@ViewData["Title"]</h2>
             <status-message message="@Model.StatusMessage" message-type="success"></status-message>
-            <page-button path="Bands/Create" bootstrap-style="primary" description="Create New"></page-button>
+            <page-button path="Bandmembers/Create" bootstrap-style="primary" description="Create New"></page-button>
             <page-button path="Index" bootstrap-style="warning" glyph="list-alt" description="Dashboard"></page-button>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>Image</th>
+                        <th>Band</th>
+                        <th>Instrument</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -28,12 +28,12 @@
                     @foreach (var item in Model.Items)
                     {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Image)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Band.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Instrument)</td>
                         <td class="button-col-width">
-                            <page-button path="Bands/Edit" bootstrap-style="success" glyph="pencil" id="@item.Id"></page-button>
-                            <page-button path="Bands/Delete" bootstrap-style="danger" glyph="remove" id="@item.Id"></page-button>
+                            <page-button path="Bandmembers/Edit" bootstrap-style="success" glyph="pencil" id="@item.Id"></page-button>
+                            <page-button path="Bandmembers/Delete" bootstrap-style="danger" glyph="remove" id="@item.Id"></page-button>
                         </td>
                     </tr>
                     }

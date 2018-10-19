@@ -9,6 +9,7 @@ namespace MvcSecSql.Data.Data.Entities
         public int Id { get; set; }
 
         [MaxLength(80), Required]
+        [Display(Name = "Band Name")]
         public string Name { get; set; }
 
         [MaxLength(80)]

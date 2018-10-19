@@ -17,45 +17,36 @@
             <page-button path="Index" Bootstrap-style="warning" glyph="list-alt" description="Dashboard"></page-button>
             <p></p>
             <form method="post">
-                <div asp-validation-summary="ModelOnly"
-                     class="text-danger">
-                </div>
-
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Input.Title"></label>
-                    <input asp-for="Input.Title" class="form-control"/>
+                    <input asp-for="Input.Title" class="form-control" />
                     <span asp-validation-for="Input.Title" class="text-danger"></span>
                 </div>
                 <div class="form-group">
+                    <label asp-for="Input.Album"></label>
+                    <select asp-for="Input.AlbumId" class="form-control"
+                            asp-items="ViewBag.Albums"></select>
+                </div>
+                <div class="form-group">
                     <label asp-for="Input.Description"></label>
-                    <input asp-for="Input.Description" class="form-control"/>
+                    <input asp-for="Input.Description" class="form-control" />
                     <span asp-validation-for="Input.Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Input.Duration"></label>
-                    <input asp-for="Input.Duration" class="form-control"/>
+                    <input asp-for="Input.Duration" class="form-control" />
                     <span asp-validation-for="Input.Duration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Input.Thumbnail"></label>
-                    <input asp-for="Input.Thumbnail" class="form-control"/>
-                    <span asp-validation-for="Input.Thumbnail" class="text-danger"></span>
+                    <select asp-for="Input.Thumbnail" class="form-control"
+                            asp-items="ViewBag.Thumbnails"></select>
                 </div>
                 <div class="form-group">
                     <label asp-for="Input.Url"></label>
-                    <input asp-for="Input.Url" class="form-control"/>
+                    <input asp-for="Input.Url" class="form-control" />
                     <span asp-validation-for="Input.Url" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Position"></label>
-                    <input asp-for="Input.Position" class="form-control"/>
-                    <span asp-validation-for="Input.Position" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.AlbumId"></label>
-                    <select asp-for="Input.AlbumId" class="form-control"
-                            asp-items="ViewBag.Modules">
-                    </select>
                 </div>
                 <button type="submit" class="btn btn-success">Create</button>
             </form>
