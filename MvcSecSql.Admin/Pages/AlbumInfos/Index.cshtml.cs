@@ -12,7 +12,9 @@ namespace MvcSecSql.Admin.Pages.AlbumInfos
     {
         private readonly IDbReadService _dbReadService;
         public IEnumerable<AlbumInfo> Items = new List<AlbumInfo>();
-        [TempData] public string StatusMessage { get; set; }
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         public IndexModel(IDbReadService dbReadService)
         {
@@ -22,6 +24,10 @@ namespace MvcSecSql.Admin.Pages.AlbumInfos
         public void OnGet()
         {
             Items = _dbReadService.GetWithIncludes<AlbumInfo>();
+            foreach (var item in Items)
+            {
+                item.Album.Band = _dbReadService.Get<Band>(item.Album.BandId);
+            }
         }
     }
 }

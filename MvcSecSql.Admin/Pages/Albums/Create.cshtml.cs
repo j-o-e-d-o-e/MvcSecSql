@@ -1,10 +1,9 @@
-using System.Diagnostics;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MvcSecSql.Data.Services;
 using MvcSecSql.Data.Data.Entities;
-using Microsoft.AspNetCore.Authorization;
+using MvcSecSql.Data.Services;
 
 namespace MvcSecSql.Admin.Pages.Albums
 {
@@ -14,17 +13,17 @@ namespace MvcSecSql.Admin.Pages.Albums
         private readonly IDbReadService _dbReadService;
         private readonly IDbWriteService _dbWriteService;
 
-        [BindProperty]
-        public Album Input { get; set; } = new Album();
-
-        [TempData]
-        public string StatusMessage { get; set; }
-
         public CreateModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
             _dbReadService = dbReadService;
             _dbWriteService = dbWriteService;
         }
+
+        [BindProperty]
+        public Album Input { get; set; } = new Album();
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         public void OnGet()
         {
@@ -34,19 +33,12 @@ namespace MvcSecSql.Admin.Pages.Albums
         public async Task<IActionResult> OnPostAsync()
         {
             Input.Band = _dbReadService.Get<Band>(Input.BandId, true);
-            Input.Genre = _dbReadService.Get<Genre>(Input.Band.GenreId, false);
-            if (ModelState.IsValid)
-            {
+            Input.Genre = _dbReadService.Get<Genre>(Input.Band.GenreId, true);
+            if (!ModelState.IsValid) return Page();
             var success = await _dbWriteService.Add(Input);
-
-            if (success)
-            {
-                StatusMessage = $"Created a new Album: {Input.Title}.";
-                return RedirectToPage("Index");
-            }
-            }
-            ViewData["Bands"] = _dbReadService.GetSelectList<Band>("Id", "Name");
-            return Page();
+            if (!success) return Page();
+            StatusMessage = $"Created a new Album: {Input.Title}.";
+            return RedirectToPage("Index");
         }
     }
 }

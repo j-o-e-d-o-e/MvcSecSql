@@ -17,7 +17,7 @@ namespace MvcSecSql.Admin.Pages.AlbumInfos
         public AlbumInfo Input { get; set; } = new AlbumInfo();
 
         [TempData]
-        public string StatusMessage { get; set; } //used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public CreateModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -27,25 +27,16 @@ namespace MvcSecSql.Admin.Pages.AlbumInfos
 
         public void OnGet()
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
+            ViewData["Albums"] = _dbReadService.GetSelectList<Album>("Id", "Title");
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-//                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).BandId; todo
-                var success = await _dbWriteService.Add(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Created a new AlbumInfo: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Add(Input);
+            if (!success) return Page();
+            StatusMessage = $"Created a new AlbumInfo: {Input.Title}.";
+            return RedirectToPage("Index");
         }
     }
 }

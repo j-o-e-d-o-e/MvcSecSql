@@ -20,8 +20,8 @@ namespace MvcSecSql.Admin.Pages.UserGenres
         public UseGenreModel Input { get; set; } = new UseGenreModel();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
-        
+        public string StatusMessage { get; set; }
+
         public DeleteModel(IDbReadService dbReadService, IDbWriteService dbWriteService, IUserService userService)
         {
             _dbWriteService = dbWriteService;
@@ -40,20 +40,11 @@ namespace MvcSecSql.Admin.Pages.UserGenres
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Delete(Input.UserGenre);
-
-                if (success)
-                {
-                    StatusMessage = $"User-Band combination [{Input.GenreTitle} | {Input.Email}] was deleted.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Delete(Input.UserGenre);
+            if (!success) return Page();
+            StatusMessage = $"User-Band combination [{Input.GenreTitle} | {Input.Email}] was deleted.";
+            return RedirectToPage("Index");
         }
-
     }
 }

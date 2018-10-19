@@ -44,19 +44,12 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                Input.Album = null;
-                var success = await _dbWriteService.Update(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Video {Input.Title} was updated.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            Input.Album = null;
+            var success = await _dbWriteService.Update(Input);
+            if (!success) return Page();
+            StatusMessage = $"Video {Input.Title} was updated.";
+            return RedirectToPage("Index");
         }
     }
 }

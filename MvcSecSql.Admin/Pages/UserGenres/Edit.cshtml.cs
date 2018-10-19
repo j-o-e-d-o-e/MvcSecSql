@@ -40,20 +40,13 @@ namespace MvcSecSql.Admin.Pages.UserGenres
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Update(Input.UserGenre, Input.UpdatedUserGenre);
-
-                if (success)
-                {
-                    var updatedCourse = _dbReadService.Get<Genre>(Input.UpdatedUserGenre.GenreId);
-                    StatusMessage = $"The {Input.GenreTitle}/{Input.Email} combination was changed to: {updatedCourse.Title}/{Input.Email}.";
-                    return RedirectToPage("Index");
-                }
-            }
-            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Update(Input.UserGenre, Input.UpdatedUserGenre);
+            if (!success) return Page();
+            var updatedCourse = _dbReadService.Get<Genre>(Input.UpdatedUserGenre.GenreId);
+            StatusMessage =
+                $"The {Input.GenreTitle}/{Input.Email} combination was changed to: {updatedCourse.Title}/{Input.Email}.";
+            return RedirectToPage("Index");
         }
-
     }
 }

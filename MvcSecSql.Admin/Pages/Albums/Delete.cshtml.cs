@@ -17,7 +17,7 @@ namespace MvcSecSql.Admin.Pages.Albums
         public Album Input { get; set; } = new Album();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public DeleteModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -32,20 +32,11 @@ namespace MvcSecSql.Admin.Pages.Albums
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Delete(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Deleted Album: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Delete(Input);
+            if (!success) return Page();
+            StatusMessage = $"Deleted Album: {Input.Title}.";
+            return RedirectToPage("Index");
         }
-
     }
 }

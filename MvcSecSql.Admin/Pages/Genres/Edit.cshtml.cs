@@ -19,7 +19,7 @@ namespace MvcSecSql.Admin.Pages.Genres
         public Genre Input { get; set; } = new Genre();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -41,20 +41,11 @@ namespace MvcSecSql.Admin.Pages.Genres
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Update(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Updated Band: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Update(Input);
+            if (!success) return Page();
+            StatusMessage = $"Updated Genre: {Input.Title}.";
+            return RedirectToPage("Index");
         }
-
     }
 }

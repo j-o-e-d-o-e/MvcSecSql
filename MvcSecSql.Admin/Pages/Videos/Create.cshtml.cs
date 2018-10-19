@@ -43,19 +43,13 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                Input.AlbumId = _dbReadService.Get<Album>(Input.AlbumId).Id;
-                Input.Position = 1;
-                var success = await _dbWriteService.Add(Input);
-                if (success)
-                {
-                    StatusMessage = $"Created a new Video: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            Input.AlbumId = _dbReadService.Get<Album>(Input.AlbumId).Id;
+            Input.Position = 1;
+            var success = await _dbWriteService.Add(Input);
+            if (!success) return Page();
+            StatusMessage = $"Created a new Video: {Input.Title}.";
+            return RedirectToPage("Index");
         }
     }
 }

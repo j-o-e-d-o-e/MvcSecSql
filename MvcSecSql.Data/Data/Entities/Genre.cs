@@ -17,6 +17,7 @@ namespace MvcSecSql.Data.Data.Entities
         public string MarqueeImageUrl { get; set; }
 
         [MaxLength(80), Required]
+        [Display (Name = "Genre Title")]
         public string Title { get; set; }
 
         [MaxLength(1024)]

@@ -36,22 +36,13 @@ namespace MvcSecSql.Admin.Pages.UserGenres
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Add(Input);
-
-                if (success)
-                {
-                    var genre = _dbReadService.Get<Genre>(Input.GenreId);
-                    var user = _userService.GetUser(Input.UserId);
-                    StatusMessage = $"User-Genre combination {genre.Title}/{user.Email} was created.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            ViewData["Users"] = _dbReadService.GetSelectList<User>("Id", "Email");
-            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Add(Input);
+            if (!success) return Page();
+            var genre = _dbReadService.Get<Genre>(Input.GenreId);
+            var user = _userService.GetUser(Input.UserId);
+            StatusMessage = $"User-Genre combination {genre.Title}/{user.Email} was created.";
+            return RedirectToPage("Index");
         }
     }
 }

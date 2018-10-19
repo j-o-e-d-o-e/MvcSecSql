@@ -17,10 +17,10 @@ namespace MvcSecSql.Admin.Pages.Bandmembers
         public BandMember Input { get; set; } = new BandMember();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
 
-        public CreateModel(IDbReadService dbReadService,IDbWriteService dbWriteService)
+        public CreateModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
             _dbReadService = dbReadService;
             _dbWriteService = dbWriteService;
@@ -33,18 +33,11 @@ namespace MvcSecSql.Admin.Pages.Bandmembers
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Add(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Created a new Bandmember: {Input.FirstName} {Input.LastName}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Add(Input);
+            if (!success) return Page();
+            StatusMessage = $"Created a new Bandmember: {Input.FirstName} {Input.LastName}.";
+            return RedirectToPage("Index");
         }
     }
 }

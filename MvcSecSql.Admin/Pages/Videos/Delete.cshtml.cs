@@ -13,8 +13,11 @@ namespace MvcSecSql.Admin.Pages.Videos
         private readonly IDbWriteService _dbWriteService;
         private readonly IDbReadService _dbReadService;
 
-        [BindProperty] public Video Input { get; set; } = new Video();
-        [TempData] public string StatusMessage { get; set; }
+        [BindProperty]
+        public Video Input { get; set; } = new Video();
+
+        [TempData]
+        public string StatusMessage { get; set; }
 
         public DeleteModel(IDbReadService dbReadService,
             IDbWriteService dbWriteService)
@@ -30,19 +33,11 @@ namespace MvcSecSql.Admin.Pages.Videos
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Delete(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Deleted Video: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Delete(Input);
+            if (!success) return Page();
+            StatusMessage = $"Deleted Video: {Input.Title}.";
+            return RedirectToPage("Index");
         }
     }
 }

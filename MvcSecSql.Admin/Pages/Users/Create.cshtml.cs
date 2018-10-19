@@ -29,19 +29,17 @@ namespace MvcSecSql.Admin.Pages.Users
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return Page();
+            var result = await _userService.AddUser(Input);
+            if (result.Succeeded)
             {
-                var result = await _userService.AddUser(Input);
-                if (result.Succeeded)
-                {
-                    StatusMessage = $"Created a new account for {Input.Email}.";
-                    return RedirectToPage("Index");
-                }
+                StatusMessage = $"Created a new account for {Input.Email}.";
+                return RedirectToPage("Index");
+            }
 
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
             }
 
             return Page();

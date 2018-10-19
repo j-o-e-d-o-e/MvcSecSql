@@ -29,18 +29,11 @@ namespace MvcSecSql.Admin.Pages.Users
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var result = await _userService.DeleteUser(Input.Id);
-
-                if (result)
-                {
-                    StatusMessage = $"User {Input.Email} was deleted.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var result = await _userService.DeleteUser(Input.Id);
+            if (!result) return Page();
+            StatusMessage = $"User {Input.Email} was deleted.";
+            return RedirectToPage("Index");
         }
     }
 }

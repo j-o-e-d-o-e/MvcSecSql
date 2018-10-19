@@ -10,14 +10,14 @@ namespace MvcSecSql.Admin.Pages.AlbumInfos
     [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
-        private IDbWriteService _dbWriteService;
-        private IDbReadService _dbReadService;
+        private readonly IDbWriteService _dbWriteService;
+        private readonly IDbReadService _dbReadService;
 
         [BindProperty]
         public AlbumInfo Input { get; set; } = new AlbumInfo();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public EditModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -27,28 +27,17 @@ namespace MvcSecSql.Admin.Pages.AlbumInfos
 
         public void OnGet(int id)
         {
-            ViewData["Genres"] = _dbReadService.GetSelectList<Album>("Id", "Title");
+            ViewData["Albums"] = _dbReadService.GetSelectList<Album>("Id", "Title");
             Input = _dbReadService.Get<AlbumInfo>(id, true);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-//                Input.GenreId = _dbReadService.Get<Album>(Input.AlbumId).BandId; //todo
-//                Input.Genre = null;
-                var success = await _dbWriteService.Update(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Updated AlbumInfo: {Input.Title}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Update(Input);
+            if (!success) return Page();
+            StatusMessage = $"Updated AlbumInfo: {Input.Title}.";
+            return RedirectToPage("Index");
         }
-
     }
 }

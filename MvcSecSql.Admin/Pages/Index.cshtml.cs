@@ -59,7 +59,7 @@ namespace MvcSecSql.Admin.Pages
                 {
                     BackgroundColor = "grey",
                     Count = count.bandmembers,
-                    Description = "Bandmembers",
+                    Description = "Band Members",
                     Icon = "user",
                     Url = "./Bandmembers/Index"
                 },

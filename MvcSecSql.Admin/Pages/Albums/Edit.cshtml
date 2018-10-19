@@ -36,6 +36,11 @@
                     <input asp-for="Input.Band.Name" readonly class="form-control" />
                     <span asp-validation-for="Input.Band.Name" class="text-danger"></span>
                 </div>
+                <div class="form-group">
+                    <label asp-for="Input.Band.Genre.Title" class="control-label"></label>
+                    <input asp-for="Input.Band.Genre.Title" readonly class="form-control" />
+                    <span asp-validation-for="Input.Band.Genre.Title" class="text-danger"></span>
+                </div>
                 <button type="submit" class="btn btn-success">Save</button>
             </form>
         </div>

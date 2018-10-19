@@ -32,18 +32,11 @@ namespace MvcSecSql.Admin.Pages.Bands
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Delete(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Deleted Band: {Input.Name}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Delete(Input);
+            if (!success) return Page();
+            StatusMessage = $"Deleted Band: {Input.Name}.";
+            return RedirectToPage("Index");
         }
     }
 }
