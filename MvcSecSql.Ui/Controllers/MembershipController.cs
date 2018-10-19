@@ -58,7 +58,7 @@ namespace MvcSecSql.UI.Controllers
                 Genre = _mapper.Map<GenreDto>(band.Genre),
                 Band = _mapper.Map<BandDto>(band),
                 BandMembers = _mapper.Map<List<BandMemberDto>>(band.BandMembers),
-                Albums = _mapper.Map<List<AlbumDto>>(band.Albums)
+                Albums = _mapper.Map<List<AlbumDto>>(band.Albums),
             };
 
             return View(bandViewModel);

@@ -15,20 +15,19 @@
     </div>
     <div class="row">
         <div class="col-sm-9">
-            @if (Model != null && Model.Video != null &&
-                 Model.VideoComingUp != null && Model.Genre != null)
+            @if (Model?.Video != null && Model.VideoComingUp != null && Model.Genre != null)
             {
                 @await Html.PartialAsync("_VideoPlayerPartial", Model)
             }
         </div>
 
         <div class="col-sm-3">
-            @if (Model != null && Model.VideoComingUp != null)
+            @if (Model?.VideoComingUp != null)
             {
                 @await Html.PartialAsync("_VideoComingUpPartial", Model.VideoComingUp)
             }
 
-            @if (Model != null && Model.Band != null)
+            @if (Model?.Band != null)
             {
                 @await Html.PartialAsync("_BandPartial",
                     Model.Band)

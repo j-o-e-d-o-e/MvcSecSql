@@ -28,14 +28,16 @@ namespace MvcSecSql.Admin.Pages.Bandmembers
 
         public void OnGet(int id)
         {
-            Input = _dbReadService.GetWithIncludes<BandMember>().FirstOrDefault(bandMember => bandMember.Id.Equals(id));
-//            Input = _dbReadService.Get<BandMember>(id);
+//            Input = _dbReadService.GetWithIncludes<BandMember>().FirstOrDefault(bandMember => bandMember.Id.Equals(id));
+            Input = _dbReadService.Get<BandMember>(id);
+//            Input.Band = _dbReadService.Get<Band>(Input.BandId);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
             if (ModelState.IsValid)
             {
+                Input.Band = null;
                 var success = await _dbWriteService.Delete(Input);
 
                 if (success)

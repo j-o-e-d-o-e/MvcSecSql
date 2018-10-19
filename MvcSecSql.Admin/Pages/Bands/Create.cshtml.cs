@@ -10,14 +10,8 @@ namespace MvcSecSql.Admin.Pages.Bands
     [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
-        private readonly IDbWriteService _dbWriteService;
         private readonly IDbReadService _dbReadService;
-
-        [BindProperty]
-        public Band Input { get; set; } = new Band();
-
-        [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        private readonly IDbWriteService _dbWriteService;
 
 
         public CreateModel(IDbWriteService dbWriteService, IDbReadService dbReadService)
@@ -26,6 +20,12 @@ namespace MvcSecSql.Admin.Pages.Bands
             _dbReadService = dbReadService;
         }
 
+        [BindProperty]
+        public Band Input { get; set; } = new Band();
+
+        [TempData]
+        public string StatusMessage { get; set; }
+
         public void OnGet()
         {
             ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
@@ -33,18 +33,11 @@ namespace MvcSecSql.Admin.Pages.Bands
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
-            {
-                var success = await _dbWriteService.Add(Input);
-
-                if (success)
-                {
-                    StatusMessage = $"Created a new Bands: {Input.Name}.";
-                    return RedirectToPage("Index");
-                }
-            }
-
-            return Page();
+            if (!ModelState.IsValid) return Page();
+            var success = await _dbWriteService.Add(Input);
+            if (!success) return Page();
+            StatusMessage = $"Created a new Band: {Input.Name}.";
+            return RedirectToPage("Index");
         }
     }
 }

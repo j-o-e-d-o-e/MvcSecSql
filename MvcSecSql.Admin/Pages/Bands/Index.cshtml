@@ -19,6 +19,8 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Genre</th>
+                        <th>Subgenre</th>
                         <th>Description</th>
                         <th>Image</th>
                         <th></th>
@@ -29,6 +31,8 @@
                     {
                     <tr>
                         <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Genre.Title)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SubGenre)</td>
                         <td>@Html.DisplayFor(modelItem => item.Description)</td>
                         <td>@Html.DisplayFor(modelItem => item.Image)</td>
                         <td class="button-col-width">

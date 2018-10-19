@@ -9,9 +9,11 @@ namespace MvcSecSql.Data.Data.Entities
         public int Id { get; set; }
 
         [MaxLength(255)]
+        [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
         [MaxLength(255)]
+        [Display(Name = "Marquee Image")]
         public string MarqueeImageUrl { get; set; }
 
         [MaxLength(80), Required]

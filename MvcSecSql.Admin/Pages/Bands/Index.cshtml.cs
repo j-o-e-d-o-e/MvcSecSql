@@ -23,7 +23,7 @@ namespace MvcSecSql.Admin.Pages.Bands
 
         public void OnGet()
         {
-            Items = _dbReadService.Get<Band>();
+            Items = _dbReadService.GetWithIncludes<Band>();
         }
     }
 }

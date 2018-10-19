@@ -28,6 +28,7 @@ namespace MvcSecSql.Admin.Pages.Bands
         public void OnGet(int id)
         {
             Input = _dbReadService.Get<Band>(id);
+            ViewData["Genres"] = _dbReadService.GetSelectList<Genre>("Id", "Title");
         }
 
         public async Task<IActionResult> OnPostAsync()

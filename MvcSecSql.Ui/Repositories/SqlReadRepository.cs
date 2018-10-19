@@ -35,8 +35,8 @@ namespace MvcSecSql.UI.Repositories
             var res = _db.Get<Band>(bandId, true);
             foreach (var album in res.Albums)
             {
-                album.Infos = _db.Get<AlbumInfo>().Where(info => info.Id.Equals(album.Id)).ToList();
-                album.Videos = _db.Get<Video>().Where(video => video.Id.Equals(album.Id)).ToList();
+                album.Videos = _db.Get<Video>().Where(video => video.AlbumId.Equals(album.Id)).ToList();
+                album.Infos = _db.Get<AlbumInfo>().Where(info => info.AlbumId.Equals(album.Id)).ToList();
             }
 
             return res;

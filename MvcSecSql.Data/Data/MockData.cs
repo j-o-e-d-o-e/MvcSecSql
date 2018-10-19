@@ -173,7 +173,7 @@ namespace MvcSecSql.Data.Data
             {
                 Id = 5, AlbumId = 3, Position = 1,
                 Title = "Haken - The Good Doctor", Description = "Official Music Video",
-                Duration = 16, Thumbnail = "/images/video5.jpg", Url = "https://www.youtube.com/watch?v=BD3v8w57_lU"
+                Duration = 5, Thumbnail = "/images/video5.jpg", Url = "https://www.youtube.com/watch?v=BD3v8w57_lU"
             },
             new Video
             {

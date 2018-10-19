@@ -10,14 +10,14 @@ namespace MvcSecSql.Admin.Pages.Bands
     [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
-        private IDbWriteService _dbWriteService;
-        private IDbReadService _dbReadService;
+        private readonly IDbWriteService _dbWriteService;
+        private readonly IDbReadService _dbReadService;
 
         [BindProperty]
         public Band Input { get; set; } = new Band();
 
         [TempData]
-        public string StatusMessage { get; set; } // Used to send a message back to the Index view
+        public string StatusMessage { get; set; }
 
         public DeleteModel(IDbReadService dbReadService, IDbWriteService dbWriteService)
         {
@@ -38,14 +38,12 @@ namespace MvcSecSql.Admin.Pages.Bands
 
                 if (success)
                 {
-                    StatusMessage = $"Deleted Bands: {Input.Name}.";
+                    StatusMessage = $"Deleted Band: {Input.Name}.";
                     return RedirectToPage("Index");
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
-
     }
 }
